@@ -37,7 +37,7 @@ The Testing category contains 6 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/testing/INDEX.md
+cat ~/.claude/skills/testing/INDEX.md
 ```
 
 This loads the full Testing category index with:
@@ -51,11 +51,11 @@ This loads the full Testing category index with:
 Load individual skills as needed:
 
 ```bash
-cat skills/testing/e2e-testing.md
-cat skills/testing/integration-testing.md
-cat skills/testing/performance-testing.md
-cat skills/testing/test-coverage-strategy.md
-cat skills/testing/test-driven-development.md
+cat ~/.claude/skills/testing/e2e-testing.md
+cat ~/.claude/skills/testing/integration-testing.md
+cat ~/.claude/skills/testing/performance-testing.md
+cat ~/.claude/skills/testing/test-coverage-strategy.md
+cat ~/.claude/skills/testing/test-driven-development.md
 ```
 
 ## Progressive Loading
@@ -68,9 +68,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects testing work
-2. **Browse skills**: Run `cat skills/testing/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/testing/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/testing/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/testing/INDEX.md` to see full category details.

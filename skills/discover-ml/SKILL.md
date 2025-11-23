@@ -56,7 +56,7 @@ The Ml category contains 25 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/ml/INDEX.md
+cat ~/.claude/skills/ml/INDEX.md
 ```
 
 This loads the full Ml category index with:
@@ -70,11 +70,11 @@ This loads the full Ml category index with:
 Load individual skills as needed:
 
 ```bash
-cat skills/ml/custom-llm-evaluation.md
-cat skills/ml/diffusion-finetuning.md
-cat skills/ml/diffusion-model-basics.md
-cat skills/ml/dspy-assertions.md
-cat skills/ml/dspy-evaluation.md
+cat ~/.claude/skills/ml/custom-llm-evaluation.md
+cat ~/.claude/skills/ml/diffusion-finetuning.md
+cat ~/.claude/skills/ml/diffusion-model-basics.md
+cat ~/.claude/skills/ml/dspy-assertions.md
+cat ~/.claude/skills/ml/dspy-evaluation.md
 ```
 
 ## Progressive Loading
@@ -87,9 +87,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects ml work
-2. **Browse skills**: Run `cat skills/ml/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/ml/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/ml/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/ml/INDEX.md` to see full category details.

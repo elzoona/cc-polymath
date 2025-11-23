@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/testing/e2e-testing.md
+cat ~/.claude/skills/testing/e2e-testing.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/testing/e2e-testing.md
 
 **Load this skill**:
 ```bash
-cat skills/testing/integration-testing.md
+cat ~/.claude/skills/testing/integration-testing.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/testing/integration-testing.md
 
 **Load this skill**:
 ```bash
-cat skills/testing/performance-testing.md
+cat ~/.claude/skills/testing/performance-testing.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/testing/performance-testing.md
 
 **Load this skill**:
 ```bash
-cat skills/testing/test-coverage-strategy.md
+cat ~/.claude/skills/testing/test-coverage-strategy.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/testing/test-coverage-strategy.md
 
 **Load this skill**:
 ```bash
-cat skills/testing/test-driven-development.md
+cat ~/.claude/skills/testing/test-driven-development.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/testing/test-driven-development.md
 
 **Load this skill**:
 ```bash
-cat skills/testing/unit-testing-patterns.md
+cat ~/.claude/skills/testing/unit-testing-patterns.md
 ```
 
 ---
@@ -74,9 +74,9 @@ cat skills/testing/unit-testing-patterns.md
 ls skills/testing/*.md
 
 # Load specific skills
-cat skills/testing/e2e-testing.md
-cat skills/testing/integration-testing.md
-cat skills/testing/performance-testing.md
+cat ~/.claude/skills/testing/e2e-testing.md
+cat ~/.claude/skills/testing/integration-testing.md
+cat ~/.claude/skills/testing/performance-testing.md
 # ... and 3 more
 ```
 
@@ -89,5 +89,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-testing` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-testing/SKILL.md
+cat ~/.claude/skills/discover-testing/SKILL.md
 ```

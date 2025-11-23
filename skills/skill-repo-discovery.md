@@ -63,7 +63,7 @@ Activate this skill when:
 ls -d skills/discover-*
 
 # Read catalog with all gateways
-cat skills/README.md
+cat ~/.claude/skills/README.md
 ```
 
 **Direct Mapping** (Tech → Gateway → Skills):

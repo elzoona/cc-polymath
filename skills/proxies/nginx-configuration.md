@@ -898,7 +898,7 @@ Programmatic configuration generation:
 
 ```bash
 # 1. Read comprehensive reference
-cat skills/proxies/nginx-configuration/resources/REFERENCE.md
+cat ~/.claude/skills/proxies/nginx-configuration/resources/REFERENCE.md
 
 # 2. Validate existing configuration
 ./skills/proxies/nginx-configuration/resources/scripts/validate_config.py \

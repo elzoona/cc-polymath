@@ -39,7 +39,7 @@ The Proxies category contains 7 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/proxies/INDEX.md
+cat ~/.claude/skills/proxies/INDEX.md
 ```
 
 This loads the full Proxies category index with:
@@ -53,13 +53,13 @@ This loads the full Proxies category index with:
 Load individual skills as needed:
 
 ```bash
-cat skills/proxies/forward-proxy.md
-cat skills/proxies/reverse-proxy.md
-cat skills/proxies/nginx-configuration.md
-cat skills/proxies/traefik-configuration.md
-cat skills/proxies/envoy-proxy.md
-cat skills/proxies/cache-control.md
-cat skills/proxies/nats-messaging.md
+cat ~/.claude/skills/proxies/forward-proxy.md
+cat ~/.claude/skills/proxies/reverse-proxy.md
+cat ~/.claude/skills/proxies/nginx-configuration.md
+cat ~/.claude/skills/proxies/traefik-configuration.md
+cat ~/.claude/skills/proxies/envoy-proxy.md
+cat ~/.claude/skills/proxies/cache-control.md
+cat ~/.claude/skills/proxies/nats-messaging.md
 ```
 
 ## Common Workflows
@@ -67,39 +67,39 @@ cat skills/proxies/nats-messaging.md
 ### Setting Up Reverse Proxy
 ```bash
 # Reverse proxy → Nginx/Traefik → Caching
-cat skills/proxies/reverse-proxy.md
-cat skills/proxies/nginx-configuration.md
-cat skills/proxies/cache-control.md
+cat ~/.claude/skills/proxies/reverse-proxy.md
+cat ~/.claude/skills/proxies/nginx-configuration.md
+cat ~/.claude/skills/proxies/cache-control.md
 ```
 
 ### Cloud-Native Proxy Stack
 ```bash
 # Traefik → Service discovery → Let's Encrypt
-cat skills/proxies/traefik-configuration.md
-cat skills/proxies/reverse-proxy.md
+cat ~/.claude/skills/proxies/traefik-configuration.md
+cat ~/.claude/skills/proxies/reverse-proxy.md
 ```
 
 ### Service Mesh and Observability
 ```bash
 # Envoy → Advanced routing → Messaging
-cat skills/proxies/envoy-proxy.md
-cat skills/proxies/nats-messaging.md
+cat ~/.claude/skills/proxies/envoy-proxy.md
+cat ~/.claude/skills/proxies/nats-messaging.md
 ```
 
 ### Caching and CDN Optimization
 ```bash
 # HTTP caching → CDN patterns → Nginx
-cat skills/proxies/cache-control.md
-cat skills/proxies/nginx-configuration.md
-cat skills/proxies/reverse-proxy.md
+cat ~/.claude/skills/proxies/cache-control.md
+cat ~/.claude/skills/proxies/nginx-configuration.md
+cat ~/.claude/skills/proxies/reverse-proxy.md
 ```
 
 ### Microservices Communication
 ```bash
 # NATS → Load balancing → Proxy patterns
-cat skills/proxies/nats-messaging.md
-cat skills/proxies/reverse-proxy.md
-cat skills/proxies/envoy-proxy.md
+cat ~/.claude/skills/proxies/nats-messaging.md
+cat ~/.claude/skills/proxies/reverse-proxy.md
+cat ~/.claude/skills/proxies/envoy-proxy.md
 ```
 
 ## Progressive Loading
@@ -112,9 +112,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects proxy/messaging work
-2. **Browse skills**: Run `cat skills/proxies/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/proxies/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/proxies/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/proxies/INDEX.md` to see full category details.

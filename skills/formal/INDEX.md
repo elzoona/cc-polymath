@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/formal/backtracking-search.md
+cat ~/.claude/skills/formal/backtracking-search.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/formal/backtracking-search.md
 
 **Load this skill**:
 ```bash
-cat skills/formal/constraint-propagation.md
+cat ~/.claude/skills/formal/constraint-propagation.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/formal/constraint-propagation.md
 
 **Load this skill**:
 ```bash
-cat skills/formal/csp-modeling.md
+cat ~/.claude/skills/formal/csp-modeling.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/formal/csp-modeling.md
 
 **Load this skill**:
 ```bash
-cat skills/formal/lean-mathlib4.md
+cat ~/.claude/skills/formal/lean-mathlib4.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/formal/lean-mathlib4.md
 
 **Load this skill**:
 ```bash
-cat skills/formal/lean-proof-basics.md
+cat ~/.claude/skills/formal/lean-proof-basics.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/formal/lean-proof-basics.md
 
 **Load this skill**:
 ```bash
-cat skills/formal/lean-tactics.md
+cat ~/.claude/skills/formal/lean-tactics.md
 ```
 
 ---
@@ -72,7 +72,7 @@ cat skills/formal/lean-tactics.md
 
 **Load this skill**:
 ```bash
-cat skills/formal/lean-theorem-proving.md
+cat ~/.claude/skills/formal/lean-theorem-proving.md
 ```
 
 ---
@@ -82,7 +82,7 @@ cat skills/formal/lean-theorem-proving.md
 
 **Load this skill**:
 ```bash
-cat skills/formal/sat-solving-strategies.md
+cat ~/.claude/skills/formal/sat-solving-strategies.md
 ```
 
 ---
@@ -92,7 +92,7 @@ cat skills/formal/sat-solving-strategies.md
 
 **Load this skill**:
 ```bash
-cat skills/formal/smt-theory-applications.md
+cat ~/.claude/skills/formal/smt-theory-applications.md
 ```
 
 ---
@@ -102,7 +102,7 @@ cat skills/formal/smt-theory-applications.md
 
 **Load this skill**:
 ```bash
-cat skills/formal/z3-solver-basics.md
+cat ~/.claude/skills/formal/z3-solver-basics.md
 ```
 
 ---
@@ -114,9 +114,9 @@ cat skills/formal/z3-solver-basics.md
 ls skills/formal/*.md
 
 # Load specific skills
-cat skills/formal/backtracking-search.md
-cat skills/formal/constraint-propagation.md
-cat skills/formal/csp-modeling.md
+cat ~/.claude/skills/formal/backtracking-search.md
+cat ~/.claude/skills/formal/constraint-propagation.md
+cat ~/.claude/skills/formal/csp-modeling.md
 # ... and 7 more
 ```
 
@@ -129,5 +129,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-formal` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-formal/SKILL.md
+cat ~/.claude/skills/discover-formal/SKILL.md
 ```

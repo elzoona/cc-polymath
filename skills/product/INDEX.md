@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/product/prd-requirements-gathering.md
+cat ~/.claude/skills/product/prd-requirements-gathering.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/product/prd-requirements-gathering.md
 
 **Load this skill**:
 ```bash
-cat skills/product/prd-structure-templates.md
+cat ~/.claude/skills/product/prd-structure-templates.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/product/prd-structure-templates.md
 
 **Load this skill**:
 ```bash
-cat skills/product/prd-technical-specifications.md
+cat ~/.claude/skills/product/prd-technical-specifications.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/product/prd-technical-specifications.md
 
 **Load this skill**:
 ```bash
-cat skills/product/prd-user-stories-acceptance.md
+cat ~/.claude/skills/product/prd-user-stories-acceptance.md
 ```
 
 ---
@@ -54,9 +54,9 @@ cat skills/product/prd-user-stories-acceptance.md
 ls skills/product/*.md
 
 # Load specific skills
-cat skills/product/prd-requirements-gathering.md
-cat skills/product/prd-structure-templates.md
-cat skills/product/prd-technical-specifications.md
+cat ~/.claude/skills/product/prd-requirements-gathering.md
+cat ~/.claude/skills/product/prd-structure-templates.md
+cat ~/.claude/skills/product/prd-technical-specifications.md
 # ... and 1 more
 ```
 
@@ -69,5 +69,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-product` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-product/SKILL.md
+cat ~/.claude/skills/discover-product/SKILL.md
 ```

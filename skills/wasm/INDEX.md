@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/wasm/wasm-browser-integration.md
+cat ~/.claude/skills/wasm/wasm-browser-integration.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/wasm/wasm-browser-integration.md
 
 **Load this skill**:
 ```bash
-cat skills/wasm/wasm-fundamentals.md
+cat ~/.claude/skills/wasm/wasm-fundamentals.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/wasm/wasm-fundamentals.md
 
 **Load this skill**:
 ```bash
-cat skills/wasm/wasm-rust-toolchain.md
+cat ~/.claude/skills/wasm/wasm-rust-toolchain.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/wasm/wasm-rust-toolchain.md
 
 **Load this skill**:
 ```bash
-cat skills/wasm/wasm-server-side.md
+cat ~/.claude/skills/wasm/wasm-server-side.md
 ```
 
 ---
@@ -54,9 +54,9 @@ cat skills/wasm/wasm-server-side.md
 ls skills/wasm/*.md
 
 # Load specific skills
-cat skills/wasm/wasm-browser-integration.md
-cat skills/wasm/wasm-fundamentals.md
-cat skills/wasm/wasm-rust-toolchain.md
+cat ~/.claude/skills/wasm/wasm-browser-integration.md
+cat ~/.claude/skills/wasm/wasm-fundamentals.md
+cat ~/.claude/skills/wasm/wasm-rust-toolchain.md
 # ... and 1 more
 ```
 
@@ -69,5 +69,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-wasm` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-wasm/SKILL.md
+cat ~/.claude/skills/discover-wasm/SKILL.md
 ```

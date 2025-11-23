@@ -84,13 +84,13 @@ This skill is automatically activated when your task involves:
 
 ```bash
 # From skills directory
-cat skills/research/research-synthesis.md
-cat skills/research/quantitative-methods.md
-cat skills/research/qualitative-methods.md
-cat skills/research/research-design.md
-cat skills/research/data-collection.md
-cat skills/research/data-analysis.md
-cat skills/research/research-writing.md
+cat ~/.claude/skills/research/research-synthesis.md
+cat ~/.claude/skills/research/quantitative-methods.md
+cat ~/.claude/skills/research/qualitative-methods.md
+cat ~/.claude/skills/research/research-design.md
+cat ~/.claude/skills/research/data-collection.md
+cat ~/.claude/skills/research/data-analysis.md
+cat ~/.claude/skills/research/research-writing.md
 ```
 
 ### Common Workflow Combinations
@@ -98,52 +98,52 @@ cat skills/research/research-writing.md
 **Quantitative Research Study**:
 ```bash
 # Planning phase
-cat skills/research/research-design.md
+cat ~/.claude/skills/research/research-design.md
 
 # Data collection
-cat skills/research/data-collection.md
-cat skills/research/quantitative-methods.md
+cat ~/.claude/skills/research/data-collection.md
+cat ~/.claude/skills/research/quantitative-methods.md
 
 # Analysis and reporting
-cat skills/research/data-analysis.md
-cat skills/research/research-writing.md
+cat ~/.claude/skills/research/data-analysis.md
+cat ~/.claude/skills/research/research-writing.md
 ```
 
 **Qualitative Research Study**:
 ```bash
 # Planning phase
-cat skills/research/research-design.md
+cat ~/.claude/skills/research/research-design.md
 
 # Data collection
-cat skills/research/data-collection.md
-cat skills/research/qualitative-methods.md
+cat ~/.claude/skills/research/data-collection.md
+cat ~/.claude/skills/research/qualitative-methods.md
 
 # Analysis and reporting
-cat skills/research/data-analysis.md
-cat skills/research/research-writing.md
+cat ~/.claude/skills/research/data-analysis.md
+cat ~/.claude/skills/research/research-writing.md
 ```
 
 **Literature Review / Meta-Analysis**:
 ```bash
 # Synthesis phase
-cat skills/research/research-synthesis.md
+cat ~/.claude/skills/research/research-synthesis.md
 
 # If including quantitative synthesis
-cat skills/research/quantitative-methods.md
+cat ~/.claude/skills/research/quantitative-methods.md
 
 # Writing phase
-cat skills/research/research-writing.md
+cat ~/.claude/skills/research/research-writing.md
 ```
 
 **Mixed Methods Study**:
 ```bash
 # All methods
-cat skills/research/research-design.md
-cat skills/research/quantitative-methods.md
-cat skills/research/qualitative-methods.md
-cat skills/research/data-collection.md
-cat skills/research/data-analysis.md
-cat skills/research/research-writing.md
+cat ~/.claude/skills/research/research-design.md
+cat ~/.claude/skills/research/quantitative-methods.md
+cat ~/.claude/skills/research/qualitative-methods.md
+cat ~/.claude/skills/research/data-collection.md
+cat ~/.claude/skills/research/data-analysis.md
+cat ~/.claude/skills/research/research-writing.md
 ```
 
 ## Progressive Loading
@@ -230,27 +230,27 @@ Based on keywords in your task, these skills auto-load:
 
 ### "I need to design a survey study"
 ```bash
-cat skills/research/research-design.md
-cat skills/research/data-collection.md
-cat skills/research/quantitative-methods.md
+cat ~/.claude/skills/research/research-design.md
+cat ~/.claude/skills/research/data-collection.md
+cat ~/.claude/skills/research/quantitative-methods.md
 ```
 
 ### "I need to analyze interview transcripts"
 ```bash
-cat skills/research/qualitative-methods.md
-cat skills/research/data-analysis.md
+cat ~/.claude/skills/research/qualitative-methods.md
+cat ~/.claude/skills/research/data-analysis.md
 ```
 
 ### "I need to conduct a meta-analysis"
 ```bash
-cat skills/research/research-synthesis.md
-cat skills/research/quantitative-methods.md
+cat ~/.claude/skills/research/research-synthesis.md
+cat ~/.claude/skills/research/quantitative-methods.md
 ```
 
 ### "I need to write up my results"
 ```bash
-cat skills/research/research-writing.md
-cat skills/research/data-analysis.md
+cat ~/.claude/skills/research/research-writing.md
+cat ~/.claude/skills/research/data-analysis.md
 ```
 
 ## Best Practices

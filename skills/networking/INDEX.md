@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/networking/mosh-resilient-ssh.md
+cat ~/.claude/skills/networking/mosh-resilient-ssh.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/networking/mosh-resilient-ssh.md
 
 **Load this skill**:
 ```bash
-cat skills/networking/mtls-implementation.md
+cat ~/.claude/skills/networking/mtls-implementation.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/networking/mtls-implementation.md
 
 **Load this skill**:
 ```bash
-cat skills/networking/nat-traversal.md
+cat ~/.claude/skills/networking/nat-traversal.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/networking/nat-traversal.md
 
 **Load this skill**:
 ```bash
-cat skills/networking/network-resilience-patterns.md
+cat ~/.claude/skills/networking/network-resilience-patterns.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/networking/network-resilience-patterns.md
 
 **Load this skill**:
 ```bash
-cat skills/networking/tailscale-vpn.md
+cat ~/.claude/skills/networking/tailscale-vpn.md
 ```
 
 ---
@@ -64,9 +64,9 @@ cat skills/networking/tailscale-vpn.md
 ls skills/networking/*.md
 
 # Load specific skills
-cat skills/networking/mosh-resilient-ssh.md
-cat skills/networking/mtls-implementation.md
-cat skills/networking/nat-traversal.md
+cat ~/.claude/skills/networking/mosh-resilient-ssh.md
+cat ~/.claude/skills/networking/mtls-implementation.md
+cat ~/.claude/skills/networking/nat-traversal.md
 # ... and 2 more
 ```
 
@@ -79,5 +79,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-networking` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-networking/SKILL.md
+cat ~/.claude/skills/discover-networking/SKILL.md
 ```

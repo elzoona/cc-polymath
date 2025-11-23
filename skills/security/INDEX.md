@@ -322,12 +322,12 @@ Comprehensive skills for application security, vulnerability assessment, and sec
 All skills are available in the `skills/security/` directory:
 
 ```bash
-cat skills/security/authentication.md
-cat skills/security/authorization.md
-cat skills/security/input-validation.md
-cat skills/security/security-headers.md
-cat skills/security/vulnerability-assessment.md
-cat skills/security/secrets-management.md
+cat ~/.claude/skills/security/authentication.md
+cat ~/.claude/skills/security/authorization.md
+cat ~/.claude/skills/security/input-validation.md
+cat ~/.claude/skills/security/security-headers.md
+cat ~/.claude/skills/security/vulnerability-assessment.md
+cat ~/.claude/skills/security/secrets-management.md
 ```
 
 **Pro tip**: Start with authentication and authorization (identity/access), then add input validation and security headers (protection), then implement vulnerability assessment and secrets management (operations).

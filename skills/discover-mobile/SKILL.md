@@ -35,7 +35,7 @@ The Mobile category contains 4 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/mobile/INDEX.md
+cat ~/.claude/skills/mobile/INDEX.md
 ```
 
 This loads the full Mobile category index with:
@@ -49,10 +49,10 @@ This loads the full Mobile category index with:
 Load individual skills as needed:
 
 ```bash
-cat skills/mobile/react-native-native-modules.md
-cat skills/mobile/react-native-navigation.md
-cat skills/mobile/react-native-performance.md
-cat skills/mobile/react-native-setup.md
+cat ~/.claude/skills/mobile/react-native-native-modules.md
+cat ~/.claude/skills/mobile/react-native-navigation.md
+cat ~/.claude/skills/mobile/react-native-performance.md
+cat ~/.claude/skills/mobile/react-native-setup.md
 ```
 
 ## Progressive Loading
@@ -65,9 +65,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects mobile work
-2. **Browse skills**: Run `cat skills/mobile/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/mobile/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/mobile/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/mobile/INDEX.md` to see full category details.

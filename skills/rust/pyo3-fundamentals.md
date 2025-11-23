@@ -160,7 +160,7 @@ All resources meet Wave 10-11 quality standards:
 
 ```bash
 # Load comprehensive reference
-cat skills/rust/pyo3-fundamentals/resources/REFERENCE.md
+cat ~/.claude/skills/rust/pyo3-fundamentals/resources/REFERENCE.md
 
 # Run environment validator
 python skills/rust/pyo3-fundamentals/resources/scripts/setup_validator.py --verbose

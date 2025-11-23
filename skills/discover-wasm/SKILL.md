@@ -34,7 +34,7 @@ The Wasm category contains 4 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/wasm/INDEX.md
+cat ~/.claude/skills/wasm/INDEX.md
 ```
 
 This loads the full Wasm category index with:
@@ -48,10 +48,10 @@ This loads the full Wasm category index with:
 Load individual skills as needed:
 
 ```bash
-cat skills/wasm/wasm-browser-integration.md
-cat skills/wasm/wasm-fundamentals.md
-cat skills/wasm/wasm-rust-toolchain.md
-cat skills/wasm/wasm-server-side.md
+cat ~/.claude/skills/wasm/wasm-browser-integration.md
+cat ~/.claude/skills/wasm/wasm-fundamentals.md
+cat ~/.claude/skills/wasm/wasm-rust-toolchain.md
+cat ~/.claude/skills/wasm/wasm-server-side.md
 ```
 
 ## Progressive Loading
@@ -64,9 +64,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects wasm work
-2. **Browse skills**: Run `cat skills/wasm/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/wasm/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/wasm/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/wasm/INDEX.md` to see full category details.

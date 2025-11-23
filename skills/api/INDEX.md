@@ -278,13 +278,13 @@ Comprehensive skills for designing, securing, and implementing production-ready 
 All skills are available in the `skills/api/` directory:
 
 ```bash
-cat skills/api/rest-api-design.md
-cat skills/api/graphql-schema-design.md
-cat skills/api/api-authentication.md
-cat skills/api/api-authorization.md
-cat skills/api/api-rate-limiting.md
-cat skills/api/api-versioning.md
-cat skills/api/api-error-handling.md
+cat ~/.claude/skills/api/rest-api-design.md
+cat ~/.claude/skills/api/graphql-schema-design.md
+cat ~/.claude/skills/api/api-authentication.md
+cat ~/.claude/skills/api/api-authorization.md
+cat ~/.claude/skills/api/api-rate-limiting.md
+cat ~/.claude/skills/api/api-versioning.md
+cat ~/.claude/skills/api/api-error-handling.md
 ```
 
 **Pro tip**: Start with design (`rest-api-design.md` or `graphql-schema-design.md`), then layer on security (`api-authentication.md`, `api-authorization.md`, `api-rate-limiting.md`).

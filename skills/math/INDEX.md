@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/math/abstract-algebra.md
+cat ~/.claude/skills/math/abstract-algebra.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/math/abstract-algebra.md
 
 **Load this skill**:
 ```bash
-cat skills/math/category-theory-foundations.md
+cat ~/.claude/skills/math/category-theory-foundations.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/math/category-theory-foundations.md
 
 **Load this skill**:
 ```bash
-cat skills/math/differential-equations.md
+cat ~/.claude/skills/math/differential-equations.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/math/differential-equations.md
 
 **Load this skill**:
 ```bash
-cat skills/math/linear-algebra-computation.md
+cat ~/.claude/skills/math/linear-algebra-computation.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/math/linear-algebra-computation.md
 
 **Load this skill**:
 ```bash
-cat skills/math/number-theory.md
+cat ~/.claude/skills/math/number-theory.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/math/number-theory.md
 
 **Load this skill**:
 ```bash
-cat skills/math/numerical-methods.md
+cat ~/.claude/skills/math/numerical-methods.md
 ```
 
 ---
@@ -72,7 +72,7 @@ cat skills/math/numerical-methods.md
 
 **Load this skill**:
 ```bash
-cat skills/math/optimization-algorithms.md
+cat ~/.claude/skills/math/optimization-algorithms.md
 ```
 
 ---
@@ -82,7 +82,7 @@ cat skills/math/optimization-algorithms.md
 
 **Load this skill**:
 ```bash
-cat skills/math/probability-statistics.md
+cat ~/.claude/skills/math/probability-statistics.md
 ```
 
 ---
@@ -92,7 +92,7 @@ cat skills/math/probability-statistics.md
 
 **Load this skill**:
 ```bash
-cat skills/math/set-theory.md
+cat ~/.claude/skills/math/set-theory.md
 ```
 
 ---
@@ -102,7 +102,7 @@ cat skills/math/set-theory.md
 
 **Load this skill**:
 ```bash
-cat skills/math/topology-algebraic.md
+cat ~/.claude/skills/math/topology-algebraic.md
 ```
 
 ---
@@ -112,7 +112,7 @@ cat skills/math/topology-algebraic.md
 
 **Load this skill**:
 ```bash
-cat skills/math/topology-point-set.md
+cat ~/.claude/skills/math/topology-point-set.md
 ```
 
 ---
@@ -124,9 +124,9 @@ cat skills/math/topology-point-set.md
 ls skills/math/*.md
 
 # Load specific skills
-cat skills/math/abstract-algebra.md
-cat skills/math/category-theory-foundations.md
-cat skills/math/differential-equations.md
+cat ~/.claude/skills/math/abstract-algebra.md
+cat ~/.claude/skills/math/category-theory-foundations.md
+cat ~/.claude/skills/math/differential-equations.md
 # ... and 8 more
 ```
 
@@ -139,5 +139,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-math` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-math/SKILL.md
+cat ~/.claude/skills/discover-math/SKILL.md
 ```

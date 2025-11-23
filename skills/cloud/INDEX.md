@@ -447,23 +447,23 @@ Comprehensive skills for AWS and Google Cloud Platform services, serverless comp
 
 All AWS skills:
 ```bash
-cat skills/cloud/aws/aws-lambda-functions.md
-cat skills/cloud/aws/aws-api-gateway.md
-cat skills/cloud/aws/aws-databases.md
-cat skills/cloud/aws/aws-iam-security.md
-cat skills/cloud/aws/aws-storage.md
-cat skills/cloud/aws/aws-ec2-compute.md
-cat skills/cloud/aws/aws-networking.md
+cat ~/.claude/skills/cloud/aws/aws-lambda-functions.md
+cat ~/.claude/skills/cloud/aws/aws-api-gateway.md
+cat ~/.claude/skills/cloud/aws/aws-databases.md
+cat ~/.claude/skills/cloud/aws/aws-iam-security.md
+cat ~/.claude/skills/cloud/aws/aws-storage.md
+cat ~/.claude/skills/cloud/aws/aws-ec2-compute.md
+cat ~/.claude/skills/cloud/aws/aws-networking.md
 ```
 
 All GCP skills:
 ```bash
-cat skills/cloud/gcp/gcp-serverless.md
-cat skills/cloud/gcp/gcp-compute.md
-cat skills/cloud/gcp/gcp-databases.md
-cat skills/cloud/gcp/gcp-storage.md
-cat skills/cloud/gcp/gcp-iam-security.md
-cat skills/cloud/gcp/gcp-networking.md
+cat ~/.claude/skills/cloud/gcp/gcp-serverless.md
+cat ~/.claude/skills/cloud/gcp/gcp-compute.md
+cat ~/.claude/skills/cloud/gcp/gcp-databases.md
+cat ~/.claude/skills/cloud/gcp/gcp-storage.md
+cat ~/.claude/skills/cloud/gcp/gcp-iam-security.md
+cat ~/.claude/skills/cloud/gcp/gcp-networking.md
 ```
 
 **Pro tip**: Start with compute options (serverless vs VMs), then add storage, databases, networking, and security in layers.

@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/containers/container-networking.md
+cat ~/.claude/skills/containers/container-networking.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/containers/container-networking.md
 
 **Load this skill**:
 ```bash
-cat skills/containers/container-registry-management.md
+cat ~/.claude/skills/containers/container-registry-management.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/containers/container-registry-management.md
 
 **Load this skill**:
 ```bash
-cat skills/containers/container-security.md
+cat ~/.claude/skills/containers/container-security.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/containers/container-security.md
 
 **Load this skill**:
 ```bash
-cat skills/containers/docker-compose-development.md
+cat ~/.claude/skills/containers/docker-compose-development.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/containers/docker-compose-development.md
 
 **Load this skill**:
 ```bash
-cat skills/containers/dockerfile-optimization.md
+cat ~/.claude/skills/containers/dockerfile-optimization.md
 ```
 
 ---
@@ -64,9 +64,9 @@ cat skills/containers/dockerfile-optimization.md
 ls skills/containers/*.md
 
 # Load specific skills
-cat skills/containers/container-networking.md
-cat skills/containers/container-registry-management.md
-cat skills/containers/container-security.md
+cat ~/.claude/skills/containers/container-networking.md
+cat ~/.claude/skills/containers/container-registry-management.md
+cat ~/.claude/skills/containers/container-security.md
 # ... and 2 more
 ```
 
@@ -79,5 +79,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-containers` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-containers/SKILL.md
+cat ~/.claude/skills/discover-containers/SKILL.md
 ```

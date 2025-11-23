@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/proxies/forward-proxy.md
+cat ~/.claude/skills/proxies/forward-proxy.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/proxies/forward-proxy.md
 
 **Load this skill**:
 ```bash
-cat skills/proxies/reverse-proxy.md
+cat ~/.claude/skills/proxies/reverse-proxy.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/proxies/reverse-proxy.md
 
 **Load this skill**:
 ```bash
-cat skills/proxies/nginx-configuration.md
+cat ~/.claude/skills/proxies/nginx-configuration.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/proxies/nginx-configuration.md
 
 **Load this skill**:
 ```bash
-cat skills/proxies/traefik-configuration.md
+cat ~/.claude/skills/proxies/traefik-configuration.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/proxies/traefik-configuration.md
 
 **Load this skill**:
 ```bash
-cat skills/proxies/envoy-proxy.md
+cat ~/.claude/skills/proxies/envoy-proxy.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/proxies/envoy-proxy.md
 
 **Load this skill**:
 ```bash
-cat skills/proxies/cache-control.md
+cat ~/.claude/skills/proxies/cache-control.md
 ```
 
 ---
@@ -72,7 +72,7 @@ cat skills/proxies/cache-control.md
 
 **Load this skill**:
 ```bash
-cat skills/proxies/nats-messaging.md
+cat ~/.claude/skills/proxies/nats-messaging.md
 ```
 
 ---
@@ -84,13 +84,13 @@ cat skills/proxies/nats-messaging.md
 ls skills/proxies/*.md
 
 # Load specific skills
-cat skills/proxies/forward-proxy.md
-cat skills/proxies/reverse-proxy.md
-cat skills/proxies/nginx-configuration.md
-cat skills/proxies/traefik-configuration.md
-cat skills/proxies/envoy-proxy.md
-cat skills/proxies/cache-control.md
-cat skills/proxies/nats-messaging.md
+cat ~/.claude/skills/proxies/forward-proxy.md
+cat ~/.claude/skills/proxies/reverse-proxy.md
+cat ~/.claude/skills/proxies/nginx-configuration.md
+cat ~/.claude/skills/proxies/traefik-configuration.md
+cat ~/.claude/skills/proxies/envoy-proxy.md
+cat ~/.claude/skills/proxies/cache-control.md
+cat ~/.claude/skills/proxies/nats-messaging.md
 ```
 
 ## Related Categories
@@ -102,5 +102,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-proxies` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-proxies/SKILL.md
+cat ~/.claude/skills/discover-proxies/SKILL.md
 ```

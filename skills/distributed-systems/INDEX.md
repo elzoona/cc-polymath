@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/distributed-systems/cap-theorem.md
+cat ~/.claude/skills/distributed-systems/cap-theorem.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/distributed-systems/cap-theorem.md
 
 **Load this skill**:
 ```bash
-cat skills/distributed-systems/consensus-raft.md
+cat ~/.claude/skills/distributed-systems/consensus-raft.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/distributed-systems/consensus-raft.md
 
 **Load this skill**:
 ```bash
-cat skills/distributed-systems/consensus-paxos.md
+cat ~/.claude/skills/distributed-systems/consensus-paxos.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/distributed-systems/consensus-paxos.md
 
 **Load this skill**:
 ```bash
-cat skills/distributed-systems/crdt-fundamentals.md
+cat ~/.claude/skills/distributed-systems/crdt-fundamentals.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/distributed-systems/crdt-fundamentals.md
 
 **Load this skill**:
 ```bash
-cat skills/distributed-systems/crdt-types.md
+cat ~/.claude/skills/distributed-systems/crdt-types.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/distributed-systems/crdt-types.md
 
 **Load this skill**:
 ```bash
-cat skills/distributed-systems/dotted-version-vectors.md
+cat ~/.claude/skills/distributed-systems/dotted-version-vectors.md
 ```
 
 ---
@@ -72,7 +72,7 @@ cat skills/distributed-systems/dotted-version-vectors.md
 
 **Load this skill**:
 ```bash
-cat skills/distributed-systems/interval-tree-clocks.md
+cat ~/.claude/skills/distributed-systems/interval-tree-clocks.md
 ```
 
 ---
@@ -82,7 +82,7 @@ cat skills/distributed-systems/interval-tree-clocks.md
 
 **Load this skill**:
 ```bash
-cat skills/distributed-systems/vector-clocks.md
+cat ~/.claude/skills/distributed-systems/vector-clocks.md
 ```
 
 ---
@@ -92,7 +92,7 @@ cat skills/distributed-systems/vector-clocks.md
 
 **Load this skill**:
 ```bash
-cat skills/distributed-systems/logical-clocks.md
+cat ~/.claude/skills/distributed-systems/logical-clocks.md
 ```
 
 ---
@@ -102,7 +102,7 @@ cat skills/distributed-systems/logical-clocks.md
 
 **Load this skill**:
 ```bash
-cat skills/distributed-systems/eventual-consistency.md
+cat ~/.claude/skills/distributed-systems/eventual-consistency.md
 ```
 
 ---
@@ -112,7 +112,7 @@ cat skills/distributed-systems/eventual-consistency.md
 
 **Load this skill**:
 ```bash
-cat skills/distributed-systems/conflict-resolution.md
+cat ~/.claude/skills/distributed-systems/conflict-resolution.md
 ```
 
 ---
@@ -122,7 +122,7 @@ cat skills/distributed-systems/conflict-resolution.md
 
 **Load this skill**:
 ```bash
-cat skills/distributed-systems/replication-strategies.md
+cat ~/.claude/skills/distributed-systems/replication-strategies.md
 ```
 
 ---
@@ -132,7 +132,7 @@ cat skills/distributed-systems/replication-strategies.md
 
 **Load this skill**:
 ```bash
-cat skills/distributed-systems/partitioning-sharding.md
+cat ~/.claude/skills/distributed-systems/partitioning-sharding.md
 ```
 
 ---
@@ -142,7 +142,7 @@ cat skills/distributed-systems/partitioning-sharding.md
 
 **Load this skill**:
 ```bash
-cat skills/distributed-systems/distributed-locks.md
+cat ~/.claude/skills/distributed-systems/distributed-locks.md
 ```
 
 ---
@@ -152,7 +152,7 @@ cat skills/distributed-systems/distributed-locks.md
 
 **Load this skill**:
 ```bash
-cat skills/distributed-systems/leader-election.md
+cat ~/.claude/skills/distributed-systems/leader-election.md
 ```
 
 ---
@@ -162,7 +162,7 @@ cat skills/distributed-systems/leader-election.md
 
 **Load this skill**:
 ```bash
-cat skills/distributed-systems/gossip-protocols.md
+cat ~/.claude/skills/distributed-systems/gossip-protocols.md
 ```
 
 ---
@@ -172,7 +172,7 @@ cat skills/distributed-systems/gossip-protocols.md
 
 **Load this skill**:
 ```bash
-cat skills/distributed-systems/probabilistic-data-structures.md
+cat ~/.claude/skills/distributed-systems/probabilistic-data-structures.md
 ```
 
 ---
@@ -184,9 +184,9 @@ cat skills/distributed-systems/probabilistic-data-structures.md
 ls skills/distributed-systems/*.md
 
 # Load specific skills
-cat skills/distributed-systems/cap-theorem.md
-cat skills/distributed-systems/consensus-raft.md
-cat skills/distributed-systems/crdt-fundamentals.md
+cat ~/.claude/skills/distributed-systems/cap-theorem.md
+cat ~/.claude/skills/distributed-systems/consensus-raft.md
+cat ~/.claude/skills/distributed-systems/crdt-fundamentals.md
 # ... and 14 more
 ```
 
@@ -199,5 +199,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-distributed-systems` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-distributed-systems/SKILL.md
+cat ~/.claude/skills/discover-distributed-systems/SKILL.md
 ```

@@ -48,7 +48,7 @@ The Distributed Systems category contains 17 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/distributed-systems/INDEX.md
+cat ~/.claude/skills/distributed-systems/INDEX.md
 ```
 
 This loads the full Distributed Systems category index with:
@@ -62,10 +62,10 @@ This loads the full Distributed Systems category index with:
 Load individual skills as needed:
 
 ```bash
-cat skills/distributed-systems/cap-theorem.md
-cat skills/distributed-systems/consensus-raft.md
-cat skills/distributed-systems/crdt-fundamentals.md
-cat skills/distributed-systems/replication-strategies.md
+cat ~/.claude/skills/distributed-systems/cap-theorem.md
+cat ~/.claude/skills/distributed-systems/consensus-raft.md
+cat ~/.claude/skills/distributed-systems/crdt-fundamentals.md
+cat ~/.claude/skills/distributed-systems/replication-strategies.md
 ```
 
 ## Common Workflows
@@ -73,41 +73,41 @@ cat skills/distributed-systems/replication-strategies.md
 ### Understanding Consistency Trade-offs
 ```bash
 # CAP → Eventual consistency → Conflict resolution
-cat skills/distributed-systems/cap-theorem.md
-cat skills/distributed-systems/eventual-consistency.md
-cat skills/distributed-systems/conflict-resolution.md
+cat ~/.claude/skills/distributed-systems/cap-theorem.md
+cat ~/.claude/skills/distributed-systems/eventual-consistency.md
+cat ~/.claude/skills/distributed-systems/conflict-resolution.md
 ```
 
 ### Implementing Consensus
 ```bash
 # RAFT → Leader election → Replication
-cat skills/distributed-systems/consensus-raft.md
-cat skills/distributed-systems/leader-election.md
-cat skills/distributed-systems/replication-strategies.md
+cat ~/.claude/skills/distributed-systems/consensus-raft.md
+cat ~/.claude/skills/distributed-systems/leader-election.md
+cat ~/.claude/skills/distributed-systems/replication-strategies.md
 ```
 
 ### Building Eventually Consistent Systems
 ```bash
 # CRDTs → Vector clocks → Conflict resolution
-cat skills/distributed-systems/crdt-fundamentals.md
-cat skills/distributed-systems/vector-clocks.md
-cat skills/distributed-systems/conflict-resolution.md
+cat ~/.claude/skills/distributed-systems/crdt-fundamentals.md
+cat ~/.claude/skills/distributed-systems/vector-clocks.md
+cat ~/.claude/skills/distributed-systems/conflict-resolution.md
 ```
 
 ### Advanced Causality Tracking
 ```bash
 # Vector clocks → Dotted version vectors → Interval tree clocks
-cat skills/distributed-systems/vector-clocks.md
-cat skills/distributed-systems/dotted-version-vectors.md
-cat skills/distributed-systems/interval-tree-clocks.md
+cat ~/.claude/skills/distributed-systems/vector-clocks.md
+cat ~/.claude/skills/distributed-systems/dotted-version-vectors.md
+cat ~/.claude/skills/distributed-systems/interval-tree-clocks.md
 ```
 
 ### Scaling Data
 ```bash
 # Partitioning → Replication → Gossip
-cat skills/distributed-systems/partitioning-sharding.md
-cat skills/distributed-systems/replication-strategies.md
-cat skills/distributed-systems/gossip-protocols.md
+cat ~/.claude/skills/distributed-systems/partitioning-sharding.md
+cat ~/.claude/skills/distributed-systems/replication-strategies.md
+cat ~/.claude/skills/distributed-systems/gossip-protocols.md
 ```
 
 ## Progressive Loading
@@ -120,9 +120,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects distributed systems work
-2. **Browse skills**: Run `cat skills/distributed-systems/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/distributed-systems/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/distributed-systems/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/distributed-systems/INDEX.md` to see full category details.

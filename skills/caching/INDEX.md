@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/caching/cache-invalidation-strategies.md
+cat ~/.claude/skills/caching/cache-invalidation-strategies.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/caching/cache-invalidation-strategies.md
 
 **Load this skill**:
 ```bash
-cat skills/caching/cache-performance-monitoring.md
+cat ~/.claude/skills/caching/cache-performance-monitoring.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/caching/cache-performance-monitoring.md
 
 **Load this skill**:
 ```bash
-cat skills/caching/caching-fundamentals.md
+cat ~/.claude/skills/caching/caching-fundamentals.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/caching/caching-fundamentals.md
 
 **Load this skill**:
 ```bash
-cat skills/caching/cdn-edge-caching.md
+cat ~/.claude/skills/caching/cdn-edge-caching.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/caching/cdn-edge-caching.md
 
 **Load this skill**:
 ```bash
-cat skills/caching/http-caching.md
+cat ~/.claude/skills/caching/http-caching.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/caching/http-caching.md
 
 **Load this skill**:
 ```bash
-cat skills/caching/redis-caching-patterns.md
+cat ~/.claude/skills/caching/redis-caching-patterns.md
 ```
 
 ---
@@ -72,7 +72,7 @@ cat skills/caching/redis-caching-patterns.md
 
 **Load this skill**:
 ```bash
-cat skills/caching/service-worker-caching.md
+cat ~/.claude/skills/caching/service-worker-caching.md
 ```
 
 ---
@@ -84,9 +84,9 @@ cat skills/caching/service-worker-caching.md
 ls skills/caching/*.md
 
 # Load specific skills
-cat skills/caching/cache-invalidation-strategies.md
-cat skills/caching/cache-performance-monitoring.md
-cat skills/caching/caching-fundamentals.md
+cat ~/.claude/skills/caching/cache-invalidation-strategies.md
+cat ~/.claude/skills/caching/cache-performance-monitoring.md
+cat ~/.claude/skills/caching/caching-fundamentals.md
 # ... and 4 more
 ```
 
@@ -99,5 +99,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-caching` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-caching/SKILL.md
+cat ~/.claude/skills/discover-caching/SKILL.md
 ```

@@ -37,7 +37,7 @@ The Deployment category contains 6 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/deployment/INDEX.md
+cat ~/.claude/skills/deployment/INDEX.md
 ```
 
 This loads the full Deployment category index with:
@@ -51,11 +51,11 @@ This loads the full Deployment category index with:
 Load individual skills as needed:
 
 ```bash
-cat skills/deployment/heroku-addons.md
-cat skills/deployment/heroku-deployment.md
-cat skills/deployment/heroku-troubleshooting.md
-cat skills/deployment/netlify-deployment.md
-cat skills/deployment/netlify-functions.md
+cat ~/.claude/skills/deployment/heroku-addons.md
+cat ~/.claude/skills/deployment/heroku-deployment.md
+cat ~/.claude/skills/deployment/heroku-troubleshooting.md
+cat ~/.claude/skills/deployment/netlify-deployment.md
+cat ~/.claude/skills/deployment/netlify-functions.md
 ```
 
 ## Progressive Loading
@@ -68,9 +68,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects deployment work
-2. **Browse skills**: Run `cat skills/deployment/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/deployment/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/deployment/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/deployment/INDEX.md` to see full category details.

@@ -36,7 +36,7 @@ The Infrastructure category contains 6 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/infrastructure/INDEX.md
+cat ~/.claude/skills/infrastructure/INDEX.md
 ```
 
 This loads the full Infrastructure category index with:
@@ -50,11 +50,11 @@ This loads the full Infrastructure category index with:
 Load individual skills as needed:
 
 ```bash
-cat skills/infrastructure/aws-serverless.md
-cat skills/infrastructure/cloudflare-workers.md
-cat skills/infrastructure/cost-optimization.md
-cat skills/infrastructure/infrastructure-security.md
-cat skills/infrastructure/kubernetes-basics.md
+cat ~/.claude/skills/infrastructure/aws-serverless.md
+cat ~/.claude/skills/infrastructure/cloudflare-workers.md
+cat ~/.claude/skills/infrastructure/cost-optimization.md
+cat ~/.claude/skills/infrastructure/infrastructure-security.md
+cat ~/.claude/skills/infrastructure/kubernetes-basics.md
 ```
 
 ## Progressive Loading
@@ -67,9 +67,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects infrastructure work
-2. **Browse skills**: Run `cat skills/infrastructure/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/infrastructure/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/infrastructure/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/infrastructure/INDEX.md` to see full category details.

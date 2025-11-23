@@ -7,7 +7,7 @@ description: Load frontend skills (React, Next.js, TypeScript, state management)
 Load the frontend gateway skill:
 
 ```bash
-cat skills/discover-frontend/SKILL.md
+cat ~/.claude/skills/discover-frontend/SKILL.md
 ```
 
 This activates skills for:

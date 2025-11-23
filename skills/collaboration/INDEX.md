@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/collaboration/codetour-guided-walkthroughs.md
+cat ~/.claude/skills/collaboration/codetour-guided-walkthroughs.md
 ```
 
 ---
@@ -24,7 +24,7 @@ cat skills/collaboration/codetour-guided-walkthroughs.md
 ls skills/collaboration/*.md
 
 # Load specific skills
-cat skills/collaboration/codetour-guided-walkthroughs.md
+cat ~/.claude/skills/collaboration/codetour-guided-walkthroughs.md
 ```
 
 ## Related Categories
@@ -36,5 +36,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-collaboration` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-collaboration/SKILL.md
+cat ~/.claude/skills/discover-collaboration/SKILL.md
 ```

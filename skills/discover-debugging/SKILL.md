@@ -45,7 +45,7 @@ The Debugging category contains 14 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/debugging/INDEX.md
+cat ~/.claude/skills/debugging/INDEX.md
 ```
 
 This loads the full Debugging category index with:
@@ -59,11 +59,11 @@ This loads the full Debugging category index with:
 Load individual skills as needed:
 
 ```bash
-cat skills/debugging/browser-devtools.md
-cat skills/debugging/concurrency-debugging.md
-cat skills/debugging/container-debugging.md
-cat skills/debugging/core-dump-analysis.md
-cat skills/debugging/crash-debugging.md
+cat ~/.claude/skills/debugging/browser-devtools.md
+cat ~/.claude/skills/debugging/concurrency-debugging.md
+cat ~/.claude/skills/debugging/container-debugging.md
+cat ~/.claude/skills/debugging/core-dump-analysis.md
+cat ~/.claude/skills/debugging/crash-debugging.md
 ```
 
 ## Progressive Loading
@@ -76,9 +76,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects debugging work
-2. **Browse skills**: Run `cat skills/debugging/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/debugging/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/debugging/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/debugging/INDEX.md` to see full category details.

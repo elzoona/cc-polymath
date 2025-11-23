@@ -45,7 +45,7 @@ The Engineering category contains 14 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/engineering/INDEX.md
+cat ~/.claude/skills/engineering/INDEX.md
 ```
 
 This loads the full Engineering category index with:
@@ -60,22 +60,22 @@ Load individual skills as needed:
 
 ```bash
 # Software Development Practices
-cat skills/engineering/code-review.md
-cat skills/engineering/code-quality.md
-cat skills/engineering/refactoring-patterns.md
-cat skills/engineering/test-driven-development.md
-cat skills/engineering/domain-driven-design.md
-cat skills/engineering/functional-programming.md
-cat skills/engineering/design-patterns.md
-cat skills/engineering/technical-debt.md
-cat skills/engineering/pair-programming.md
-cat skills/engineering/continuous-integration.md
+cat ~/.claude/skills/engineering/code-review.md
+cat ~/.claude/skills/engineering/code-quality.md
+cat ~/.claude/skills/engineering/refactoring-patterns.md
+cat ~/.claude/skills/engineering/test-driven-development.md
+cat ~/.claude/skills/engineering/domain-driven-design.md
+cat ~/.claude/skills/engineering/functional-programming.md
+cat ~/.claude/skills/engineering/design-patterns.md
+cat ~/.claude/skills/engineering/technical-debt.md
+cat ~/.claude/skills/engineering/pair-programming.md
+cat ~/.claude/skills/engineering/continuous-integration.md
 
 # RFC & Documentation
-cat skills/engineering/rfc-consensus-building.md
-cat skills/engineering/rfc-decision-documentation.md
-cat skills/engineering/rfc-structure-format.md
-cat skills/engineering/rfc-technical-design.md
+cat ~/.claude/skills/engineering/rfc-consensus-building.md
+cat ~/.claude/skills/engineering/rfc-decision-documentation.md
+cat ~/.claude/skills/engineering/rfc-structure-format.md
+cat ~/.claude/skills/engineering/rfc-technical-design.md
 ```
 
 ### Common Workflow Combinations
@@ -83,23 +83,23 @@ cat skills/engineering/rfc-technical-design.md
 **Code Quality Workflow:**
 ```bash
 # Load related skills together
-cat skills/engineering/code-review.md
-cat skills/engineering/code-quality.md
-cat skills/engineering/refactoring-patterns.md
+cat ~/.claude/skills/engineering/code-review.md
+cat ~/.claude/skills/engineering/code-quality.md
+cat ~/.claude/skills/engineering/refactoring-patterns.md
 ```
 
 **TDD Workflow:**
 ```bash
-cat skills/engineering/test-driven-development.md
-cat skills/engineering/code-quality.md
-cat skills/engineering/continuous-integration.md
+cat ~/.claude/skills/engineering/test-driven-development.md
+cat ~/.claude/skills/engineering/code-quality.md
+cat ~/.claude/skills/engineering/continuous-integration.md
 ```
 
 **Architecture Design Workflow:**
 ```bash
-cat skills/engineering/domain-driven-design.md
-cat skills/engineering/design-patterns.md
-cat skills/engineering/rfc-technical-design.md
+cat ~/.claude/skills/engineering/domain-driven-design.md
+cat ~/.claude/skills/engineering/design-patterns.md
+cat ~/.claude/skills/engineering/rfc-technical-design.md
 ```
 
 ## Progressive Loading
@@ -112,9 +112,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects engineering work
-2. **Browse skills**: Run `cat skills/engineering/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/engineering/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/engineering/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/engineering/INDEX.md` to see full category details.

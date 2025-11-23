@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/ebpf/ebpf-fundamentals.md
+cat ~/.claude/skills/ebpf/ebpf-fundamentals.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/ebpf/ebpf-fundamentals.md
 
 **Load this skill**:
 ```bash
-cat skills/ebpf/ebpf-networking.md
+cat ~/.claude/skills/ebpf/ebpf-networking.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/ebpf/ebpf-networking.md
 
 **Load this skill**:
 ```bash
-cat skills/ebpf/ebpf-security-monitoring.md
+cat ~/.claude/skills/ebpf/ebpf-security-monitoring.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/ebpf/ebpf-security-monitoring.md
 
 **Load this skill**:
 ```bash
-cat skills/ebpf/ebpf-tracing-observability.md
+cat ~/.claude/skills/ebpf/ebpf-tracing-observability.md
 ```
 
 ---
@@ -54,9 +54,9 @@ cat skills/ebpf/ebpf-tracing-observability.md
 ls skills/ebpf/*.md
 
 # Load specific skills
-cat skills/ebpf/ebpf-fundamentals.md
-cat skills/ebpf/ebpf-networking.md
-cat skills/ebpf/ebpf-security-monitoring.md
+cat ~/.claude/skills/ebpf/ebpf-fundamentals.md
+cat ~/.claude/skills/ebpf/ebpf-networking.md
+cat ~/.claude/skills/ebpf/ebpf-security-monitoring.md
 # ... and 1 more
 ```
 
@@ -69,5 +69,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-ebpf` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-ebpf/SKILL.md
+cat ~/.claude/skills/discover-ebpf/SKILL.md
 ```

@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/debugging/browser-devtools.md
+cat ~/.claude/skills/debugging/browser-devtools.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/debugging/browser-devtools.md
 
 **Load this skill**:
 ```bash
-cat skills/debugging/concurrency-debugging.md
+cat ~/.claude/skills/debugging/concurrency-debugging.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/debugging/concurrency-debugging.md
 
 **Load this skill**:
 ```bash
-cat skills/debugging/container-debugging.md
+cat ~/.claude/skills/debugging/container-debugging.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/debugging/container-debugging.md
 
 **Load this skill**:
 ```bash
-cat skills/debugging/core-dump-analysis.md
+cat ~/.claude/skills/debugging/core-dump-analysis.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/debugging/core-dump-analysis.md
 
 **Load this skill**:
 ```bash
-cat skills/debugging/crash-debugging.md
+cat ~/.claude/skills/debugging/crash-debugging.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/debugging/crash-debugging.md
 
 **Load this skill**:
 ```bash
-cat skills/debugging/distributed-systems-debugging.md
+cat ~/.claude/skills/debugging/distributed-systems-debugging.md
 ```
 
 ---
@@ -72,7 +72,7 @@ cat skills/debugging/distributed-systems-debugging.md
 
 **Load this skill**:
 ```bash
-cat skills/debugging/gdb-fundamentals.md
+cat ~/.claude/skills/debugging/gdb-fundamentals.md
 ```
 
 ---
@@ -82,7 +82,7 @@ cat skills/debugging/gdb-fundamentals.md
 
 **Load this skill**:
 ```bash
-cat skills/debugging/lldb-macos-debugging.md
+cat ~/.claude/skills/debugging/lldb-macos-debugging.md
 ```
 
 ---
@@ -92,7 +92,7 @@ cat skills/debugging/lldb-macos-debugging.md
 
 **Load this skill**:
 ```bash
-cat skills/debugging/memory-leak-debugging.md
+cat ~/.claude/skills/debugging/memory-leak-debugging.md
 ```
 
 ---
@@ -102,7 +102,7 @@ cat skills/debugging/memory-leak-debugging.md
 
 **Load this skill**:
 ```bash
-cat skills/debugging/network-debugging.md
+cat ~/.claude/skills/debugging/network-debugging.md
 ```
 
 ---
@@ -112,7 +112,7 @@ cat skills/debugging/network-debugging.md
 
 **Load this skill**:
 ```bash
-cat skills/debugging/performance-profiling.md
+cat ~/.claude/skills/debugging/performance-profiling.md
 ```
 
 ---
@@ -122,7 +122,7 @@ cat skills/debugging/performance-profiling.md
 
 **Load this skill**:
 ```bash
-cat skills/debugging/production-debugging.md
+cat ~/.claude/skills/debugging/production-debugging.md
 ```
 
 ---
@@ -132,7 +132,7 @@ cat skills/debugging/production-debugging.md
 
 **Load this skill**:
 ```bash
-cat skills/debugging/python-debugging.md
+cat ~/.claude/skills/debugging/python-debugging.md
 ```
 
 ---
@@ -142,7 +142,7 @@ cat skills/debugging/python-debugging.md
 
 **Load this skill**:
 ```bash
-cat skills/debugging/remote-debugging.md
+cat ~/.claude/skills/debugging/remote-debugging.md
 ```
 
 ---
@@ -154,9 +154,9 @@ cat skills/debugging/remote-debugging.md
 ls skills/debugging/*.md
 
 # Load specific skills
-cat skills/debugging/browser-devtools.md
-cat skills/debugging/concurrency-debugging.md
-cat skills/debugging/container-debugging.md
+cat ~/.claude/skills/debugging/browser-devtools.md
+cat ~/.claude/skills/debugging/concurrency-debugging.md
+cat ~/.claude/skills/debugging/container-debugging.md
 # ... and 11 more
 ```
 
@@ -169,5 +169,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-debugging` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-debugging/SKILL.md
+cat ~/.claude/skills/discover-debugging/SKILL.md
 ```

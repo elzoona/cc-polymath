@@ -42,7 +42,7 @@ The Math category contains 11 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/math/INDEX.md
+cat ~/.claude/skills/math/INDEX.md
 ```
 
 This loads the full Math category index with:
@@ -56,11 +56,11 @@ This loads the full Math category index with:
 Load individual skills as needed:
 
 ```bash
-cat skills/math/abstract-algebra.md
-cat skills/math/category-theory-foundations.md
-cat skills/math/differential-equations.md
-cat skills/math/linear-algebra-computation.md
-cat skills/math/number-theory.md
+cat ~/.claude/skills/math/abstract-algebra.md
+cat ~/.claude/skills/math/category-theory-foundations.md
+cat ~/.claude/skills/math/differential-equations.md
+cat ~/.claude/skills/math/linear-algebra-computation.md
+cat ~/.claude/skills/math/number-theory.md
 ```
 
 ## Progressive Loading
@@ -73,9 +73,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects math work
-2. **Browse skills**: Run `cat skills/math/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/math/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/math/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/math/INDEX.md` to see full category details.

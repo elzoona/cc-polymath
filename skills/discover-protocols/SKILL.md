@@ -40,7 +40,7 @@ The Protocols category contains 8 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/protocols/INDEX.md
+cat ~/.claude/skills/protocols/INDEX.md
 ```
 
 This loads the full Protocols category index with:
@@ -54,14 +54,14 @@ This loads the full Protocols category index with:
 Load individual skills as needed:
 
 ```bash
-cat skills/protocols/grpc-implementation.md
-cat skills/protocols/http2-multiplexing.md
-cat skills/protocols/kafka-streams.md
-cat skills/protocols/mqtt-messaging.md
-cat skills/protocols/amqp-rabbitmq.md
-cat skills/protocols/protobuf-schemas.md
-cat skills/protocols/tcp-optimization.md
-cat skills/protocols/websocket-protocols.md
+cat ~/.claude/skills/protocols/grpc-implementation.md
+cat ~/.claude/skills/protocols/http2-multiplexing.md
+cat ~/.claude/skills/protocols/kafka-streams.md
+cat ~/.claude/skills/protocols/mqtt-messaging.md
+cat ~/.claude/skills/protocols/amqp-rabbitmq.md
+cat ~/.claude/skills/protocols/protobuf-schemas.md
+cat ~/.claude/skills/protocols/tcp-optimization.md
+cat ~/.claude/skills/protocols/websocket-protocols.md
 ```
 
 ## Common Workflows
@@ -69,33 +69,33 @@ cat skills/protocols/websocket-protocols.md
 ### gRPC Microservices
 ```bash
 # Schema design → gRPC implementation → Optimization
-cat skills/protocols/protobuf-schemas.md
-cat skills/protocols/grpc-implementation.md
-cat skills/protocols/http2-multiplexing.md
-cat skills/protocols/tcp-optimization.md
+cat ~/.claude/skills/protocols/protobuf-schemas.md
+cat ~/.claude/skills/protocols/grpc-implementation.md
+cat ~/.claude/skills/protocols/http2-multiplexing.md
+cat ~/.claude/skills/protocols/tcp-optimization.md
 ```
 
 ### Event Streaming Pipeline
 ```bash
 # Kafka setup → Stream processing → Schema evolution
-cat skills/protocols/kafka-streams.md
-cat skills/protocols/protobuf-schemas.md
+cat ~/.claude/skills/protocols/kafka-streams.md
+cat ~/.claude/skills/protocols/protobuf-schemas.md
 ```
 
 ### Real-time IoT Platform
 ```bash
 # MQTT for devices → RabbitMQ for backend → WebSockets for web
-cat skills/protocols/mqtt-messaging.md
-cat skills/protocols/amqp-rabbitmq.md
-cat skills/protocols/websocket-protocols.md
+cat ~/.claude/skills/protocols/mqtt-messaging.md
+cat ~/.claude/skills/protocols/amqp-rabbitmq.md
+cat ~/.claude/skills/protocols/websocket-protocols.md
 ```
 
 ### High-Performance Web Application
 ```bash
 # HTTP/2 optimization → WebSocket for real-time → TCP tuning
-cat skills/protocols/http2-multiplexing.md
-cat skills/protocols/websocket-protocols.md
-cat skills/protocols/tcp-optimization.md
+cat ~/.claude/skills/protocols/http2-multiplexing.md
+cat ~/.claude/skills/protocols/websocket-protocols.md
+cat ~/.claude/skills/protocols/tcp-optimization.md
 ```
 
 ## Progressive Loading
@@ -108,9 +108,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects protocol work
-2. **Browse skills**: Run `cat skills/protocols/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/protocols/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/protocols/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/protocols/INDEX.md` to see full category details.

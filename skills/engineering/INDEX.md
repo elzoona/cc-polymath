@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/engineering/code-review.md
+cat ~/.claude/skills/engineering/code-review.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/engineering/code-review.md
 
 **Load this skill**:
 ```bash
-cat skills/engineering/code-quality.md
+cat ~/.claude/skills/engineering/code-quality.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/engineering/code-quality.md
 
 **Load this skill**:
 ```bash
-cat skills/engineering/continuous-integration.md
+cat ~/.claude/skills/engineering/continuous-integration.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/engineering/continuous-integration.md
 
 **Load this skill**:
 ```bash
-cat skills/engineering/design-patterns.md
+cat ~/.claude/skills/engineering/design-patterns.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/engineering/design-patterns.md
 
 **Load this skill**:
 ```bash
-cat skills/engineering/domain-driven-design.md
+cat ~/.claude/skills/engineering/domain-driven-design.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/engineering/domain-driven-design.md
 
 **Load this skill**:
 ```bash
-cat skills/engineering/functional-programming.md
+cat ~/.claude/skills/engineering/functional-programming.md
 ```
 
 ---
@@ -72,7 +72,7 @@ cat skills/engineering/functional-programming.md
 
 **Load this skill**:
 ```bash
-cat skills/engineering/pair-programming.md
+cat ~/.claude/skills/engineering/pair-programming.md
 ```
 
 ---
@@ -82,7 +82,7 @@ cat skills/engineering/pair-programming.md
 
 **Load this skill**:
 ```bash
-cat skills/engineering/refactoring-patterns.md
+cat ~/.claude/skills/engineering/refactoring-patterns.md
 ```
 
 ---
@@ -92,7 +92,7 @@ cat skills/engineering/refactoring-patterns.md
 
 **Load this skill**:
 ```bash
-cat skills/engineering/rfc-consensus-building.md
+cat ~/.claude/skills/engineering/rfc-consensus-building.md
 ```
 
 ---
@@ -102,7 +102,7 @@ cat skills/engineering/rfc-consensus-building.md
 
 **Load this skill**:
 ```bash
-cat skills/engineering/rfc-decision-documentation.md
+cat ~/.claude/skills/engineering/rfc-decision-documentation.md
 ```
 
 ---
@@ -112,7 +112,7 @@ cat skills/engineering/rfc-decision-documentation.md
 
 **Load this skill**:
 ```bash
-cat skills/engineering/rfc-structure-format.md
+cat ~/.claude/skills/engineering/rfc-structure-format.md
 ```
 
 ---
@@ -122,7 +122,7 @@ cat skills/engineering/rfc-structure-format.md
 
 **Load this skill**:
 ```bash
-cat skills/engineering/rfc-technical-design.md
+cat ~/.claude/skills/engineering/rfc-technical-design.md
 ```
 
 ---
@@ -132,7 +132,7 @@ cat skills/engineering/rfc-technical-design.md
 
 **Load this skill**:
 ```bash
-cat skills/engineering/technical-debt.md
+cat ~/.claude/skills/engineering/technical-debt.md
 ```
 
 ---
@@ -142,7 +142,7 @@ cat skills/engineering/technical-debt.md
 
 **Load this skill**:
 ```bash
-cat skills/engineering/test-driven-development.md
+cat ~/.claude/skills/engineering/test-driven-development.md
 ```
 
 ---
@@ -154,9 +154,9 @@ cat skills/engineering/test-driven-development.md
 ls skills/engineering/*.md
 
 # Load specific skills
-cat skills/engineering/code-review.md
-cat skills/engineering/code-quality.md
-cat skills/engineering/continuous-integration.md
+cat ~/.claude/skills/engineering/code-review.md
+cat ~/.claude/skills/engineering/code-quality.md
+cat ~/.claude/skills/engineering/continuous-integration.md
 # ... and 11 more
 ```
 
@@ -169,5 +169,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-engineering` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-engineering/SKILL.md
+cat ~/.claude/skills/discover-engineering/SKILL.md
 ```

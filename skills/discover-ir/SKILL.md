@@ -34,7 +34,7 @@ The Ir category contains 5 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/ir/INDEX.md
+cat ~/.claude/skills/ir/INDEX.md
 ```
 
 This loads the full Ir category index with:
@@ -48,11 +48,11 @@ This loads the full Ir category index with:
 Load individual skills as needed:
 
 ```bash
-cat skills/ir/ir-query-understanding.md
-cat skills/ir/ir-ranking-reranking.md
-cat skills/ir/ir-recommendation-systems.md
-cat skills/ir/ir-search-fundamentals.md
-cat skills/ir/ir-vector-search.md
+cat ~/.claude/skills/ir/ir-query-understanding.md
+cat ~/.claude/skills/ir/ir-ranking-reranking.md
+cat ~/.claude/skills/ir/ir-recommendation-systems.md
+cat ~/.claude/skills/ir/ir-search-fundamentals.md
+cat ~/.claude/skills/ir/ir-vector-search.md
 ```
 
 ## Progressive Loading
@@ -65,9 +65,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects ir work
-2. **Browse skills**: Run `cat skills/ir/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/ir/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/ir/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/ir/INDEX.md` to see full category details.

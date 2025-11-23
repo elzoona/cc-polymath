@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/plt/curry-howard.md
+cat ~/.claude/skills/plt/curry-howard.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/plt/curry-howard.md
 
 **Load this skill**:
 ```bash
-cat skills/plt/dependent-types.md
+cat ~/.claude/skills/plt/dependent-types.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/plt/dependent-types.md
 
 **Load this skill**:
 ```bash
-cat skills/plt/hazelnut-calculus.md
+cat ~/.claude/skills/plt/hazelnut-calculus.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/plt/hazelnut-calculus.md
 
 **Load this skill**:
 ```bash
-cat skills/plt/lambda-calculus.md
+cat ~/.claude/skills/plt/lambda-calculus.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/plt/lambda-calculus.md
 
 **Load this skill**:
 ```bash
-cat skills/plt/live-programming-holes.md
+cat ~/.claude/skills/plt/live-programming-holes.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/plt/live-programming-holes.md
 
 **Load this skill**:
 ```bash
-cat skills/plt/operational-semantics.md
+cat ~/.claude/skills/plt/operational-semantics.md
 ```
 
 ---
@@ -72,7 +72,7 @@ cat skills/plt/operational-semantics.md
 
 **Load this skill**:
 ```bash
-cat skills/plt/program-verification.md
+cat ~/.claude/skills/plt/program-verification.md
 ```
 
 ---
@@ -82,7 +82,7 @@ cat skills/plt/program-verification.md
 
 **Load this skill**:
 ```bash
-cat skills/plt/structure-editors.md
+cat ~/.claude/skills/plt/structure-editors.md
 ```
 
 ---
@@ -92,7 +92,7 @@ cat skills/plt/structure-editors.md
 
 **Load this skill**:
 ```bash
-cat skills/plt/type-systems.md
+cat ~/.claude/skills/plt/type-systems.md
 ```
 
 ---
@@ -102,7 +102,7 @@ cat skills/plt/type-systems.md
 
 **Load this skill**:
 ```bash
-cat skills/plt/typed-holes-foundations.md
+cat ~/.claude/skills/plt/typed-holes-foundations.md
 ```
 
 ---
@@ -112,7 +112,7 @@ cat skills/plt/typed-holes-foundations.md
 
 **Load this skill**:
 ```bash
-cat skills/plt/typed-holes-interaction.md
+cat ~/.claude/skills/plt/typed-holes-interaction.md
 ```
 
 ---
@@ -122,7 +122,7 @@ cat skills/plt/typed-holes-interaction.md
 
 **Load this skill**:
 ```bash
-cat skills/plt/typed-holes-llm.md
+cat ~/.claude/skills/plt/typed-holes-llm.md
 ```
 
 ---
@@ -132,7 +132,7 @@ cat skills/plt/typed-holes-llm.md
 
 **Load this skill**:
 ```bash
-cat skills/plt/typed-holes-semantics.md
+cat ~/.claude/skills/plt/typed-holes-semantics.md
 ```
 
 ---
@@ -144,9 +144,9 @@ cat skills/plt/typed-holes-semantics.md
 ls skills/plt/*.md
 
 # Load specific skills
-cat skills/plt/curry-howard.md
-cat skills/plt/dependent-types.md
-cat skills/plt/hazelnut-calculus.md
+cat ~/.claude/skills/plt/curry-howard.md
+cat ~/.claude/skills/plt/dependent-types.md
+cat ~/.claude/skills/plt/hazelnut-calculus.md
 # ... and 10 more
 ```
 
@@ -159,5 +159,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-plt` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-plt/SKILL.md
+cat ~/.claude/skills/discover-plt/SKILL.md
 ```

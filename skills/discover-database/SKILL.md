@@ -39,7 +39,7 @@ The Database category contains 8 core skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/database/INDEX.md
+cat ~/.claude/skills/database/INDEX.md
 ```
 
 This loads the full Database category index with:
@@ -54,18 +54,18 @@ Load individual skills as needed:
 
 ```bash
 # PostgreSQL skills
-cat skills/database/postgres-schema-design.md
-cat skills/database/postgres-query-optimization.md
-cat skills/database/postgres-migrations.md
+cat ~/.claude/skills/database/postgres-schema-design.md
+cat ~/.claude/skills/database/postgres-query-optimization.md
+cat ~/.claude/skills/database/postgres-migrations.md
 
 # NoSQL skills
-cat skills/database/mongodb-document-design.md
-cat skills/database/redis-data-structures.md
+cat ~/.claude/skills/database/mongodb-document-design.md
+cat ~/.claude/skills/database/redis-data-structures.md
 
 # Cross-database skills
-cat skills/database/database-connection-pooling.md
-cat skills/database/orm-patterns.md
-cat skills/database/database-selection.md
+cat ~/.claude/skills/database/database-connection-pooling.md
+cat ~/.claude/skills/database/orm-patterns.md
+cat ~/.claude/skills/database/database-selection.md
 ```
 
 ## Common Workflows
@@ -74,33 +74,33 @@ cat skills/database/database-selection.md
 **Sequence**: Selection → Schema design → Connection pooling
 
 ```bash
-cat skills/database/database-selection.md         # Choose database
-cat skills/database/postgres-schema-design.md     # or mongodb-document-design.md
-cat skills/database/database-connection-pooling.md
+cat ~/.claude/skills/database/database-selection.md         # Choose database
+cat ~/.claude/skills/database/postgres-schema-design.md     # or mongodb-document-design.md
+cat ~/.claude/skills/database/database-connection-pooling.md
 ```
 
 ### Query Performance Debugging
 **Sequence**: Optimization → Connection pooling → ORM patterns
 
 ```bash
-cat skills/database/postgres-query-optimization.md  # Debug slow queries
-cat skills/database/database-connection-pooling.md  # Check pool settings
-cat skills/database/orm-patterns.md                 # Fix N+1 queries
+cat ~/.claude/skills/database/postgres-query-optimization.md  # Debug slow queries
+cat ~/.claude/skills/database/database-connection-pooling.md  # Check pool settings
+cat ~/.claude/skills/database/orm-patterns.md                 # Fix N+1 queries
 ```
 
 ### Schema Evolution
 **Sequence**: Schema design → Migrations
 
 ```bash
-cat skills/database/postgres-schema-design.md    # Design changes
-cat skills/database/postgres-migrations.md       # Implement safely
+cat ~/.claude/skills/database/postgres-schema-design.md    # Design changes
+cat ~/.claude/skills/database/postgres-migrations.md       # Implement safely
 ```
 
 ### Caching Layer
 **Sequence**: Redis structures → Cache patterns
 
 ```bash
-cat skills/database/redis-data-structures.md     # Redis patterns
+cat ~/.claude/skills/database/redis-data-structures.md     # Redis patterns
 # Then load caching skills via discover-caching gateway
 ```
 
@@ -171,32 +171,32 @@ Total context: 2K + 3K + skill(s) = 5-10K tokens vs 25K+ for entire index.
 
 **"Design a PostgreSQL schema for an e-commerce app"**:
 ```bash
-cat skills/database/postgres-schema-design.md
+cat ~/.claude/skills/database/postgres-schema-design.md
 ```
 
 **"Why is my query slow?"**:
 ```bash
-cat skills/database/postgres-query-optimization.md
+cat ~/.claude/skills/database/postgres-query-optimization.md
 ```
 
 **"How do I safely change my database schema?"**:
 ```bash
-cat skills/database/postgres-migrations.md
+cat ~/.claude/skills/database/postgres-migrations.md
 ```
 
 **"Should I use MongoDB or PostgreSQL?"**:
 ```bash
-cat skills/database/database-selection.md
+cat ~/.claude/skills/database/database-selection.md
 ```
 
 **"Implement caching with Redis"**:
 ```bash
-cat skills/database/redis-data-structures.md
+cat ~/.claude/skills/database/redis-data-structures.md
 ```
 
 **"Fix N+1 queries in my ORM"**:
 ```bash
-cat skills/database/orm-patterns.md
+cat ~/.claude/skills/database/orm-patterns.md
 ```
 
 ## Database Type Decision Tree
@@ -213,7 +213,7 @@ Need analytics? YES → DuckDB or Redpanda + Iceberg
 
 For detailed decision-making:
 ```bash
-cat skills/database/database-selection.md
+cat ~/.claude/skills/database/database-selection.md
 ```
 
 ## PostgreSQL Focus Areas
@@ -255,7 +255,7 @@ cat skills/database/database-selection.md
 
 Before using ORMs, load:
 ```bash
-cat skills/database/orm-patterns.md
+cat ~/.claude/skills/database/orm-patterns.md
 ```
 
 **Common ORM pitfalls**:
@@ -276,11 +276,11 @@ cat skills/database/orm-patterns.md
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects database work
-2. **Browse skills**: Run `cat skills/database/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/database/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 4. **Follow workflows**: Use recommended sequences for common patterns
 5. **Decision support**: Start with `database-selection.md` for new projects
 
 ---
 
-**Next Steps**: Run `cat skills/database/INDEX.md` to see full category details, or load specific skills using the bash commands above.
+**Next Steps**: Run `cat ~/.claude/skills/database/INDEX.md` to see full category details, or load specific skills using the bash commands above.

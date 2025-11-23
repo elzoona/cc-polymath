@@ -44,7 +44,7 @@ The Data category contains 9 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/data/INDEX.md
+cat ~/.claude/skills/data/INDEX.md
 ```
 
 This loads the full Data category index with:
@@ -59,19 +59,19 @@ Load individual skills as needed:
 
 ```bash
 # Traditional ETL/Batch
-cat skills/data/batch-processing.md
-cat skills/data/data-validation.md
-cat skills/data/etl-patterns.md
-cat skills/data/pipeline-orchestration.md
+cat ~/.claude/skills/data/batch-processing.md
+cat ~/.claude/skills/data/data-validation.md
+cat ~/.claude/skills/data/etl-patterns.md
+cat ~/.claude/skills/data/pipeline-orchestration.md
 
 # Stream Processing
-cat skills/data/stream-processing.md
-cat skills/data/streaming-aggregations.md
+cat ~/.claude/skills/data/stream-processing.md
+cat ~/.claude/skills/data/streaming-aggregations.md
 
 # Advanced Dataflow Systems
-cat skills/data/timely-dataflow.md
-cat skills/data/differential-dataflow.md
-cat skills/data/dataflow-coordination.md
+cat ~/.claude/skills/data/timely-dataflow.md
+cat ~/.claude/skills/data/differential-dataflow.md
+cat ~/.claude/skills/data/dataflow-coordination.md
 ```
 
 ## Common Workflow Combinations
@@ -79,25 +79,25 @@ cat skills/data/dataflow-coordination.md
 ### Real-Time Analytics Pipeline
 ```bash
 # Load these skills together:
-cat skills/data/stream-processing.md          # Kafka setup
-cat skills/data/streaming-aggregations.md     # Windowing patterns
-cat skills/data/dataflow-coordination.md      # Coordination
+cat ~/.claude/skills/data/stream-processing.md          # Kafka setup
+cat ~/.claude/skills/data/streaming-aggregations.md     # Windowing patterns
+cat ~/.claude/skills/data/dataflow-coordination.md      # Coordination
 ```
 
 ### Incremental Computation System
 ```bash
 # Load these skills together:
-cat skills/data/timely-dataflow.md           # Foundation
-cat skills/data/differential-dataflow.md     # Incremental updates
-cat skills/data/dataflow-coordination.md     # Distributed coordination
+cat ~/.claude/skills/data/timely-dataflow.md           # Foundation
+cat ~/.claude/skills/data/differential-dataflow.md     # Incremental updates
+cat ~/.claude/skills/data/dataflow-coordination.md     # Distributed coordination
 ```
 
 ### Hybrid Batch + Stream
 ```bash
 # Load these skills together:
-cat skills/data/batch-processing.md          # Batch jobs
-cat skills/data/stream-processing.md         # Stream processing
-cat skills/data/pipeline-orchestration.md    # Overall coordination
+cat ~/.claude/skills/data/batch-processing.md          # Batch jobs
+cat ~/.claude/skills/data/stream-processing.md         # Stream processing
+cat ~/.claude/skills/data/pipeline-orchestration.md    # Overall coordination
 ```
 
 ## Progressive Loading
@@ -110,9 +110,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects data work
-2. **Browse skills**: Run `cat skills/data/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/data/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/data/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/data/INDEX.md` to see full category details.

@@ -38,7 +38,7 @@ The Caching category contains 7 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/caching/INDEX.md
+cat ~/.claude/skills/caching/INDEX.md
 ```
 
 This loads the full Caching category index with:
@@ -52,11 +52,11 @@ This loads the full Caching category index with:
 Load individual skills as needed:
 
 ```bash
-cat skills/caching/cache-invalidation-strategies.md
-cat skills/caching/cache-performance-monitoring.md
-cat skills/caching/caching-fundamentals.md
-cat skills/caching/cdn-edge-caching.md
-cat skills/caching/http-caching.md
+cat ~/.claude/skills/caching/cache-invalidation-strategies.md
+cat ~/.claude/skills/caching/cache-performance-monitoring.md
+cat ~/.claude/skills/caching/caching-fundamentals.md
+cat ~/.claude/skills/caching/cdn-edge-caching.md
+cat ~/.claude/skills/caching/http-caching.md
 ```
 
 ## Progressive Loading
@@ -69,9 +69,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects caching work
-2. **Browse skills**: Run `cat skills/caching/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/caching/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/caching/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/caching/INDEX.md` to see full category details.

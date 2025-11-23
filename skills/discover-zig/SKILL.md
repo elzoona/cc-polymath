@@ -36,7 +36,7 @@ The Zig category contains 6 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/zig/INDEX.md
+cat ~/.claude/skills/zig/INDEX.md
 ```
 
 This loads the full Zig category index with:
@@ -50,9 +50,9 @@ This loads the full Zig category index with:
 Load individual skills as needed:
 
 ```bash
-cat skills/zig/zig-build-system.md
-cat skills/zig/zig-c-interop.md
-cat skills/zig/zig-memory-management.md
+cat ~/.claude/skills/zig/zig-build-system.md
+cat ~/.claude/skills/zig/zig-c-interop.md
+cat ~/.claude/skills/zig/zig-memory-management.md
 ```
 
 ## Progressive Loading
@@ -65,9 +65,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects zig work
-2. **Browse skills**: Run `cat skills/zig/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/zig/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/zig/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/zig/INDEX.md` to see full category details.

@@ -39,7 +39,7 @@ The Cryptography category contains 7 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/cryptography/INDEX.md
+cat ~/.claude/skills/cryptography/INDEX.md
 ```
 
 This loads the full Cryptography category index with:
@@ -53,10 +53,10 @@ This loads the full Cryptography category index with:
 Load individual skills as needed:
 
 ```bash
-cat skills/cryptography/pki-fundamentals.md
-cat skills/cryptography/tls-configuration.md
-cat skills/cryptography/certificate-management.md
-cat skills/cryptography/cryptography-basics.md
+cat ~/.claude/skills/cryptography/pki-fundamentals.md
+cat ~/.claude/skills/cryptography/tls-configuration.md
+cat ~/.claude/skills/cryptography/certificate-management.md
+cat ~/.claude/skills/cryptography/cryptography-basics.md
 ```
 
 ## Common Workflows
@@ -64,33 +64,33 @@ cat skills/cryptography/cryptography-basics.md
 ### Setting Up HTTPS
 ```bash
 # PKI basics → TLS config → Certificate management
-cat skills/cryptography/pki-fundamentals.md
-cat skills/cryptography/tls-configuration.md
-cat skills/cryptography/certificate-management.md
+cat ~/.claude/skills/cryptography/pki-fundamentals.md
+cat ~/.claude/skills/cryptography/tls-configuration.md
+cat ~/.claude/skills/cryptography/certificate-management.md
 ```
 
 ### Understanding Encryption
 ```bash
 # Basics → Best practices → Specific implementation
-cat skills/cryptography/cryptography-basics.md
-cat skills/cryptography/crypto-best-practices.md
-cat skills/cryptography/tls-configuration.md
+cat ~/.claude/skills/cryptography/cryptography-basics.md
+cat ~/.claude/skills/cryptography/crypto-best-practices.md
+cat ~/.claude/skills/cryptography/tls-configuration.md
 ```
 
 ### Certificate Troubleshooting
 ```bash
 # PKI → Certificate management → Debugging
-cat skills/cryptography/pki-fundamentals.md
-cat skills/cryptography/certificate-management.md
-cat skills/protocols/protocol-debugging.md
+cat ~/.claude/skills/cryptography/pki-fundamentals.md
+cat ~/.claude/skills/cryptography/certificate-management.md
+cat ~/.claude/skills/protocols/protocol-debugging.md
 ```
 
 ### Legacy Migration
 ```bash
 # Understand legacy → Modern TLS → Migration
-cat skills/cryptography/ssl-legacy.md
-cat skills/cryptography/tls-configuration.md
-cat skills/cryptography/certificate-management.md
+cat ~/.claude/skills/cryptography/ssl-legacy.md
+cat ~/.claude/skills/cryptography/tls-configuration.md
+cat ~/.claude/skills/cryptography/certificate-management.md
 ```
 
 ## Progressive Loading
@@ -103,9 +103,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects cryptography work
-2. **Browse skills**: Run `cat skills/cryptography/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/cryptography/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/cryptography/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/cryptography/INDEX.md` to see full category details.

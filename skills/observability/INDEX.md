@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/observability/alerting-strategy.md
+cat ~/.claude/skills/observability/alerting-strategy.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/observability/alerting-strategy.md
 
 **Load this skill**:
 ```bash
-cat skills/observability/dashboard-design.md
+cat ~/.claude/skills/observability/dashboard-design.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/observability/dashboard-design.md
 
 **Load this skill**:
 ```bash
-cat skills/observability/distributed-tracing.md
+cat ~/.claude/skills/observability/distributed-tracing.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/observability/distributed-tracing.md
 
 **Load this skill**:
 ```bash
-cat skills/observability/metrics-instrumentation.md
+cat ~/.claude/skills/observability/metrics-instrumentation.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/observability/metrics-instrumentation.md
 
 **Load this skill**:
 ```bash
-cat skills/observability/observability-cost-optimization.md
+cat ~/.claude/skills/observability/observability-cost-optimization.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/observability/observability-cost-optimization.md
 
 **Load this skill**:
 ```bash
-cat skills/observability/opentelemetry-integration.md
+cat ~/.claude/skills/observability/opentelemetry-integration.md
 ```
 
 ---
@@ -72,7 +72,7 @@ cat skills/observability/opentelemetry-integration.md
 
 **Load this skill**:
 ```bash
-cat skills/observability/production-incident-debugging.md
+cat ~/.claude/skills/observability/production-incident-debugging.md
 ```
 
 ---
@@ -82,7 +82,7 @@ cat skills/observability/production-incident-debugging.md
 
 **Load this skill**:
 ```bash
-cat skills/observability/structured-logging.md
+cat ~/.claude/skills/observability/structured-logging.md
 ```
 
 ---
@@ -94,9 +94,9 @@ cat skills/observability/structured-logging.md
 ls skills/observability/*.md
 
 # Load specific skills
-cat skills/observability/alerting-strategy.md
-cat skills/observability/dashboard-design.md
-cat skills/observability/distributed-tracing.md
+cat ~/.claude/skills/observability/alerting-strategy.md
+cat ~/.claude/skills/observability/dashboard-design.md
+cat ~/.claude/skills/observability/distributed-tracing.md
 # ... and 5 more
 ```
 
@@ -109,5 +109,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-observability` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-observability/SKILL.md
+cat ~/.claude/skills/discover-observability/SKILL.md
 ```

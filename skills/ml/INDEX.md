@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/ml/custom-llm-evaluation.md
+cat ~/.claude/skills/ml/custom-llm-evaluation.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/ml/custom-llm-evaluation.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/diffusion-finetuning.md
+cat ~/.claude/skills/ml/diffusion-finetuning.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/ml/diffusion-finetuning.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/diffusion-model-basics.md
+cat ~/.claude/skills/ml/diffusion-model-basics.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/ml/diffusion-model-basics.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/dspy-advanced-patterns.md
+cat ~/.claude/skills/ml/dspy-advanced-patterns.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/ml/dspy-advanced-patterns.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/dspy-agents.md
+cat ~/.claude/skills/ml/dspy-agents.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/ml/dspy-agents.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/dspy-assertions.md
+cat ~/.claude/skills/ml/dspy-assertions.md
 ```
 
 ---
@@ -72,7 +72,7 @@ cat skills/ml/dspy-assertions.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/dspy-compilation.md
+cat ~/.claude/skills/ml/dspy-compilation.md
 ```
 
 ---
@@ -82,7 +82,7 @@ cat skills/ml/dspy-compilation.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/dspy-debugging.md
+cat ~/.claude/skills/ml/dspy-debugging.md
 ```
 
 ---
@@ -92,7 +92,7 @@ cat skills/ml/dspy-debugging.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/dspy-evaluation.md
+cat ~/.claude/skills/ml/dspy-evaluation.md
 ```
 
 ---
@@ -102,7 +102,7 @@ cat skills/ml/dspy-evaluation.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/dspy-integrations.md
+cat ~/.claude/skills/ml/dspy-integrations.md
 ```
 
 ---
@@ -112,7 +112,7 @@ cat skills/ml/dspy-integrations.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/dspy-modules.md
+cat ~/.claude/skills/ml/dspy-modules.md
 ```
 
 ---
@@ -122,7 +122,7 @@ cat skills/ml/dspy-modules.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/dspy-multi-agent.md
+cat ~/.claude/skills/ml/dspy-multi-agent.md
 ```
 
 ---
@@ -132,7 +132,7 @@ cat skills/ml/dspy-multi-agent.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/dspy-optimizers.md
+cat ~/.claude/skills/ml/dspy-optimizers.md
 ```
 
 ---
@@ -142,7 +142,7 @@ cat skills/ml/dspy-optimizers.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/dspy-production.md
+cat ~/.claude/skills/ml/dspy-production.md
 ```
 
 ---
@@ -152,7 +152,7 @@ cat skills/ml/dspy-production.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/dspy-rag.md
+cat ~/.claude/skills/ml/dspy-rag.md
 ```
 
 ---
@@ -162,7 +162,7 @@ cat skills/ml/dspy-rag.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/dspy-setup.md
+cat ~/.claude/skills/ml/dspy-setup.md
 ```
 
 ---
@@ -172,7 +172,7 @@ cat skills/ml/dspy-setup.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/dspy-signatures.md
+cat ~/.claude/skills/ml/dspy-signatures.md
 ```
 
 ---
@@ -182,7 +182,7 @@ cat skills/ml/dspy-signatures.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/dspy-testing.md
+cat ~/.claude/skills/ml/dspy-testing.md
 ```
 
 ---
@@ -192,7 +192,7 @@ cat skills/ml/dspy-testing.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/graph-rag.md
+cat ~/.claude/skills/ml/graph-rag.md
 ```
 
 ---
@@ -202,7 +202,7 @@ cat skills/ml/graph-rag.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/hierarchical-rag.md
+cat ~/.claude/skills/ml/hierarchical-rag.md
 ```
 
 ---
@@ -212,7 +212,7 @@ cat skills/ml/hierarchical-rag.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/hybrid-search-rag.md
+cat ~/.claude/skills/ml/hybrid-search-rag.md
 ```
 
 ---
@@ -222,7 +222,7 @@ cat skills/ml/hybrid-search-rag.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/llm-as-judge.md
+cat ~/.claude/skills/ml/llm-as-judge.md
 ```
 
 ---
@@ -232,7 +232,7 @@ cat skills/ml/llm-as-judge.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/llm-benchmarks-evaluation.md
+cat ~/.claude/skills/ml/llm-benchmarks-evaluation.md
 ```
 
 ---
@@ -242,7 +242,7 @@ cat skills/ml/llm-benchmarks-evaluation.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/llm-dataset-preparation.md
+cat ~/.claude/skills/ml/llm-dataset-preparation.md
 ```
 
 ---
@@ -252,7 +252,7 @@ cat skills/ml/llm-dataset-preparation.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/llm-evaluation-frameworks.md
+cat ~/.claude/skills/ml/llm-evaluation-frameworks.md
 ```
 
 ---
@@ -262,7 +262,7 @@ cat skills/ml/llm-evaluation-frameworks.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/llm-model-routing.md
+cat ~/.claude/skills/ml/llm-model-routing.md
 ```
 
 ---
@@ -272,7 +272,7 @@ cat skills/ml/llm-model-routing.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/llm-model-selection.md
+cat ~/.claude/skills/ml/llm-model-selection.md
 ```
 
 ---
@@ -282,7 +282,7 @@ cat skills/ml/llm-model-selection.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/lora-peft-techniques.md
+cat ~/.claude/skills/ml/lora-peft-techniques.md
 ```
 
 ---
@@ -292,7 +292,7 @@ cat skills/ml/lora-peft-techniques.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/multi-model-orchestration.md
+cat ~/.claude/skills/ml/multi-model-orchestration.md
 ```
 
 ---
@@ -302,7 +302,7 @@ cat skills/ml/multi-model-orchestration.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/rag-evaluation-metrics.md
+cat ~/.claude/skills/ml/rag-evaluation-metrics.md
 ```
 
 ---
@@ -312,7 +312,7 @@ cat skills/ml/rag-evaluation-metrics.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/rag-reranking-techniques.md
+cat ~/.claude/skills/ml/rag-reranking-techniques.md
 ```
 
 ---
@@ -322,7 +322,7 @@ cat skills/ml/rag-reranking-techniques.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/stable-diffusion-deployment.md
+cat ~/.claude/skills/ml/stable-diffusion-deployment.md
 ```
 
 ---
@@ -332,7 +332,7 @@ cat skills/ml/stable-diffusion-deployment.md
 
 **Load this skill**:
 ```bash
-cat skills/ml/unsloth-finetuning.md
+cat ~/.claude/skills/ml/unsloth-finetuning.md
 ```
 
 ---
@@ -344,9 +344,9 @@ cat skills/ml/unsloth-finetuning.md
 ls skills/ml/*.md
 
 # Load specific skills
-cat skills/ml/custom-llm-evaluation.md
-cat skills/ml/diffusion-finetuning.md
-cat skills/ml/diffusion-model-basics.md
+cat ~/.claude/skills/ml/custom-llm-evaluation.md
+cat ~/.claude/skills/ml/diffusion-finetuning.md
+cat ~/.claude/skills/ml/diffusion-model-basics.md
 # ... and 30 more
 ```
 
@@ -359,5 +359,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-ml` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-ml/SKILL.md
+cat ~/.claude/skills/discover-ml/SKILL.md
 ```

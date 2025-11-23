@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/tui/bubbletea-architecture.md
+cat ~/.claude/skills/tui/bubbletea-architecture.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/tui/bubbletea-architecture.md
 
 **Load this skill**:
 ```bash
-cat skills/tui/bubbletea-components.md
+cat ~/.claude/skills/tui/bubbletea-components.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/tui/bubbletea-components.md
 
 **Load this skill**:
 ```bash
-cat skills/tui/ratatui-architecture.md
+cat ~/.claude/skills/tui/ratatui-architecture.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/tui/ratatui-architecture.md
 
 **Load this skill**:
 ```bash
-cat skills/tui/ratatui-widgets.md
+cat ~/.claude/skills/tui/ratatui-widgets.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/tui/ratatui-widgets.md
 
 **Load this skill**:
 ```bash
-cat skills/tui/tui-best-practices.md
+cat ~/.claude/skills/tui/tui-best-practices.md
 ```
 
 ---
@@ -64,9 +64,9 @@ cat skills/tui/tui-best-practices.md
 ls skills/tui/*.md
 
 # Load specific skills
-cat skills/tui/bubbletea-architecture.md
-cat skills/tui/bubbletea-components.md
-cat skills/tui/ratatui-architecture.md
+cat ~/.claude/skills/tui/bubbletea-architecture.md
+cat ~/.claude/skills/tui/bubbletea-components.md
+cat ~/.claude/skills/tui/ratatui-architecture.md
 # ... and 2 more
 ```
 
@@ -79,5 +79,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-tui` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-tui/SKILL.md
+cat ~/.claude/skills/discover-tui/SKILL.md
 ```

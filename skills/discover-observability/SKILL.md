@@ -39,7 +39,7 @@ The Observability category contains 8 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/observability/INDEX.md
+cat ~/.claude/skills/observability/INDEX.md
 ```
 
 This loads the full Observability category index with:
@@ -53,11 +53,11 @@ This loads the full Observability category index with:
 Load individual skills as needed:
 
 ```bash
-cat skills/observability/alerting-strategy.md
-cat skills/observability/dashboard-design.md
-cat skills/observability/distributed-tracing.md
-cat skills/observability/metrics-instrumentation.md
-cat skills/observability/observability-cost-optimization.md
+cat ~/.claude/skills/observability/alerting-strategy.md
+cat ~/.claude/skills/observability/dashboard-design.md
+cat ~/.claude/skills/observability/distributed-tracing.md
+cat ~/.claude/skills/observability/metrics-instrumentation.md
+cat ~/.claude/skills/observability/observability-cost-optimization.md
 ```
 
 ## Progressive Loading
@@ -70,9 +70,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects observability work
-2. **Browse skills**: Run `cat skills/observability/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/observability/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/observability/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/observability/INDEX.md` to see full category details.

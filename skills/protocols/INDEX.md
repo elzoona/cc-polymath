@@ -302,14 +302,14 @@ Comprehensive skills for implementing network protocols, message queues, and com
 All skills are available in the `skills/protocols/` directory:
 
 ```bash
-cat skills/protocols/grpc-implementation.md
-cat skills/protocols/http2-multiplexing.md
-cat skills/protocols/kafka-streams.md
-cat skills/protocols/mqtt-messaging.md
-cat skills/protocols/amqp-rabbitmq.md
-cat skills/protocols/protobuf-schemas.md
-cat skills/protocols/tcp-optimization.md
-cat skills/protocols/websocket-protocols.md
+cat ~/.claude/skills/protocols/grpc-implementation.md
+cat ~/.claude/skills/protocols/http2-multiplexing.md
+cat ~/.claude/skills/protocols/kafka-streams.md
+cat ~/.claude/skills/protocols/mqtt-messaging.md
+cat ~/.claude/skills/protocols/amqp-rabbitmq.md
+cat ~/.claude/skills/protocols/protobuf-schemas.md
+cat ~/.claude/skills/protocols/tcp-optimization.md
+cat ~/.claude/skills/protocols/websocket-protocols.md
 ```
 
 **Pro tip**: Start with protocol selection based on your use case, then load specific implementation guides. Combine with infrastructure skills for production deployment.

@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/infrastructure/aws-serverless.md
+cat ~/.claude/skills/infrastructure/aws-serverless.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/infrastructure/aws-serverless.md
 
 **Load this skill**:
 ```bash
-cat skills/infrastructure/cloudflare-workers.md
+cat ~/.claude/skills/infrastructure/cloudflare-workers.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/infrastructure/cloudflare-workers.md
 
 **Load this skill**:
 ```bash
-cat skills/infrastructure/cost-optimization.md
+cat ~/.claude/skills/infrastructure/cost-optimization.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/infrastructure/cost-optimization.md
 
 **Load this skill**:
 ```bash
-cat skills/infrastructure/infrastructure-security.md
+cat ~/.claude/skills/infrastructure/infrastructure-security.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/infrastructure/infrastructure-security.md
 
 **Load this skill**:
 ```bash
-cat skills/infrastructure/kubernetes-basics.md
+cat ~/.claude/skills/infrastructure/kubernetes-basics.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/infrastructure/kubernetes-basics.md
 
 **Load this skill**:
 ```bash
-cat skills/infrastructure/terraform-patterns.md
+cat ~/.claude/skills/infrastructure/terraform-patterns.md
 ```
 
 ---
@@ -74,9 +74,9 @@ cat skills/infrastructure/terraform-patterns.md
 ls skills/infrastructure/*.md
 
 # Load specific skills
-cat skills/infrastructure/aws-serverless.md
-cat skills/infrastructure/cloudflare-workers.md
-cat skills/infrastructure/cost-optimization.md
+cat ~/.claude/skills/infrastructure/aws-serverless.md
+cat ~/.claude/skills/infrastructure/cloudflare-workers.md
+cat ~/.claude/skills/infrastructure/cost-optimization.md
 # ... and 3 more
 ```
 
@@ -89,5 +89,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-infrastructure` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-infrastructure/SKILL.md
+cat ~/.claude/skills/discover-infrastructure/SKILL.md
 ```

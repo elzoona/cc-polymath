@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/realtime/pubsub-patterns.md
+cat ~/.claude/skills/realtime/pubsub-patterns.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/realtime/pubsub-patterns.md
 
 **Load this skill**:
 ```bash
-cat skills/realtime/realtime-sync.md
+cat ~/.claude/skills/realtime/realtime-sync.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/realtime/realtime-sync.md
 
 **Load this skill**:
 ```bash
-cat skills/realtime/server-sent-events.md
+cat ~/.claude/skills/realtime/server-sent-events.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/realtime/server-sent-events.md
 
 **Load this skill**:
 ```bash
-cat skills/realtime/websocket-implementation.md
+cat ~/.claude/skills/realtime/websocket-implementation.md
 ```
 
 ---
@@ -54,9 +54,9 @@ cat skills/realtime/websocket-implementation.md
 ls skills/realtime/*.md
 
 # Load specific skills
-cat skills/realtime/pubsub-patterns.md
-cat skills/realtime/realtime-sync.md
-cat skills/realtime/server-sent-events.md
+cat ~/.claude/skills/realtime/pubsub-patterns.md
+cat ~/.claude/skills/realtime/realtime-sync.md
+cat ~/.claude/skills/realtime/server-sent-events.md
 # ... and 1 more
 ```
 
@@ -69,5 +69,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-realtime` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-realtime/SKILL.md
+cat ~/.claude/skills/discover-realtime/SKILL.md
 ```

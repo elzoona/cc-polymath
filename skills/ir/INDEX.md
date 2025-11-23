@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/ir/ir-query-understanding.md
+cat ~/.claude/skills/ir/ir-query-understanding.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/ir/ir-query-understanding.md
 
 **Load this skill**:
 ```bash
-cat skills/ir/ir-ranking-reranking.md
+cat ~/.claude/skills/ir/ir-ranking-reranking.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/ir/ir-ranking-reranking.md
 
 **Load this skill**:
 ```bash
-cat skills/ir/ir-recommendation-systems.md
+cat ~/.claude/skills/ir/ir-recommendation-systems.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/ir/ir-recommendation-systems.md
 
 **Load this skill**:
 ```bash
-cat skills/ir/ir-search-fundamentals.md
+cat ~/.claude/skills/ir/ir-search-fundamentals.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/ir/ir-search-fundamentals.md
 
 **Load this skill**:
 ```bash
-cat skills/ir/ir-vector-search.md
+cat ~/.claude/skills/ir/ir-vector-search.md
 ```
 
 ---
@@ -64,9 +64,9 @@ cat skills/ir/ir-vector-search.md
 ls skills/ir/*.md
 
 # Load specific skills
-cat skills/ir/ir-query-understanding.md
-cat skills/ir/ir-ranking-reranking.md
-cat skills/ir/ir-recommendation-systems.md
+cat ~/.claude/skills/ir/ir-query-understanding.md
+cat ~/.claude/skills/ir/ir-ranking-reranking.md
+cat ~/.claude/skills/ir/ir-recommendation-systems.md
 # ... and 2 more
 ```
 
@@ -79,5 +79,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-ir` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-ir/SKILL.md
+cat ~/.claude/skills/discover-ir/SKILL.md
 ```

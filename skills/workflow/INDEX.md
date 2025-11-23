@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/workflow/beads-context-strategies.md
+cat ~/.claude/skills/workflow/beads-context-strategies.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/workflow/beads-context-strategies.md
 
 **Load this skill**:
 ```bash
-cat skills/workflow/beads-dependency-management.md
+cat ~/.claude/skills/workflow/beads-dependency-management.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/workflow/beads-dependency-management.md
 
 **Load this skill**:
 ```bash
-cat skills/workflow/beads-multi-session-patterns.md
+cat ~/.claude/skills/workflow/beads-multi-session-patterns.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/workflow/beads-multi-session-patterns.md
 
 **Load this skill**:
 ```bash
-cat skills/workflow/beads-workflow.md
+cat ~/.claude/skills/workflow/beads-workflow.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/workflow/beads-workflow.md
 
 **Load this skill**:
 ```bash
-cat skills/workflow/project-synthesis.md
+cat ~/.claude/skills/workflow/project-synthesis.md
 ```
 
 ---
@@ -64,11 +64,11 @@ cat skills/workflow/project-synthesis.md
 ls skills/workflow/*.md
 
 # Load specific skills
-cat skills/workflow/beads-context-strategies.md
-cat skills/workflow/beads-dependency-management.md
-cat skills/workflow/beads-multi-session-patterns.md
-cat skills/workflow/beads-workflow.md
-cat skills/workflow/project-synthesis.md
+cat ~/.claude/skills/workflow/beads-context-strategies.md
+cat ~/.claude/skills/workflow/beads-dependency-management.md
+cat ~/.claude/skills/workflow/beads-multi-session-patterns.md
+cat ~/.claude/skills/workflow/beads-workflow.md
+cat ~/.claude/skills/workflow/project-synthesis.md
 ```
 
 ## Related Categories
@@ -80,5 +80,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-workflow` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-workflow/SKILL.md
+cat ~/.claude/skills/discover-workflow/SKILL.md
 ```

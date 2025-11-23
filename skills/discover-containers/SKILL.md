@@ -35,7 +35,7 @@ The Containers category contains 5 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/containers/INDEX.md
+cat ~/.claude/skills/containers/INDEX.md
 ```
 
 This loads the full Containers category index with:
@@ -49,11 +49,11 @@ This loads the full Containers category index with:
 Load individual skills as needed:
 
 ```bash
-cat skills/containers/container-networking.md
-cat skills/containers/container-registry-management.md
-cat skills/containers/container-security.md
-cat skills/containers/docker-compose-development.md
-cat skills/containers/dockerfile-optimization.md
+cat ~/.claude/skills/containers/container-networking.md
+cat ~/.claude/skills/containers/container-registry-management.md
+cat ~/.claude/skills/containers/container-security.md
+cat ~/.claude/skills/containers/docker-compose-development.md
+cat ~/.claude/skills/containers/dockerfile-optimization.md
 ```
 
 ## Progressive Loading
@@ -66,9 +66,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects containers work
-2. **Browse skills**: Run `cat skills/containers/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/containers/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/containers/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/containers/INDEX.md` to see full category details.

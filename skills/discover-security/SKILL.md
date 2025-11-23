@@ -39,7 +39,7 @@ The Security category contains 6 specialized skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/security/INDEX.md
+cat ~/.claude/skills/security/INDEX.md
 ```
 
 This loads the full Security category index with:
@@ -54,16 +54,16 @@ Load individual skills as needed:
 
 ```bash
 # Identity and access
-cat skills/security/authentication.md
-cat skills/security/authorization.md
+cat ~/.claude/skills/security/authentication.md
+cat ~/.claude/skills/security/authorization.md
 
 # Input security
-cat skills/security/input-validation.md
-cat skills/security/security-headers.md
+cat ~/.claude/skills/security/input-validation.md
+cat ~/.claude/skills/security/security-headers.md
 
 # Security operations
-cat skills/security/vulnerability-assessment.md
-cat skills/security/secrets-management.md
+cat ~/.claude/skills/security/vulnerability-assessment.md
+cat ~/.claude/skills/security/secrets-management.md
 ```
 
 ## Common Workflows
@@ -72,39 +72,39 @@ cat skills/security/secrets-management.md
 **Sequence**: Authentication → Authorization → Input validation → Security headers
 
 ```bash
-cat skills/security/authentication.md        # User login
-cat skills/security/authorization.md         # Access control
-cat skills/security/input-validation.md      # XSS/SQL injection prevention
-cat skills/security/security-headers.md      # Browser protection
+cat ~/.claude/skills/security/authentication.md        # User login
+cat ~/.claude/skills/security/authorization.md         # Access control
+cat ~/.claude/skills/security/input-validation.md      # XSS/SQL injection prevention
+cat ~/.claude/skills/security/security-headers.md      # Browser protection
 ```
 
 ### Security Audit
 **Sequence**: Vulnerability assessment → Input validation → Headers → Secrets
 
 ```bash
-cat skills/security/vulnerability-assessment.md  # OWASP Top 10 testing
-cat skills/security/input-validation.md          # Injection testing
-cat skills/security/security-headers.md          # Header configuration
-cat skills/security/secrets-management.md        # Credential security
+cat ~/.claude/skills/security/vulnerability-assessment.md  # OWASP Top 10 testing
+cat ~/.claude/skills/security/input-validation.md          # Injection testing
+cat ~/.claude/skills/security/security-headers.md          # Header configuration
+cat ~/.claude/skills/security/secrets-management.md        # Credential security
 ```
 
 ### API Security
 **Sequence**: Authentication → Authorization → Input validation → Secrets
 
 ```bash
-cat skills/security/authentication.md        # JWT/OAuth2
-cat skills/security/authorization.md         # API access control
-cat skills/security/input-validation.md      # Request validation
-cat skills/security/secrets-management.md    # API key management
+cat ~/.claude/skills/security/authentication.md        # JWT/OAuth2
+cat ~/.claude/skills/security/authorization.md         # API access control
+cat ~/.claude/skills/security/input-validation.md      # Request validation
+cat ~/.claude/skills/security/secrets-management.md    # API key management
 ```
 
 ### DevSecOps Pipeline
 **Sequence**: Vulnerability assessment → Secrets → Input validation
 
 ```bash
-cat skills/security/vulnerability-assessment.md  # Security scanning
-cat skills/security/secrets-management.md        # CI/CD secrets
-cat skills/security/input-validation.md          # SAST validation
+cat ~/.claude/skills/security/vulnerability-assessment.md  # Security scanning
+cat ~/.claude/skills/security/secrets-management.md        # CI/CD secrets
+cat ~/.claude/skills/security/input-validation.md          # SAST validation
 ```
 
 ### Secure New Application
@@ -112,16 +112,16 @@ cat skills/security/input-validation.md          # SAST validation
 
 ```bash
 # 1. Identity and access
-cat skills/security/authentication.md
-cat skills/security/authorization.md
+cat ~/.claude/skills/security/authentication.md
+cat ~/.claude/skills/security/authorization.md
 
 # 2. Input protection
-cat skills/security/input-validation.md
-cat skills/security/security-headers.md
+cat ~/.claude/skills/security/input-validation.md
+cat ~/.claude/skills/security/security-headers.md
 
 # 3. Operations
-cat skills/security/secrets-management.md
-cat skills/security/vulnerability-assessment.md
+cat ~/.claude/skills/security/secrets-management.md
+cat ~/.claude/skills/security/vulnerability-assessment.md
 ```
 
 ## Skill Selection Guide
@@ -203,7 +203,7 @@ Security skills commonly combine with:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects security-related work
-2. **Browse skills**: Run `cat skills/security/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/security/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 4. **Follow workflows**: Use recommended sequences for common security patterns
 5. **Combine skills**: Load multiple skills for comprehensive security coverage
@@ -221,40 +221,40 @@ Total context: 2K + 3K + skill(s) = 5-12K tokens vs 30K+ for entire index.
 
 **"Implement user authentication"**:
 ```bash
-cat skills/security/authentication.md
+cat ~/.claude/skills/security/authentication.md
 ```
 
 **"Add role-based access control"**:
 ```bash
-cat skills/security/authorization.md
+cat ~/.claude/skills/security/authorization.md
 ```
 
 **"Prevent SQL injection"**:
 ```bash
-cat skills/security/input-validation.md
+cat ~/.claude/skills/security/input-validation.md
 ```
 
 **"Configure Content Security Policy"**:
 ```bash
-cat skills/security/security-headers.md
+cat ~/.claude/skills/security/security-headers.md
 ```
 
 **"Test for OWASP vulnerabilities"**:
 ```bash
-cat skills/security/vulnerability-assessment.md
+cat ~/.claude/skills/security/vulnerability-assessment.md
 ```
 
 **"Integrate HashiCorp Vault"**:
 ```bash
-cat skills/security/secrets-management.md
+cat ~/.claude/skills/security/secrets-management.md
 ```
 
 **"Secure API with JWT"**:
 ```bash
-cat skills/security/authentication.md
-cat skills/security/authorization.md
+cat ~/.claude/skills/security/authentication.md
+cat ~/.claude/skills/security/authorization.md
 ```
 
 ---
 
-**Next Steps**: Run `cat skills/security/INDEX.md` to see full category details, or load specific skills using the bash commands above.
+**Next Steps**: Run `cat ~/.claude/skills/security/INDEX.md` to see full category details, or load specific skills using the bash commands above.

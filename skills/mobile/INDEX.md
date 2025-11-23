@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/mobile/ios-networking.md
+cat ~/.claude/skills/mobile/ios-networking.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/mobile/ios-networking.md
 
 **Load this skill**:
 ```bash
-cat skills/mobile/ios-testing.md
+cat ~/.claude/skills/mobile/ios-testing.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/mobile/ios-testing.md
 
 **Load this skill**:
 ```bash
-cat skills/mobile/react-native-native-modules.md
+cat ~/.claude/skills/mobile/react-native-native-modules.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/mobile/react-native-native-modules.md
 
 **Load this skill**:
 ```bash
-cat skills/mobile/react-native-navigation.md
+cat ~/.claude/skills/mobile/react-native-navigation.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/mobile/react-native-navigation.md
 
 **Load this skill**:
 ```bash
-cat skills/mobile/react-native-performance.md
+cat ~/.claude/skills/mobile/react-native-performance.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/mobile/react-native-performance.md
 
 **Load this skill**:
 ```bash
-cat skills/mobile/react-native-setup.md
+cat ~/.claude/skills/mobile/react-native-setup.md
 ```
 
 ---
@@ -72,7 +72,7 @@ cat skills/mobile/react-native-setup.md
 
 **Load this skill**:
 ```bash
-cat skills/mobile/swift-concurrency.md
+cat ~/.claude/skills/mobile/swift-concurrency.md
 ```
 
 ---
@@ -82,7 +82,7 @@ cat skills/mobile/swift-concurrency.md
 
 **Load this skill**:
 ```bash
-cat skills/mobile/swiftdata-persistence.md
+cat ~/.claude/skills/mobile/swiftdata-persistence.md
 ```
 
 ---
@@ -92,7 +92,7 @@ cat skills/mobile/swiftdata-persistence.md
 
 **Load this skill**:
 ```bash
-cat skills/mobile/swiftui-architecture.md
+cat ~/.claude/skills/mobile/swiftui-architecture.md
 ```
 
 ---
@@ -102,7 +102,7 @@ cat skills/mobile/swiftui-architecture.md
 
 **Load this skill**:
 ```bash
-cat skills/mobile/swiftui-navigation.md
+cat ~/.claude/skills/mobile/swiftui-navigation.md
 ```
 
 ---
@@ -114,9 +114,9 @@ cat skills/mobile/swiftui-navigation.md
 ls skills/mobile/*.md
 
 # Load specific skills
-cat skills/mobile/ios-networking.md
-cat skills/mobile/ios-testing.md
-cat skills/mobile/react-native-native-modules.md
+cat ~/.claude/skills/mobile/ios-networking.md
+cat ~/.claude/skills/mobile/ios-testing.md
+cat ~/.claude/skills/mobile/react-native-native-modules.md
 # ... and 7 more
 ```
 
@@ -129,5 +129,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-mobile` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-mobile/SKILL.md
+cat ~/.claude/skills/discover-mobile/SKILL.md
 ```

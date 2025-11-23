@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/database/apache-iceberg.md
+cat ~/.claude/skills/database/apache-iceberg.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/database/apache-iceberg.md
 
 **Load this skill**:
 ```bash
-cat skills/database/database-connection-pooling.md
+cat ~/.claude/skills/database/database-connection-pooling.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/database/database-connection-pooling.md
 
 **Load this skill**:
 ```bash
-cat skills/database/database-selection.md
+cat ~/.claude/skills/database/database-selection.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/database/database-selection.md
 
 **Load this skill**:
 ```bash
-cat skills/database/duckdb-analytics.md
+cat ~/.claude/skills/database/duckdb-analytics.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/database/duckdb-analytics.md
 
 **Load this skill**:
 ```bash
-cat skills/database/mongodb-document-design.md
+cat ~/.claude/skills/database/mongodb-document-design.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/database/mongodb-document-design.md
 
 **Load this skill**:
 ```bash
-cat skills/database/orm-patterns.md
+cat ~/.claude/skills/database/orm-patterns.md
 ```
 
 ---
@@ -72,7 +72,7 @@ cat skills/database/orm-patterns.md
 
 **Load this skill**:
 ```bash
-cat skills/database/postgres-migrations.md
+cat ~/.claude/skills/database/postgres-migrations.md
 ```
 
 ---
@@ -82,7 +82,7 @@ cat skills/database/postgres-migrations.md
 
 **Load this skill**:
 ```bash
-cat skills/database/postgres-query-optimization.md
+cat ~/.claude/skills/database/postgres-query-optimization.md
 ```
 
 ---
@@ -92,7 +92,7 @@ cat skills/database/postgres-query-optimization.md
 
 **Load this skill**:
 ```bash
-cat skills/database/postgres-schema-design.md
+cat ~/.claude/skills/database/postgres-schema-design.md
 ```
 
 ---
@@ -102,7 +102,7 @@ cat skills/database/postgres-schema-design.md
 
 **Load this skill**:
 ```bash
-cat skills/database/redis-data-structures.md
+cat ~/.claude/skills/database/redis-data-structures.md
 ```
 
 ---
@@ -112,7 +112,7 @@ cat skills/database/redis-data-structures.md
 
 **Load this skill**:
 ```bash
-cat skills/database/redpanda-streaming.md
+cat ~/.claude/skills/database/redpanda-streaming.md
 ```
 
 ---
@@ -124,9 +124,9 @@ cat skills/database/redpanda-streaming.md
 ls skills/database/*.md
 
 # Load specific skills
-cat skills/database/apache-iceberg.md
-cat skills/database/database-connection-pooling.md
-cat skills/database/database-selection.md
+cat ~/.claude/skills/database/apache-iceberg.md
+cat ~/.claude/skills/database/database-connection-pooling.md
+cat ~/.claude/skills/database/database-selection.md
 # ... and 8 more
 ```
 
@@ -139,5 +139,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-database` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-database/SKILL.md
+cat ~/.claude/skills/discover-database/SKILL.md
 ```

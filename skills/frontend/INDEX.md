@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/frontend/browser-concurrency.md
+cat ~/.claude/skills/frontend/browser-concurrency.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/frontend/browser-concurrency.md
 
 **Load this skill**:
 ```bash
-cat skills/frontend/frontend-performance.md
+cat ~/.claude/skills/frontend/frontend-performance.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/frontend/frontend-performance.md
 
 **Load this skill**:
 ```bash
-cat skills/frontend/nextjs-app-router.md
+cat ~/.claude/skills/frontend/nextjs-app-router.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/frontend/nextjs-app-router.md
 
 **Load this skill**:
 ```bash
-cat skills/frontend/nextjs-seo.md
+cat ~/.claude/skills/frontend/nextjs-seo.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/frontend/nextjs-seo.md
 
 **Load this skill**:
 ```bash
-cat skills/frontend/react-component-patterns.md
+cat ~/.claude/skills/frontend/react-component-patterns.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/frontend/react-component-patterns.md
 
 **Load this skill**:
 ```bash
-cat skills/frontend/react-data-fetching.md
+cat ~/.claude/skills/frontend/react-data-fetching.md
 ```
 
 ---
@@ -72,7 +72,7 @@ cat skills/frontend/react-data-fetching.md
 
 **Load this skill**:
 ```bash
-cat skills/frontend/react-form-handling.md
+cat ~/.claude/skills/frontend/react-form-handling.md
 ```
 
 ---
@@ -82,7 +82,7 @@ cat skills/frontend/react-form-handling.md
 
 **Load this skill**:
 ```bash
-cat skills/frontend/react-state-management.md
+cat ~/.claude/skills/frontend/react-state-management.md
 ```
 
 ---
@@ -92,7 +92,7 @@ cat skills/frontend/react-state-management.md
 
 **Load this skill**:
 ```bash
-cat skills/frontend/web-accessibility.md
+cat ~/.claude/skills/frontend/web-accessibility.md
 ```
 
 ---
@@ -102,7 +102,7 @@ cat skills/frontend/web-accessibility.md
 
 **Load this skill**:
 ```bash
-cat skills/frontend/web-workers.md
+cat ~/.claude/skills/frontend/web-workers.md
 ```
 
 ---
@@ -114,9 +114,9 @@ cat skills/frontend/web-workers.md
 ls skills/frontend/*.md
 
 # Load specific skills
-cat skills/frontend/browser-concurrency.md
-cat skills/frontend/frontend-performance.md
-cat skills/frontend/nextjs-app-router.md
+cat ~/.claude/skills/frontend/browser-concurrency.md
+cat ~/.claude/skills/frontend/frontend-performance.md
+cat ~/.claude/skills/frontend/nextjs-app-router.md
 # ... and 7 more
 ```
 
@@ -129,5 +129,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-frontend` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-frontend/SKILL.md
+cat ~/.claude/skills/discover-frontend/SKILL.md
 ```

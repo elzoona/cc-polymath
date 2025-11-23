@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/data/batch-processing.md
+cat ~/.claude/skills/data/batch-processing.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/data/batch-processing.md
 
 **Load this skill**:
 ```bash
-cat skills/data/data-validation.md
+cat ~/.claude/skills/data/data-validation.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/data/data-validation.md
 
 **Load this skill**:
 ```bash
-cat skills/data/dataflow-coordination.md
+cat ~/.claude/skills/data/dataflow-coordination.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/data/dataflow-coordination.md
 
 **Load this skill**:
 ```bash
-cat skills/data/differential-dataflow.md
+cat ~/.claude/skills/data/differential-dataflow.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/data/differential-dataflow.md
 
 **Load this skill**:
 ```bash
-cat skills/data/etl-patterns.md
+cat ~/.claude/skills/data/etl-patterns.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/data/etl-patterns.md
 
 **Load this skill**:
 ```bash
-cat skills/data/pipeline-orchestration.md
+cat ~/.claude/skills/data/pipeline-orchestration.md
 ```
 
 ---
@@ -72,7 +72,7 @@ cat skills/data/pipeline-orchestration.md
 
 **Load this skill**:
 ```bash
-cat skills/data/stream-processing.md
+cat ~/.claude/skills/data/stream-processing.md
 ```
 
 ---
@@ -82,7 +82,7 @@ cat skills/data/stream-processing.md
 
 **Load this skill**:
 ```bash
-cat skills/data/streaming-aggregations.md
+cat ~/.claude/skills/data/streaming-aggregations.md
 ```
 
 ---
@@ -92,7 +92,7 @@ cat skills/data/streaming-aggregations.md
 
 **Load this skill**:
 ```bash
-cat skills/data/timely-dataflow.md
+cat ~/.claude/skills/data/timely-dataflow.md
 ```
 
 ---
@@ -104,9 +104,9 @@ cat skills/data/timely-dataflow.md
 ls skills/data/*.md
 
 # Load specific skills
-cat skills/data/batch-processing.md
-cat skills/data/data-validation.md
-cat skills/data/etl-patterns.md
+cat ~/.claude/skills/data/batch-processing.md
+cat ~/.claude/skills/data/data-validation.md
+cat ~/.claude/skills/data/etl-patterns.md
 # ... and 6 more
 ```
 
@@ -119,5 +119,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-data` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-data/SKILL.md
+cat ~/.claude/skills/discover-data/SKILL.md
 ```

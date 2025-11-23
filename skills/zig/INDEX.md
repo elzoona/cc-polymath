@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/zig/zig-build-system.md
+cat ~/.claude/skills/zig/zig-build-system.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/zig/zig-build-system.md
 
 **Load this skill**:
 ```bash
-cat skills/zig/zig-c-interop.md
+cat ~/.claude/skills/zig/zig-c-interop.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/zig/zig-c-interop.md
 
 **Load this skill**:
 ```bash
-cat skills/zig/zig-memory-management.md
+cat ~/.claude/skills/zig/zig-memory-management.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/zig/zig-memory-management.md
 
 **Load this skill**:
 ```bash
-cat skills/zig/zig-package-management.md
+cat ~/.claude/skills/zig/zig-package-management.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/zig/zig-package-management.md
 
 **Load this skill**:
 ```bash
-cat skills/zig/zig-project-setup.md
+cat ~/.claude/skills/zig/zig-project-setup.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/zig/zig-project-setup.md
 
 **Load this skill**:
 ```bash
-cat skills/zig/zig-testing.md
+cat ~/.claude/skills/zig/zig-testing.md
 ```
 
 ---
@@ -74,9 +74,9 @@ cat skills/zig/zig-testing.md
 ls skills/zig/*.md
 
 # Load specific skills
-cat skills/zig/zig-build-system.md
-cat skills/zig/zig-c-interop.md
-cat skills/zig/zig-memory-management.md
+cat ~/.claude/skills/zig/zig-build-system.md
+cat ~/.claude/skills/zig/zig-c-interop.md
+cat ~/.claude/skills/zig/zig-memory-management.md
 # ... and 3 more
 ```
 
@@ -89,5 +89,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-zig` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-zig/SKILL.md
+cat ~/.claude/skills/discover-zig/SKILL.md
 ```

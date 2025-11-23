@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/cryptography/pki-fundamentals.md
+cat ~/.claude/skills/cryptography/pki-fundamentals.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/cryptography/pki-fundamentals.md
 
 **Load this skill**:
 ```bash
-cat skills/cryptography/tls-configuration.md
+cat ~/.claude/skills/cryptography/tls-configuration.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/cryptography/tls-configuration.md
 
 **Load this skill**:
 ```bash
-cat skills/cryptography/ssl-legacy.md
+cat ~/.claude/skills/cryptography/ssl-legacy.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/cryptography/ssl-legacy.md
 
 **Load this skill**:
 ```bash
-cat skills/cryptography/sni-routing.md
+cat ~/.claude/skills/cryptography/sni-routing.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/cryptography/sni-routing.md
 
 **Load this skill**:
 ```bash
-cat skills/cryptography/certificate-management.md
+cat ~/.claude/skills/cryptography/certificate-management.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/cryptography/certificate-management.md
 
 **Load this skill**:
 ```bash
-cat skills/cryptography/cryptography-basics.md
+cat ~/.claude/skills/cryptography/cryptography-basics.md
 ```
 
 ---
@@ -72,7 +72,7 @@ cat skills/cryptography/cryptography-basics.md
 
 **Load this skill**:
 ```bash
-cat skills/cryptography/crypto-best-practices.md
+cat ~/.claude/skills/cryptography/crypto-best-practices.md
 ```
 
 ---
@@ -84,9 +84,9 @@ cat skills/cryptography/crypto-best-practices.md
 ls skills/cryptography/*.md
 
 # Load specific skills
-cat skills/cryptography/pki-fundamentals.md
-cat skills/cryptography/tls-configuration.md
-cat skills/cryptography/certificate-management.md
+cat ~/.claude/skills/cryptography/pki-fundamentals.md
+cat ~/.claude/skills/cryptography/tls-configuration.md
+cat ~/.claude/skills/cryptography/certificate-management.md
 # ... and 4 more
 ```
 
@@ -99,5 +99,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-cryptography` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-cryptography/SKILL.md
+cat ~/.claude/skills/discover-cryptography/SKILL.md
 ```

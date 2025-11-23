@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/deployment/heroku-addons.md
+cat ~/.claude/skills/deployment/heroku-addons.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/deployment/heroku-addons.md
 
 **Load this skill**:
 ```bash
-cat skills/deployment/heroku-deployment.md
+cat ~/.claude/skills/deployment/heroku-deployment.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/deployment/heroku-deployment.md
 
 **Load this skill**:
 ```bash
-cat skills/deployment/heroku-troubleshooting.md
+cat ~/.claude/skills/deployment/heroku-troubleshooting.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/deployment/heroku-troubleshooting.md
 
 **Load this skill**:
 ```bash
-cat skills/deployment/netlify-deployment.md
+cat ~/.claude/skills/deployment/netlify-deployment.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/deployment/netlify-deployment.md
 
 **Load this skill**:
 ```bash
-cat skills/deployment/netlify-functions.md
+cat ~/.claude/skills/deployment/netlify-functions.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/deployment/netlify-functions.md
 
 **Load this skill**:
 ```bash
-cat skills/deployment/netlify-optimization.md
+cat ~/.claude/skills/deployment/netlify-optimization.md
 ```
 
 ---
@@ -74,9 +74,9 @@ cat skills/deployment/netlify-optimization.md
 ls skills/deployment/*.md
 
 # Load specific skills
-cat skills/deployment/heroku-addons.md
-cat skills/deployment/heroku-deployment.md
-cat skills/deployment/heroku-troubleshooting.md
+cat ~/.claude/skills/deployment/heroku-addons.md
+cat ~/.claude/skills/deployment/heroku-deployment.md
+cat ~/.claude/skills/deployment/heroku-troubleshooting.md
 # ... and 3 more
 ```
 
@@ -89,5 +89,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-deployment` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-deployment/SKILL.md
+cat ~/.claude/skills/discover-deployment/SKILL.md
 ```

@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/cicd/cd-deployment-patterns.md
+cat ~/.claude/skills/cicd/cd-deployment-patterns.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/cicd/cd-deployment-patterns.md
 
 **Load this skill**:
 ```bash
-cat skills/cicd/ci-optimization.md
+cat ~/.claude/skills/cicd/ci-optimization.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/cicd/ci-optimization.md
 
 **Load this skill**:
 ```bash
-cat skills/cicd/ci-security.md
+cat ~/.claude/skills/cicd/ci-security.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/cicd/ci-security.md
 
 **Load this skill**:
 ```bash
-cat skills/cicd/ci-testing-strategy.md
+cat ~/.claude/skills/cicd/ci-testing-strategy.md
 ```
 
 ---
@@ -54,9 +54,9 @@ cat skills/cicd/ci-testing-strategy.md
 ls skills/cicd/*.md
 
 # Load specific skills
-cat skills/cicd/cd-deployment-patterns.md
-cat skills/cicd/ci-optimization.md
-cat skills/cicd/ci-security.md
+cat ~/.claude/skills/cicd/cd-deployment-patterns.md
+cat ~/.claude/skills/cicd/ci-optimization.md
+cat ~/.claude/skills/cicd/ci-security.md
 # ... and 1 more
 ```
 
@@ -69,5 +69,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-cicd` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-cicd/SKILL.md
+cat ~/.claude/skills/discover-cicd/SKILL.md
 ```

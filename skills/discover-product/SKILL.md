@@ -33,7 +33,7 @@ The Product category contains 4 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/product/INDEX.md
+cat ~/.claude/skills/product/INDEX.md
 ```
 
 This loads the full Product category index with:
@@ -47,10 +47,10 @@ This loads the full Product category index with:
 Load individual skills as needed:
 
 ```bash
-cat skills/product/prd-requirements-gathering.md
-cat skills/product/prd-structure-templates.md
-cat skills/product/prd-technical-specifications.md
-cat skills/product/prd-user-stories-acceptance.md
+cat ~/.claude/skills/product/prd-requirements-gathering.md
+cat ~/.claude/skills/product/prd-structure-templates.md
+cat ~/.claude/skills/product/prd-technical-specifications.md
+cat ~/.claude/skills/product/prd-user-stories-acceptance.md
 ```
 
 ## Progressive Loading
@@ -63,9 +63,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects product work
-2. **Browse skills**: Run `cat skills/product/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/product/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/product/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/product/INDEX.md` to see full category details.

@@ -41,7 +41,7 @@ The diagrams category contains 8 specialized Mermaid.js skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/diagrams/INDEX.md
+cat ~/.claude/skills/diagrams/INDEX.md
 ```
 
 This loads the full diagrams category index with:
@@ -56,22 +56,22 @@ Load individual skills as needed:
 
 ```bash
 # Process and logic
-cat skills/diagrams/mermaid-flowcharts.md
-cat skills/diagrams/mermaid-sequence-diagrams.md
+cat ~/.claude/skills/diagrams/mermaid-flowcharts.md
+cat ~/.claude/skills/diagrams/mermaid-sequence-diagrams.md
 
 # Structure and design
-cat skills/diagrams/mermaid-class-state-diagrams.md
-cat skills/diagrams/mermaid-er-diagrams.md
-cat skills/diagrams/mermaid-architecture-diagrams.md
+cat ~/.claude/skills/diagrams/mermaid-class-state-diagrams.md
+cat ~/.claude/skills/diagrams/mermaid-er-diagrams.md
+cat ~/.claude/skills/diagrams/mermaid-architecture-diagrams.md
 
 # Data and metrics
-cat skills/diagrams/mermaid-charts.md
+cat ~/.claude/skills/diagrams/mermaid-charts.md
 
 # Planning and history
-cat skills/diagrams/mermaid-project-diagrams.md
+cat ~/.claude/skills/diagrams/mermaid-project-diagrams.md
 
 # Specialized diagrams
-cat skills/diagrams/mermaid-specialized.md
+cat ~/.claude/skills/diagrams/mermaid-specialized.md
 ```
 
 ## Common Workflows
@@ -80,44 +80,44 @@ cat skills/diagrams/mermaid-specialized.md
 **Sequence**: Architecture → Sequence → ER
 
 ```bash
-cat skills/diagrams/mermaid-architecture-diagrams.md  # System design
-cat skills/diagrams/mermaid-sequence-diagrams.md      # Request/response flows
-cat skills/diagrams/mermaid-er-diagrams.md            # Database schema
+cat ~/.claude/skills/diagrams/mermaid-architecture-diagrams.md  # System design
+cat ~/.claude/skills/diagrams/mermaid-sequence-diagrams.md      # Request/response flows
+cat ~/.claude/skills/diagrams/mermaid-er-diagrams.md            # Database schema
 ```
 
 ### Document Feature Implementation
 **Sequence**: Flowchart → Sequence → State
 
 ```bash
-cat skills/diagrams/mermaid-flowcharts.md             # Business logic
-cat skills/diagrams/mermaid-sequence-diagrams.md      # Service interactions
-cat skills/diagrams/mermaid-class-state-diagrams.md   # State management
+cat ~/.claude/skills/diagrams/mermaid-flowcharts.md             # Business logic
+cat ~/.claude/skills/diagrams/mermaid-sequence-diagrams.md      # Service interactions
+cat ~/.claude/skills/diagrams/mermaid-class-state-diagrams.md   # State management
 ```
 
 ### Project Planning
 **Sequence**: Mindmap → Gantt → Timeline
 
 ```bash
-cat skills/diagrams/mermaid-specialized.md            # Brainstorm with mindmap
-cat skills/diagrams/mermaid-project-diagrams.md       # Schedule with Gantt
-cat skills/diagrams/mermaid-project-diagrams.md       # Roadmap with timeline
+cat ~/.claude/skills/diagrams/mermaid-specialized.md            # Brainstorm with mindmap
+cat ~/.claude/skills/diagrams/mermaid-project-diagrams.md       # Schedule with Gantt
+cat ~/.claude/skills/diagrams/mermaid-project-diagrams.md       # Roadmap with timeline
 ```
 
 ### System Architecture Documentation
 **Sequence**: C4 Context → C4 Container → Sequence
 
 ```bash
-cat skills/diagrams/mermaid-architecture-diagrams.md  # System context
-cat skills/diagrams/mermaid-architecture-diagrams.md  # Technology choices
-cat skills/diagrams/mermaid-sequence-diagrams.md      # Runtime behavior
+cat ~/.claude/skills/diagrams/mermaid-architecture-diagrams.md  # System context
+cat ~/.claude/skills/diagrams/mermaid-architecture-diagrams.md  # Technology choices
+cat ~/.claude/skills/diagrams/mermaid-sequence-diagrams.md      # Runtime behavior
 ```
 
 ### Database Design
 **Sequence**: ER → Class
 
 ```bash
-cat skills/diagrams/mermaid-er-diagrams.md            # Schema design
-cat skills/diagrams/mermaid-class-state-diagrams.md   # ORM models
+cat ~/.claude/skills/diagrams/mermaid-er-diagrams.md            # Schema design
+cat ~/.claude/skills/diagrams/mermaid-class-state-diagrams.md   # ORM models
 ```
 
 ## Diagram Selection Guide
@@ -179,7 +179,7 @@ Diagram skills commonly combine with:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects diagram/visualization work
-2. **Browse skills**: Run `cat skills/diagrams/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/diagrams/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual diagram skills
 4. **Follow workflows**: Use recommended sequences for comprehensive documentation
 5. **Combine diagrams**: Multiple diagram types provide complete picture
@@ -197,42 +197,42 @@ Total context: 2K + 3K + skill(s) = 5-10K tokens vs 30K+ for entire category.
 
 **"Create a flowchart for user authentication"**:
 ```bash
-cat skills/diagrams/mermaid-flowcharts.md
+cat ~/.claude/skills/diagrams/mermaid-flowcharts.md
 ```
 
 **"Document API interactions"**:
 ```bash
-cat skills/diagrams/mermaid-sequence-diagrams.md
+cat ~/.claude/skills/diagrams/mermaid-sequence-diagrams.md
 ```
 
 **"Design database schema"**:
 ```bash
-cat skills/diagrams/mermaid-er-diagrams.md
+cat ~/.claude/skills/diagrams/mermaid-er-diagrams.md
 ```
 
 **"Show system architecture"**:
 ```bash
-cat skills/diagrams/mermaid-architecture-diagrams.md
+cat ~/.claude/skills/diagrams/mermaid-architecture-diagrams.md
 ```
 
 **"Create class diagram for ORM models"**:
 ```bash
-cat skills/diagrams/mermaid-class-state-diagrams.md
+cat ~/.claude/skills/diagrams/mermaid-class-state-diagrams.md
 ```
 
 **"Visualize project timeline"**:
 ```bash
-cat skills/diagrams/mermaid-project-diagrams.md
+cat ~/.claude/skills/diagrams/mermaid-project-diagrams.md
 ```
 
 **"Show data distribution"**:
 ```bash
-cat skills/diagrams/mermaid-charts.md
+cat ~/.claude/skills/diagrams/mermaid-charts.md
 ```
 
 **"Document Git workflow"**:
 ```bash
-cat skills/diagrams/mermaid-specialized.md
+cat ~/.claude/skills/diagrams/mermaid-specialized.md
 ```
 
 ## Best Practices
@@ -267,4 +267,4 @@ graph TD
 
 ---
 
-**Next Steps**: Run `cat skills/diagrams/INDEX.md` to see full category details, or load specific diagram skills using the bash commands above.
+**Next Steps**: Run `cat ~/.claude/skills/diagrams/INDEX.md` to see full category details, or load specific diagram skills using the bash commands above.

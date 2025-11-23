@@ -33,10 +33,10 @@ Browse categories and load skills explicitly:
 ls -d skills/discover-*
 
 # Load a category overview
-cat skills/api/INDEX.md
+cat ~/.claude/skills/api/INDEX.md
 
 # Load a specific skill
-cat skills/api/rest-api-design.md
+cat ~/.claude/skills/api/rest-api-design.md
 ```
 
 ## Gateway Skills by Category
@@ -47,7 +47,7 @@ cat skills/api/rest-api-design.md
 **Skills**: REST API design, GraphQL schemas, authentication (JWT/OAuth), authorization (RBAC/ABAC), rate limiting, versioning, error handling
 
 ```bash
-cat skills/api/INDEX.md
+cat ~/.claude/skills/api/INDEX.md
 ```
 
 ---
@@ -58,7 +58,7 @@ cat skills/api/INDEX.md
 **Skills**: PostgreSQL (schema, queries, migrations), MongoDB documents, Redis structures, connection pooling, ORMs, database selection
 
 ```bash
-cat skills/database/INDEX.md
+cat ~/.claude/skills/database/INDEX.md
 ```
 
 ---
@@ -70,7 +70,7 @@ cat skills/database/INDEX.md
 **Note**: `elegant-design` is a separate Agent Skill for UI design work
 
 ```bash
-cat skills/frontend/INDEX.md
+cat ~/.claude/skills/frontend/INDEX.md
 ```
 
 ---
@@ -81,7 +81,7 @@ cat skills/frontend/INDEX.md
 **Skills**: Unit testing, integration testing, e2e testing, TDD, test coverage, performance testing
 
 ```bash
-cat skills/testing/INDEX.md
+cat ~/.claude/skills/testing/INDEX.md
 ```
 
 ---
@@ -92,7 +92,7 @@ cat skills/testing/INDEX.md
 **Skills**: Flowcharts, sequence diagrams, class/state diagrams, ER diagrams, architecture (C4/block), charts (pie/XY/quadrant/radar), project diagrams (Gantt/timeline), specialized (Git/Sankey/mindmaps)
 
 ```bash
-cat skills/diagrams/INDEX.md
+cat ~/.claude/skills/diagrams/INDEX.md
 ```
 
 ---
@@ -103,7 +103,7 @@ cat skills/diagrams/INDEX.md
 **Skills**: Model training, inference, embeddings, RAG, evaluation, routing, fine-tuning, PyTorch, TensorFlow, Hugging Face
 
 ```bash
-cat skills/ml/INDEX.md
+cat ~/.claude/skills/ml/INDEX.md
 ```
 
 ---
@@ -114,7 +114,7 @@ cat skills/ml/INDEX.md
 **Skills**: Linear algebra, calculus, topology, category theory, set theory, number theory, abstract algebra, graph theory, optimization
 
 ```bash
-cat skills/math/INDEX.md
+cat ~/.claude/skills/math/INDEX.md
 ```
 
 ---
@@ -126,7 +126,7 @@ cat skills/math/INDEX.md
 
 ```bash
 # This is an Agent Skill - loads automatically when doing UI design work
-cat skills/elegant-design/SKILL.md
+cat ~/.claude/skills/elegant-design/SKILL.md
 ```
 
 ---
@@ -137,7 +137,7 @@ cat skills/elegant-design/SKILL.md
 **Skills**: GDB/LLDB, Python debugging, browser DevTools, remote debugging, memory profiling, concurrency debugging
 
 ```bash
-cat skills/debugging/INDEX.md
+cat ~/.claude/skills/debugging/INDEX.md
 ```
 
 ---
@@ -148,7 +148,7 @@ cat skills/debugging/INDEX.md
 **Skills**: Parsing, type systems, code generation, compiler optimizations, LLVM, bytecode, interpreters
 
 ```bash
-cat skills/plt/INDEX.md
+cat ~/.claude/skills/plt/INDEX.md
 ```
 
 ---
@@ -159,7 +159,7 @@ cat skills/plt/INDEX.md
 **Skills**: Modal platform, serverless patterns, cloud deployment, scaling, GPU workloads
 
 ```bash
-cat skills/cloud/INDEX.md
+cat ~/.claude/skills/cloud/INDEX.md
 ```
 
 ---
@@ -170,7 +170,7 @@ cat skills/cloud/INDEX.md
 **Skills**: SAT solving, SMT theory, Z3 solver, Lean theorem proving, constraint solving, formal verification
 
 ```bash
-cat skills/formal/INDEX.md
+cat ~/.claude/skills/formal/INDEX.md
 ```
 
 ---
@@ -181,7 +181,7 @@ cat skills/formal/INDEX.md
 **Skills**: Structured logging, metrics instrumentation, distributed tracing, alerting, dashboard design
 
 ```bash
-cat skills/observability/INDEX.md
+cat ~/.claude/skills/observability/INDEX.md
 ```
 
 ---
@@ -192,7 +192,7 @@ cat skills/observability/INDEX.md
 **Skills**: Make, CMake, Gradle, Maven, Bazel, cross-platform builds, build optimization
 
 ```bash
-cat skills/build-systems/INDEX.md
+cat ~/.claude/skills/build-systems/INDEX.md
 ```
 
 ---
@@ -203,7 +203,7 @@ cat skills/build-systems/INDEX.md
 **Skills**: Caching fundamentals, HTTP caching, CDN edge caching, Redis patterns, cache invalidation, Service Workers, monitoring
 
 ```bash
-cat skills/caching/INDEX.md
+cat ~/.claude/skills/caching/INDEX.md
 ```
 
 ---
@@ -214,7 +214,7 @@ cat skills/caching/INDEX.md
 **Skills**: Netlify deployment/functions/optimization, Heroku deployment/addons/troubleshooting
 
 ```bash
-cat skills/deployment/INDEX.md
+cat ~/.claude/skills/deployment/INDEX.md
 ```
 
 ---
@@ -225,7 +225,7 @@ cat skills/deployment/INDEX.md
 **Skills**: Cloudflare Workers, infrastructure security, cost optimization, IaC patterns
 
 ```bash
-cat skills/infrastructure/INDEX.md
+cat ~/.claude/skills/infrastructure/INDEX.md
 ```
 
 ---
@@ -237,7 +237,7 @@ cat skills/infrastructure/INDEX.md
 
 ```bash
 # This is an Agent Skill - loads automatically for quality review
-cat skills/anti-slop/SKILL.md
+cat ~/.claude/skills/anti-slop/SKILL.md
 ```
 
 ---
@@ -249,7 +249,7 @@ cat skills/anti-slop/SKILL.md
 
 ```bash
 # This is an Agent Skill - loads automatically for refactoring work
-cat skills/typed-holes-refactor/SKILL.md
+cat ~/.claude/skills/typed-holes-refactor/SKILL.md
 ```
 
 ---
@@ -260,7 +260,7 @@ cat skills/typed-holes-refactor/SKILL.md
 **Skills**: Dockerfile optimization, docker-compose, container security, networking, registry management
 
 ```bash
-cat skills/containers/INDEX.md
+cat ~/.claude/skills/containers/INDEX.md
 ```
 
 ---
@@ -271,7 +271,7 @@ cat skills/containers/INDEX.md
 **Skills**: ETL patterns, batch processing, stream processing, pipeline orchestration, data validation
 
 ```bash
-cat skills/data/INDEX.md
+cat ~/.claude/skills/data/INDEX.md
 ```
 
 ---
@@ -282,7 +282,7 @@ cat skills/data/INDEX.md
 **Skills**: SwiftUI architecture, Swift concurrency, iOS networking, iOS testing
 
 ```bash
-cat skills/mobile/INDEX.md
+cat ~/.claude/skills/mobile/INDEX.md
 ```
 
 ---
@@ -293,7 +293,7 @@ cat skills/mobile/INDEX.md
 **Skills**: GitHub Actions, GitLab CI, pipeline patterns, deployment automation
 
 ```bash
-cat skills/cicd/INDEX.md
+cat ~/.claude/skills/cicd/INDEX.md
 ```
 
 ---
@@ -304,7 +304,7 @@ cat skills/cicd/INDEX.md
 **Skills**: WebSocket patterns, SSE, real-time protocols, state synchronization
 
 ```bash
-cat skills/realtime/INDEX.md
+cat ~/.claude/skills/realtime/INDEX.md
 ```
 
 ---
@@ -315,7 +315,7 @@ cat skills/realtime/INDEX.md
 **Skills**: WASM fundamentals, Rust to WASM, WASM in browsers, WASI
 
 ```bash
-cat skills/wasm/INDEX.md
+cat ~/.claude/skills/wasm/INDEX.md
 ```
 
 ---
@@ -326,7 +326,7 @@ cat skills/wasm/INDEX.md
 **Skills**: eBPF fundamentals, tracing, networking, security monitoring
 
 ```bash
-cat skills/ebpf/INDEX.md
+cat ~/.claude/skills/ebpf/INDEX.md
 ```
 
 ---
@@ -337,7 +337,7 @@ cat skills/ebpf/INDEX.md
 **Skills**: Code review, documentation, technical leadership, team practices
 
 ```bash
-cat skills/engineering/INDEX.md
+cat ~/.claude/skills/engineering/INDEX.md
 ```
 
 ---
@@ -348,7 +348,7 @@ cat skills/engineering/INDEX.md
 **Skills**: Product strategy, roadmap planning, user research, prioritization
 
 ```bash
-cat skills/product/INDEX.md
+cat ~/.claude/skills/product/INDEX.md
 ```
 
 ---
@@ -359,7 +359,7 @@ cat skills/product/INDEX.md
 **Skills**: Code review, documentation, pair programming, team workflows
 
 ```bash
-cat skills/collaboration/INDEX.md
+cat ~/.claude/skills/collaboration/INDEX.md
 ```
 
 ---
@@ -370,7 +370,7 @@ cat skills/collaboration/INDEX.md
 **Skills**: LLVM IR, SSA form, code generation, IR optimizations
 
 ```bash
-cat skills/ir/INDEX.md
+cat ~/.claude/skills/ir/INDEX.md
 ```
 
 ---
@@ -381,7 +381,7 @@ cat skills/ir/INDEX.md
 **Skills**: Modal functions basics, Modal scheduling
 
 ```bash
-cat skills/modal/INDEX.md
+cat ~/.claude/skills/modal/INDEX.md
 ```
 
 ---
@@ -392,7 +392,7 @@ cat skills/modal/INDEX.md
 **Skills**: Beads workflow, dependency management, multi-session patterns, context strategies, project synthesis
 
 ```bash
-cat skills/workflow/INDEX.md
+cat ~/.claude/skills/workflow/INDEX.md
 ```
 
 ---
@@ -438,8 +438,8 @@ Just start working. Claude Code will auto-activate relevant gateway skills.
 
 ### Browse Then Load
 1. Review this README for category overview
-2. Load category index: `cat skills/{category}/INDEX.md`
-3. Load specific skill: `cat skills/{category}/{skill}.md`
+2. Load category index: `cat ~/.claude/skills/{category}/INDEX.md`
+3. Load specific skill: `cat ~/.claude/skills/{category}/{skill}.md`
 
 ### Search by Keyword
 ```bash

@@ -43,7 +43,7 @@ The Frontend category contains 10 core skills (+ elegant-design):
 For complete descriptions and workflows:
 
 ```bash
-cat skills/frontend/INDEX.md
+cat ~/.claude/skills/frontend/INDEX.md
 ```
 
 This loads the full Frontend category index with:
@@ -58,24 +58,24 @@ Load individual skills as needed:
 
 ```bash
 # Core React patterns
-cat skills/frontend/react-component-patterns.md
-cat skills/frontend/react-state-management.md
-cat skills/frontend/react-data-fetching.md
+cat ~/.claude/skills/frontend/react-component-patterns.md
+cat ~/.claude/skills/frontend/react-state-management.md
+cat ~/.claude/skills/frontend/react-data-fetching.md
 
 # Next.js specific
-cat skills/frontend/nextjs-app-router.md
-cat skills/frontend/nextjs-seo.md
+cat ~/.claude/skills/frontend/nextjs-app-router.md
+cat ~/.claude/skills/frontend/nextjs-seo.md
 
 # Forms and validation
-cat skills/frontend/react-form-handling.md
+cat ~/.claude/skills/frontend/react-form-handling.md
 
 # Quality and performance
-cat skills/frontend/web-accessibility.md
-cat skills/frontend/frontend-performance.md
+cat ~/.claude/skills/frontend/web-accessibility.md
+cat ~/.claude/skills/frontend/frontend-performance.md
 
 # Concurrency and workers
-cat skills/frontend/web-workers.md
-cat skills/frontend/browser-concurrency.md
+cat ~/.claude/skills/frontend/web-workers.md
+cat ~/.claude/skills/frontend/browser-concurrency.md
 
 # Design system and UI (Agent Skill - auto-discovered separately)
 # elegant-design/SKILL.md activates independently for UI design work
@@ -87,9 +87,9 @@ cat skills/frontend/browser-concurrency.md
 **Sequence**: App Router → Components → Data Fetching
 
 ```bash
-cat skills/frontend/nextjs-app-router.md          # Setup routing, layouts
-cat skills/frontend/react-component-patterns.md   # Build components
-cat skills/frontend/react-data-fetching.md        # Fetch data
+cat ~/.claude/skills/frontend/nextjs-app-router.md          # Setup routing, layouts
+cat ~/.claude/skills/frontend/react-component-patterns.md   # Build components
+cat ~/.claude/skills/frontend/react-data-fetching.md        # Fetch data
 ```
 
 ### Elegant UI Design
@@ -98,34 +98,34 @@ cat skills/frontend/react-data-fetching.md        # Fetch data
 ```bash
 # Note: elegant-design auto-activates as separate Agent Skill
 # for design-focused work (shadcn/ui, accessible interfaces, etc.)
-cat skills/frontend/react-component-patterns.md
-cat skills/frontend/web-accessibility.md
+cat ~/.claude/skills/frontend/react-component-patterns.md
+cat ~/.claude/skills/frontend/web-accessibility.md
 ```
 
 ### Form Implementation
 **Sequence**: Form Handling → State Management
 
 ```bash
-cat skills/frontend/react-form-handling.md     # Build forms
-cat skills/frontend/react-state-management.md  # Manage form state
+cat ~/.claude/skills/frontend/react-form-handling.md     # Build forms
+cat ~/.claude/skills/frontend/react-state-management.md  # Manage form state
 ```
 
 ### Production Optimization
 **Sequence**: Performance → Accessibility → SEO
 
 ```bash
-cat skills/frontend/frontend-performance.md    # Optimize bundle
-cat skills/frontend/web-accessibility.md       # Ensure accessibility
-cat skills/frontend/nextjs-seo.md              # Optimize SEO
+cat ~/.claude/skills/frontend/frontend-performance.md    # Optimize bundle
+cat ~/.claude/skills/frontend/web-accessibility.md       # Ensure accessibility
+cat ~/.claude/skills/frontend/nextjs-seo.md              # Optimize SEO
 ```
 
 ### CPU-Intensive Features & PWAs
 **Sequence**: Workers → Concurrency → Performance
 
 ```bash
-cat skills/frontend/web-workers.md             # Offload heavy computation
-cat skills/frontend/browser-concurrency.md     # Service Workers, offline support
-cat skills/frontend/frontend-performance.md    # Optimize overall performance
+cat ~/.claude/skills/frontend/web-workers.md             # Offload heavy computation
+cat ~/.claude/skills/frontend/browser-concurrency.md     # Service Workers, offline support
+cat ~/.claude/skills/frontend/frontend-performance.md    # Optimize overall performance
 ```
 
 ## Skill Selection Guide
@@ -248,47 +248,47 @@ Total context: 2K + 4K + skill(s) = 6-12K tokens vs 25K+ for entire index.
 
 **"Build a Next.js app with App Router"**:
 ```bash
-cat skills/frontend/nextjs-app-router.md
+cat ~/.claude/skills/frontend/nextjs-app-router.md
 ```
 
 **"Create reusable React components"**:
 ```bash
-cat skills/frontend/react-component-patterns.md
+cat ~/.claude/skills/frontend/react-component-patterns.md
 ```
 
 **"Implement global state management"**:
 ```bash
-cat skills/frontend/react-state-management.md
+cat ~/.claude/skills/frontend/react-state-management.md
 ```
 
 **"Build a form with validation"**:
 ```bash
-cat skills/frontend/react-form-handling.md
+cat ~/.claude/skills/frontend/react-form-handling.md
 ```
 
 **"Optimize my app performance"**:
 ```bash
-cat skills/frontend/frontend-performance.md
+cat ~/.claude/skills/frontend/frontend-performance.md
 ```
 
 **"Make my app accessible"**:
 ```bash
-cat skills/frontend/web-accessibility.md
+cat ~/.claude/skills/frontend/web-accessibility.md
 ```
 
 **"Improve SEO"**:
 ```bash
-cat skills/frontend/nextjs-seo.md
+cat ~/.claude/skills/frontend/nextjs-seo.md
 ```
 
 **"Offload heavy computation"**:
 ```bash
-cat skills/frontend/web-workers.md
+cat ~/.claude/skills/frontend/web-workers.md
 ```
 
 **"Build a PWA with offline support"**:
 ```bash
-cat skills/frontend/browser-concurrency.md
+cat ~/.claude/skills/frontend/browser-concurrency.md
 ```
 
 ## React vs Next.js Decision
@@ -330,7 +330,7 @@ cat skills/frontend/browser-concurrency.md
 
 For detailed guidance:
 ```bash
-cat skills/frontend/react-state-management.md
+cat ~/.claude/skills/frontend/react-state-management.md
 ```
 
 ## Data Fetching Decision
@@ -359,17 +359,17 @@ cat skills/frontend/react-state-management.md
 
 For detailed patterns:
 ```bash
-cat skills/frontend/react-data-fetching.md
+cat ~/.claude/skills/frontend/react-data-fetching.md
 ```
 
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects frontend work
-2. **Browse skills**: Run `cat skills/frontend/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/frontend/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 4. **Follow workflows**: Use recommended sequences for common patterns
 5. **elegant-design**: Note that elegant-design is a separate Agent Skill that auto-activates for UI design work
 
 ---
 
-**Next Steps**: Run `cat skills/frontend/INDEX.md` to see full category details, or load specific skills using the bash commands above.
+**Next Steps**: Run `cat ~/.claude/skills/frontend/INDEX.md` to see full category details, or load specific skills using the bash commands above.

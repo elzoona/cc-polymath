@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/build-systems/bazel-monorepos.md
+cat ~/.claude/skills/build-systems/bazel-monorepos.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/build-systems/bazel-monorepos.md
 
 **Load this skill**:
 ```bash
-cat skills/build-systems/build-optimization.md
+cat ~/.claude/skills/build-systems/build-optimization.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/build-systems/build-optimization.md
 
 **Load this skill**:
 ```bash
-cat skills/build-systems/build-system-selection.md
+cat ~/.claude/skills/build-systems/build-system-selection.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/build-systems/build-system-selection.md
 
 **Load this skill**:
 ```bash
-cat skills/build-systems/cmake-patterns.md
+cat ~/.claude/skills/build-systems/cmake-patterns.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/build-systems/cmake-patterns.md
 
 **Load this skill**:
 ```bash
-cat skills/build-systems/cross-platform-builds.md
+cat ~/.claude/skills/build-systems/cross-platform-builds.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/build-systems/cross-platform-builds.md
 
 **Load this skill**:
 ```bash
-cat skills/build-systems/gradle-jvm-builds.md
+cat ~/.claude/skills/build-systems/gradle-jvm-builds.md
 ```
 
 ---
@@ -72,7 +72,7 @@ cat skills/build-systems/gradle-jvm-builds.md
 
 **Load this skill**:
 ```bash
-cat skills/build-systems/make-fundamentals.md
+cat ~/.claude/skills/build-systems/make-fundamentals.md
 ```
 
 ---
@@ -82,7 +82,7 @@ cat skills/build-systems/make-fundamentals.md
 
 **Load this skill**:
 ```bash
-cat skills/build-systems/maven-configuration.md
+cat ~/.claude/skills/build-systems/maven-configuration.md
 ```
 
 ---
@@ -94,9 +94,9 @@ cat skills/build-systems/maven-configuration.md
 ls skills/build-systems/*.md
 
 # Load specific skills
-cat skills/build-systems/bazel-monorepos.md
-cat skills/build-systems/build-optimization.md
-cat skills/build-systems/build-system-selection.md
+cat ~/.claude/skills/build-systems/bazel-monorepos.md
+cat ~/.claude/skills/build-systems/build-optimization.md
+cat ~/.claude/skills/build-systems/build-system-selection.md
 # ... and 5 more
 ```
 
@@ -109,5 +109,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-build-systems` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-build-systems/SKILL.md
+cat ~/.claude/skills/discover-build-systems/SKILL.md
 ```

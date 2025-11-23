@@ -13,7 +13,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/rust/pyo3-fundamentals.md
+cat ~/.claude/skills/rust/pyo3-fundamentals.md
 ```
 
 ---
@@ -23,7 +23,7 @@ cat skills/rust/pyo3-fundamentals.md
 
 **Load this skill**:
 ```bash
-cat skills/rust/pyo3-classes-modules.md
+cat ~/.claude/skills/rust/pyo3-classes-modules.md
 ```
 
 ---
@@ -33,7 +33,7 @@ cat skills/rust/pyo3-classes-modules.md
 
 **Load this skill**:
 ```bash
-cat skills/rust/pyo3-type-conversion-advanced.md
+cat ~/.claude/skills/rust/pyo3-type-conversion-advanced.md
 ```
 
 ---
@@ -43,7 +43,7 @@ cat skills/rust/pyo3-type-conversion-advanced.md
 
 **Load this skill**:
 ```bash
-cat skills/rust/pyo3-performance-gil-parallel.md
+cat ~/.claude/skills/rust/pyo3-performance-gil-parallel.md
 ```
 
 ---
@@ -53,7 +53,7 @@ cat skills/rust/pyo3-performance-gil-parallel.md
 
 **Load this skill**:
 ```bash
-cat skills/rust/pyo3-async-embedded-wasm.md
+cat ~/.claude/skills/rust/pyo3-async-embedded-wasm.md
 ```
 
 ---
@@ -63,7 +63,7 @@ cat skills/rust/pyo3-async-embedded-wasm.md
 
 **Load this skill**:
 ```bash
-cat skills/rust/pyo3-packaging-distribution.md
+cat ~/.claude/skills/rust/pyo3-packaging-distribution.md
 ```
 
 ---
@@ -73,7 +73,7 @@ cat skills/rust/pyo3-packaging-distribution.md
 
 **Load this skill**:
 ```bash
-cat skills/rust/pyo3-testing-debugging.md
+cat ~/.claude/skills/rust/pyo3-testing-debugging.md
 ```
 
 ---
@@ -83,7 +83,7 @@ cat skills/rust/pyo3-testing-debugging.md
 
 **Load this skill**:
 ```bash
-cat skills/rust/pyo3-data-science.md
+cat ~/.claude/skills/rust/pyo3-data-science.md
 ```
 
 ---
@@ -93,7 +93,7 @@ cat skills/rust/pyo3-data-science.md
 
 **Load this skill**:
 ```bash
-cat skills/rust/pyo3-dspy-agents.md
+cat ~/.claude/skills/rust/pyo3-dspy-agents.md
 ```
 
 ---
@@ -103,7 +103,7 @@ cat skills/rust/pyo3-dspy-agents.md
 
 **Load this skill**:
 ```bash
-cat skills/rust/pyo3-dspy-async-streaming.md
+cat ~/.claude/skills/rust/pyo3-dspy-async-streaming.md
 ```
 
 ---
@@ -113,7 +113,7 @@ cat skills/rust/pyo3-dspy-async-streaming.md
 
 **Load this skill**:
 ```bash
-cat skills/rust/pyo3-dspy-fundamentals.md
+cat ~/.claude/skills/rust/pyo3-dspy-fundamentals.md
 ```
 
 ---
@@ -123,7 +123,7 @@ cat skills/rust/pyo3-dspy-fundamentals.md
 
 **Load this skill**:
 ```bash
-cat skills/rust/pyo3-dspy-optimization.md
+cat ~/.claude/skills/rust/pyo3-dspy-optimization.md
 ```
 
 ---
@@ -133,7 +133,7 @@ cat skills/rust/pyo3-dspy-optimization.md
 
 **Load this skill**:
 ```bash
-cat skills/rust/pyo3-dspy-production.md
+cat ~/.claude/skills/rust/pyo3-dspy-production.md
 ```
 
 ---
@@ -143,7 +143,7 @@ cat skills/rust/pyo3-dspy-production.md
 
 **Load this skill**:
 ```bash
-cat skills/rust/pyo3-dspy-rag-pipelines.md
+cat ~/.claude/skills/rust/pyo3-dspy-rag-pipelines.md
 ```
 
 ---
@@ -153,7 +153,7 @@ cat skills/rust/pyo3-dspy-rag-pipelines.md
 
 **Load this skill**:
 ```bash
-cat skills/rust/pyo3-dspy-type-system.md
+cat ~/.claude/skills/rust/pyo3-dspy-type-system.md
 ```
 
 ---
@@ -183,7 +183,7 @@ ls skills/rust/pyo3-modules-functions-errors/resources/examples/
 
 **Load this skill**:
 ```bash
-cat skills/rust/pyo3-web-frameworks.md
+cat ~/.claude/skills/rust/pyo3-web-frameworks.md
 ```
 
 ---
@@ -193,7 +193,7 @@ cat skills/rust/pyo3-web-frameworks.md
 
 **Load this skill**:
 ```bash
-cat skills/rust/pyo3-cli-tools.md
+cat ~/.claude/skills/rust/pyo3-cli-tools.md
 ```
 
 ---
@@ -205,9 +205,9 @@ cat skills/rust/pyo3-cli-tools.md
 ls skills/rust/*.md
 
 # Load specific skills
-cat skills/rust/pyo3-fundamentals.md
-cat skills/rust/pyo3-classes-modules.md
-cat skills/rust/pyo3-type-conversion-advanced.md
+cat ~/.claude/skills/rust/pyo3-fundamentals.md
+cat ~/.claude/skills/rust/pyo3-classes-modules.md
+cat ~/.claude/skills/rust/pyo3-type-conversion-advanced.md
 # ... and 16 more
 ```
 

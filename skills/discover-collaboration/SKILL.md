@@ -30,7 +30,7 @@ The Collaboration category contains 0 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/collaboration/INDEX.md
+cat ~/.claude/skills/collaboration/INDEX.md
 ```
 
 This loads the full Collaboration category index with:
@@ -57,9 +57,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects collaboration work
-2. **Browse skills**: Run `cat skills/collaboration/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/collaboration/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/collaboration/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/collaboration/INDEX.md` to see full category details.

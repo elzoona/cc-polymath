@@ -39,7 +39,7 @@ The Build-Systems category contains 8 skills:
 For complete descriptions and workflows:
 
 ```bash
-cat skills/build-systems/INDEX.md
+cat ~/.claude/skills/build-systems/INDEX.md
 ```
 
 This loads the full Build-Systems category index with:
@@ -53,11 +53,11 @@ This loads the full Build-Systems category index with:
 Load individual skills as needed:
 
 ```bash
-cat skills/build-systems/bazel-monorepos.md
-cat skills/build-systems/build-optimization.md
-cat skills/build-systems/build-system-selection.md
-cat skills/build-systems/cmake-patterns.md
-cat skills/build-systems/cross-platform-builds.md
+cat ~/.claude/skills/build-systems/bazel-monorepos.md
+cat ~/.claude/skills/build-systems/build-optimization.md
+cat ~/.claude/skills/build-systems/build-system-selection.md
+cat ~/.claude/skills/build-systems/cmake-patterns.md
+cat ~/.claude/skills/build-systems/cross-platform-builds.md
 ```
 
 ## Progressive Loading
@@ -70,9 +70,9 @@ This gateway skill enables progressive loading:
 ## Usage Instructions
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects build-systems work
-2. **Browse skills**: Run `cat skills/build-systems/INDEX.md` for full category overview
+2. **Browse skills**: Run `cat ~/.claude/skills/build-systems/INDEX.md` for full category overview
 3. **Load specific skills**: Use bash commands above to load individual skills
 
 ---
 
-**Next Steps**: Run `cat skills/build-systems/INDEX.md` to see full category details.
+**Next Steps**: Run `cat ~/.claude/skills/build-systems/INDEX.md` to see full category details.

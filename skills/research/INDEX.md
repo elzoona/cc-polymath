@@ -18,7 +18,7 @@ Complete research methodology skills covering quantitative, qualitative, and mix
 
 **Load Command**:
 ```bash
-cat skills/research/research-synthesis.md
+cat ~/.claude/skills/research/research-synthesis.md
 ```
 
 ---
@@ -37,7 +37,7 @@ cat skills/research/research-synthesis.md
 
 **Load Command**:
 ```bash
-cat skills/research/quantitative-methods.md
+cat ~/.claude/skills/research/quantitative-methods.md
 ```
 
 ---
@@ -56,7 +56,7 @@ cat skills/research/quantitative-methods.md
 
 **Load Command**:
 ```bash
-cat skills/research/qualitative-methods.md
+cat ~/.claude/skills/research/qualitative-methods.md
 ```
 
 ---
@@ -75,7 +75,7 @@ cat skills/research/qualitative-methods.md
 
 **Load Command**:
 ```bash
-cat skills/research/research-design.md
+cat ~/.claude/skills/research/research-design.md
 ```
 
 ---
@@ -94,7 +94,7 @@ cat skills/research/research-design.md
 
 **Load Command**:
 ```bash
-cat skills/research/data-collection.md
+cat ~/.claude/skills/research/data-collection.md
 ```
 
 ---
@@ -113,7 +113,7 @@ cat skills/research/data-collection.md
 
 **Load Command**:
 ```bash
-cat skills/research/data-analysis.md
+cat ~/.claude/skills/research/data-analysis.md
 ```
 
 ---
@@ -132,7 +132,7 @@ cat skills/research/data-analysis.md
 
 **Load Command**:
 ```bash
-cat skills/research/research-writing.md
+cat ~/.claude/skills/research/research-writing.md
 ```
 
 ---
@@ -141,37 +141,37 @@ cat skills/research/research-writing.md
 
 ### Complete Quantitative Study
 ```bash
-cat skills/research/research-design.md       # 1. Plan study
-cat skills/research/data-collection.md       # 2. Design instruments
-cat skills/research/quantitative-methods.md  # 3. Understand methods
-cat skills/research/data-analysis.md         # 4. Analyze data
-cat skills/research/research-writing.md      # 5. Write paper
+cat ~/.claude/skills/research/research-design.md       # 1. Plan study
+cat ~/.claude/skills/research/data-collection.md       # 2. Design instruments
+cat ~/.claude/skills/research/quantitative-methods.md  # 3. Understand methods
+cat ~/.claude/skills/research/data-analysis.md         # 4. Analyze data
+cat ~/.claude/skills/research/research-writing.md      # 5. Write paper
 ```
 
 ### Complete Qualitative Study
 ```bash
-cat skills/research/research-design.md       # 1. Plan study
-cat skills/research/data-collection.md       # 2. Design protocols
-cat skills/research/qualitative-methods.md   # 3. Understand methods
-cat skills/research/data-analysis.md         # 4. Analyze data
-cat skills/research/research-writing.md      # 5. Write paper
+cat ~/.claude/skills/research/research-design.md       # 1. Plan study
+cat ~/.claude/skills/research/data-collection.md       # 2. Design protocols
+cat ~/.claude/skills/research/qualitative-methods.md   # 3. Understand methods
+cat ~/.claude/skills/research/data-analysis.md         # 4. Analyze data
+cat ~/.claude/skills/research/research-writing.md      # 5. Write paper
 ```
 
 ### Literature Review / Meta-Analysis
 ```bash
-cat skills/research/research-synthesis.md    # 1. Synthesis methods
-cat skills/research/quantitative-methods.md  # 2. If meta-analysis
-cat skills/research/research-writing.md      # 3. Write review
+cat ~/.claude/skills/research/research-synthesis.md    # 1. Synthesis methods
+cat ~/.claude/skills/research/quantitative-methods.md  # 2. If meta-analysis
+cat ~/.claude/skills/research/research-writing.md      # 3. Write review
 ```
 
 ### Mixed Methods Study
 ```bash
-cat skills/research/research-design.md       # 1. Plan integrated design
-cat skills/research/quantitative-methods.md  # 2. Quant component
-cat skills/research/qualitative-methods.md   # 3. Qual component
-cat skills/research/data-collection.md       # 4. Collect all data
-cat skills/research/data-analysis.md         # 5. Analyze & integrate
-cat skills/research/research-writing.md      # 6. Write paper
+cat ~/.claude/skills/research/research-design.md       # 1. Plan integrated design
+cat ~/.claude/skills/research/quantitative-methods.md  # 2. Quant component
+cat ~/.claude/skills/research/qualitative-methods.md   # 3. Qual component
+cat ~/.claude/skills/research/data-collection.md       # 4. Collect all data
+cat ~/.claude/skills/research/data-analysis.md         # 5. Analyze & integrate
+cat ~/.claude/skills/research/research-writing.md      # 6. Write paper
 ```
 
 ## Skill Features

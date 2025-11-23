@@ -12,7 +12,7 @@
 
 **Load this skill**:
 ```bash
-cat skills/modal/modal-common-errors.md
+cat ~/.claude/skills/modal/modal-common-errors.md
 ```
 
 ---
@@ -22,7 +22,7 @@ cat skills/modal/modal-common-errors.md
 
 **Load this skill**:
 ```bash
-cat skills/modal/modal-functions-basics.md
+cat ~/.claude/skills/modal/modal-functions-basics.md
 ```
 
 ---
@@ -32,7 +32,7 @@ cat skills/modal/modal-functions-basics.md
 
 **Load this skill**:
 ```bash
-cat skills/modal/modal-gpu-workloads.md
+cat ~/.claude/skills/modal/modal-gpu-workloads.md
 ```
 
 ---
@@ -42,7 +42,7 @@ cat skills/modal/modal-gpu-workloads.md
 
 **Load this skill**:
 ```bash
-cat skills/modal/modal-image-building.md
+cat ~/.claude/skills/modal/modal-image-building.md
 ```
 
 ---
@@ -52,7 +52,7 @@ cat skills/modal/modal-image-building.md
 
 **Load this skill**:
 ```bash
-cat skills/modal/modal-performance-debugging.md
+cat ~/.claude/skills/modal/modal-performance-debugging.md
 ```
 
 ---
@@ -62,7 +62,7 @@ cat skills/modal/modal-performance-debugging.md
 
 **Load this skill**:
 ```bash
-cat skills/modal/modal-scheduling.md
+cat ~/.claude/skills/modal/modal-scheduling.md
 ```
 
 ---
@@ -72,7 +72,7 @@ cat skills/modal/modal-scheduling.md
 
 **Load this skill**:
 ```bash
-cat skills/modal/modal-volumes-secrets.md
+cat ~/.claude/skills/modal/modal-volumes-secrets.md
 ```
 
 ---
@@ -82,7 +82,7 @@ cat skills/modal/modal-volumes-secrets.md
 
 **Load this skill**:
 ```bash
-cat skills/modal/modal-web-endpoints.md
+cat ~/.claude/skills/modal/modal-web-endpoints.md
 ```
 
 ---
@@ -94,9 +94,9 @@ cat skills/modal/modal-web-endpoints.md
 ls skills/modal/*.md
 
 # Load specific skills
-cat skills/modal/modal-common-errors.md
-cat skills/modal/modal-functions-basics.md
-cat skills/modal/modal-gpu-workloads.md
+cat ~/.claude/skills/modal/modal-common-errors.md
+cat ~/.claude/skills/modal/modal-functions-basics.md
+cat ~/.claude/skills/modal/modal-gpu-workloads.md
 # ... and 5 more
 ```
 
@@ -109,5 +109,5 @@ See `skills/README.md` for the complete catalog of all categories and gateway sk
 **Browse**: This index provides a quick reference. Load the `discover-modal` gateway skill for common workflows and integration patterns.
 
 ```bash
-cat skills/discover-modal/SKILL.md
+cat ~/.claude/skills/discover-modal/SKILL.md
 ```

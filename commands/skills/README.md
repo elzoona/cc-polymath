@@ -122,9 +122,9 @@ SKILLS:
 8. nextjs-seo - SEO best practices, metadata, structured data
 
 LOAD:
-cat skills/frontend/INDEX.md                  # Full details
-cat skills/discover-frontend/SKILL.md         # Gateway overview
-cat skills/frontend/react-component-patterns.md  # Specific skill
+cat ~/.claude/skills/frontend/INDEX.md                  # Full details
+cat ~/.claude/skills/discover-frontend/SKILL.md         # Gateway overview
+cat ~/.claude/skills/frontend/react-component-patterns.md  # Specific skill
 ```
 
 ### Search Results (`/skills postgres`)
@@ -135,20 +135,20 @@ SEARCH: 'postgres'
 GATEWAY:
 → discover-database
   Keywords: PostgreSQL, MongoDB, Redis, query optimization
-  cat skills/discover-database/SKILL.md
+  cat ~/.claude/skills/discover-database/SKILL.md
 
 SKILLS:
 → postgres-query-optimization.md
   Debug slow queries, EXPLAIN plans, index design
-  cat skills/database/postgres-query-optimization.md
+  cat ~/.claude/skills/database/postgres-query-optimization.md
 
 → postgres-migrations.md
   Schema changes, zero-downtime deployments
-  cat skills/database/postgres-migrations.md
+  cat ~/.claude/skills/database/postgres-migrations.md
 
 → postgres-schema-design.md
   Designing schemas, relationships, data types
-  cat skills/database/postgres-schema-design.md
+  cat ~/.claude/skills/database/postgres-schema-design.md
 
 RELATED: discover-observability, discover-caching
 ```
