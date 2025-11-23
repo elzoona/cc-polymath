@@ -39,6 +39,6 @@
     "dspy",
     "context-efficient"
   ],
-  "commands": "commands",
-  "skills": "skills"
+  "commands": "./commands",
+  "skills": "./skills"
 }
