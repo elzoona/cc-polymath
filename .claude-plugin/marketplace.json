@@ -8,7 +8,7 @@
   "plugins": [
     {
       "name": "cc-polymath",
-      "source": ".",
+      "source": "./",
       "description": "447 atomic skills across 31+ domains with gateway-based progressive loading. Includes API design, databases, ML, diagrams, infrastructure, cryptography, and more.",
       "version": "2.0.0"
     }
