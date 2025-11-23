@@ -1,0 +1,16 @@
+{
+  "name": "cc-polymath-marketplace",
+  "description": "Official marketplace for cc-polymath: 447 atomic, production-ready skills with progressive loading",
+  "owner": {
+    "name": "rand",
+    "url": "https://github.com/rand/cc-polymath"
+  },
+  "plugins": [
+    {
+      "name": "cc-polymath",
+      "source": ".",
+      "description": "447 atomic skills across 31+ domains with gateway-based progressive loading. Includes API design, databases, ML, diagrams, infrastructure, cryptography, and more.",
+      "version": "2.0.0"
+    }
+  ]
+}
