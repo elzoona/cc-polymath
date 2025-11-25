@@ -77,6 +77,11 @@ jobs:
                   skipped += 1
                   continue
 
+              # Skip .claude directory (internal configuration and audits)
+              if ".claude" in skill_file.parts:
+                  skipped += 1
+                  continue
+
               # Skip root-level markdown files (planning docs, reports, etc.)
               if len(skill_file.parts) == 1:
                   skipped += 1
@@ -84,6 +89,11 @@ jobs:
 
               # Skip commands directory (slash commands don't need skill frontmatter)
               if "commands" in skill_file.parts:
+                  skipped += 1
+                  continue
+
+              # Skip docs directory (documentation files don't need skill frontmatter)
+              if "docs" in skill_file.parts:
                   skipped += 1
                   continue
 

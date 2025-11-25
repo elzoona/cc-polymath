@@ -205,9 +205,9 @@ CREATE INDEX idx_comments_post_id ON comments(post_id);
 And in Django:
 
 ```python
-posts = Post.objects.filter(user_id=user_id)\\
-  .prefetch_related('comments')\\
-  .only('id', 'title', 'created_at', 'user_id')
+posts = (Post.objects.filter(user_id=user_id)
+    .prefetch_related('comments')
+    .only('id', 'title', 'created_at', 'user_id'))
 ```
 
 Expected improvement: 2.3s → 45ms (51x faster)"
@@ -1067,25 +1067,25 @@ def generate_recommendation_explanation(
     product_id,
     recommendation_source
 ):
-    \"\"\"Generate natural language explanation for why we're recommending.\"\"\"
-    
+    """Generate natural language explanation for why we're recommending."""
+
     user = get_user(user_id)
     product = get_product(product_id)
     similar_buyers = get_users_who_bought([product_id])
-    
-    prompt = f\"\"\"You are an e-commerce product specialist.
+
+    prompt = f"""You are an e-commerce product specialist.
     Explain why this product is recommended in 1-2 concise sentences.
-    
+
     Customer: {user.name}, recently bought {user.recent_purchases[-3:]}
     Recommended: {product.name} (${product.price})
     Similar buyers: {len(similar_buyers)} customers with similar taste
-    
-    Explanation (natural, conversational, persuasive):\"\"\"
+
+    Explanation (natural, conversational, persuasive):"""
     
     message = client.messages.create(
-        model=\"claude-opus-4-1\",
+        model="claude-opus-4-1",
         max_tokens=100,
-        messages=[{\"role\": \"user\", \"content\": prompt}]
+        messages=[{"role": "user", "content": prompt}]
     )
     
     explanation = message.content[0].text
@@ -1109,24 +1109,24 @@ def evaluate_recommendations(
     recommendations,
     metric='conversion_lift'
 ):
-    \"\"\"Use LLM-as-Judge to rate recommendation quality.\"\"\"
-    
-    user_context = f\"\"\"
+    """Use LLM-as-Judge to rate recommendation quality."""
+
+    user_context = f"""
     User purchase history: {get_user_history(user_id)}
     Browse history: {get_browse_history(user_id)}
     Price sensitivity: {get_price_sensitivity(user_id)}
-    \"\"\"
-    
+    """
+
     for product in recommendations:
-        evaluation_prompt = f\"\"\"
+        evaluation_prompt = f"""
         Rate this recommendation (1-10) for {user_context}
-        
+
         Product: {product.name}
         Price: ${product.price}
         Category: {product.category}
         Review score: {product.rating}/5
-        
-        Rating (1-10, with brief reasoning):\"\"\"
+
+        Rating (1-10, with brief reasoning):"""
         
         # LLM-as-Judge evaluates
         rating = llm_evaluate(evaluation_prompt)
@@ -1205,8 +1205,8 @@ That's worth it.
 # Cold Start Problem: New users have no purchase history
 
 def get_recommendations_cold_start(user_id, num=5):
-    \"\"\"Recommendations for users with < 5 purchases.\"\"\"
-    
+    """Recommendations for users with < 5 purchases."""
+
     user = get_user(user_id)
     
     # Strategy 1: Content-based (80%)

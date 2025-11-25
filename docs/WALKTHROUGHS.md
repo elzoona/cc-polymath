@@ -464,8 +464,8 @@ actor HabitService {
 **SwiftUI View with MVVM**:
 ```swift
 struct HabitListView: View {
-    @Query(sort: \\Habit.createdAt) private var habits: [Habit]
-    @Environment(\\.modelContext) private var modelContext
+    @Query(sort: \Habit.createdAt) private var habits: [Habit]
+    @Environment(\.modelContext) private var modelContext
     @State private var viewModel = HabitViewModel()
 
     var body: some View {
