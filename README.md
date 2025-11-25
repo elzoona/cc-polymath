@@ -6,7 +6,7 @@
 
 **Context-efficient development knowledge via progressive skill discovery**
 
-## 🚀 New? Start Here
+## New? Start Here
 
 **Install in 30 seconds**:
 ```
