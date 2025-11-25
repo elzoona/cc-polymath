@@ -9,7 +9,8 @@ Quick answers to frequently asked questions about cc-polymath, organized by topi
 Open Claude Code and run:
 
 ```
-/plugin install https://github.com/rand/cc-polymath
+/plugin marketplace add rand/cc-polymath
+/plugin install cc-polymath@cc-polymath
 ```
 
 That's it. All 447 skills are immediately available and auto-discover as you work.
@@ -303,7 +304,8 @@ bash ~/.claude/plugins/cc-polymath/scripts/verify-install.sh
 If it fails, reinstall:
 ```
 /plugin uninstall cc-polymath
-/plugin install https://github.com/rand/cc-polymath
+/plugin marketplace add rand/cc-polymath
+/plugin install cc-polymath@cc-polymath
 ```
 
 If the plugin is installed but commands don't work, restart Claude Code.

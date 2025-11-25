@@ -13,7 +13,8 @@ cc-polymath is a Claude Code plugin that provides **447 production-ready skills*
 Open Claude Code and install the plugin:
 
 ```
-/plugin install https://github.com/rand/cc-polymath
+/plugin marketplace add rand/cc-polymath
+/plugin install cc-polymath@cc-polymath
 ```
 
 Wait for the confirmation message:

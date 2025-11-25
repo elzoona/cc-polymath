@@ -1314,7 +1314,8 @@ Every example produces immediately actionable output:
 
 Ready to get started?
 
-1. **Install the plugin**: `/plugin install https://github.com/rand/cc-polymath`
+1. **Install the plugin**: `/plugin marketplace add rand/cc-polymath
+/plugin install cc-polymath@cc-polymath`
 2. **Verify it works**: `bash ~/.claude/plugins/cc-polymath/scripts/verify-install.sh`
 3. **Start with your project**: Ask Claude about building React components, optimizing queries, designing APIs - whatever you're working on
 4. **Skills load automatically** - no manual loading needed for common tasks

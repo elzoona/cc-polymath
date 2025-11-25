@@ -59,7 +59,8 @@ if [ -d "$PLUGIN_DIR" ]; then
     echo "│ ✓ Gateway skills:    $gateway_dirs"
 else
     echo "│ ✗ Plugin not installed"
-    echo "│   Install: /plugin install https://github.com/rand/cc-polymath"
+    echo "│   Install: /plugin marketplace add rand/cc-polymath
+/plugin install cc-polymath@cc-polymath"
 fi
 echo "└─"
 echo ""
@@ -253,7 +254,8 @@ echo "│"
 recommendations=()
 
 if [ ! -d "$PLUGIN_DIR" ]; then
-    recommendations+=("Install plugin: /plugin install https://github.com/rand/cc-polymath")
+    recommendations+=("Install plugin: /plugin marketplace add rand/cc-polymath
+/plugin install cc-polymath@cc-polymath")
 fi
 
 if [ -d "$HOME/.claude/skills" ] && [ ! -L "$HOME/.claude/skills" ]; then

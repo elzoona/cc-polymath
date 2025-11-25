@@ -10,7 +10,8 @@
 
 **Install in 30 seconds**:
 ```
-/plugin install https://github.com/rand/cc-polymath
+/plugin marketplace add rand/cc-polymath
+/plugin install cc-polymath@cc-polymath
 ```
 
 **Your first 3 commands**:

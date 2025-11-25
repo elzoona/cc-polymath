@@ -38,11 +38,13 @@ Error: Command not found
 
 # You should see "cc-polymath" in the list with version 2.0.0+
 # If not found, install it:
-/plugin install https://github.com/rand/cc-polymath
+/plugin marketplace add rand/cc-polymath
+/plugin install cc-polymath@cc-polymath
 
 # Step 2: If installed but commands don't work, reload the plugin
 /plugin uninstall cc-polymath
-/plugin install https://github.com/rand/cc-polymath
+/plugin marketplace add rand/cc-polymath
+/plugin install cc-polymath@cc-polymath
 
 # Step 3: Verify installation worked
 bash ~/.claude/plugins/cc-polymath/scripts/verify-install.sh
@@ -72,7 +74,8 @@ ls -la ~/.claude/plugins/cc-polymath/skills/ | head -20
 
 # Step 3: If the directory doesn't exist, reinstall
 /plugin uninstall cc-polymath
-/plugin install https://github.com/rand/cc-polymath
+/plugin marketplace add rand/cc-polymath
+/plugin install cc-polymath@cc-polymath
 
 # Step 4: Verify it worked
 bash ~/.claude/plugins/cc-polymath/scripts/verify-install.sh
@@ -130,7 +133,8 @@ rm -rf ~/.claude/skills
 
 # Step 4: Verify plugin installation is current
 /plugin uninstall cc-polymath
-/plugin install https://github.com/rand/cc-polymath
+/plugin marketplace add rand/cc-polymath
+/plugin install cc-polymath@cc-polymath
 
 # Step 5: Run verification
 bash ~/.claude/plugins/cc-polymath/scripts/verify-install.sh
@@ -190,7 +194,8 @@ ls -ld ~/.claude/plugins/cc-polymath/     # Check current owner
 
 # Step 2: Update to latest version
 /plugin uninstall cc-polymath
-/plugin install https://github.com/rand/cc-polymath
+/plugin marketplace add rand/cc-polymath
+/plugin install cc-polymath@cc-polymath
 
 # Step 3: Verify new version installed
 /plugin list | grep cc-polymath
@@ -234,7 +239,8 @@ find ~/.claude/plugins/cc-polymath/skills -name "INDEX.md" | wc -l
 
 # Step 4: If counts are low, reinstall
 /plugin uninstall cc-polymath
-/plugin install https://github.com/rand/cc-polymath
+/plugin marketplace add rand/cc-polymath
+/plugin install cc-polymath@cc-polymath
 
 # Step 5: Verify
 bash ~/.claude/plugins/cc-polymath/scripts/verify-install.sh
@@ -419,7 +425,8 @@ If you've tried these solutions and still have issues:
 
 | Issue | Symptom | Quick Fix |
 |-------|---------|-----------|
-| Plugin not installed | Command not found | `/plugin install https://github.com/rand/cc-polymath` |
+| Plugin not installed | Command not found | `/plugin marketplace add rand/cc-polymath
+/plugin install cc-polymath@cc-polymath` |
 | Wrong file path | "No such file or directory" | Update path to `~/.claude/plugins/cc-polymath/` |
 | Auto-discovery not working | Skills don't auto-load | Use `/discover-*` commands explicitly |
 | Old installation conflict | Inconsistent behavior | `rm -rf ~/.claude/skills` |

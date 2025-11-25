@@ -31,7 +31,8 @@ if [ -d "$PLUGIN_DIR" ]; then
     ((PASSED++))
 else
     echo "✗ Plugin directory not found: $PLUGIN_DIR"
-    echo "  Run: /plugin install https://github.com/rand/cc-polymath"
+    echo "  Run: /plugin marketplace add rand/cc-polymath
+/plugin install cc-polymath@cc-polymath"
     ((FAILED++))
     echo ""
     echo "━━━ Summary ━━━"
@@ -116,7 +117,8 @@ else
     echo ""
     echo "Try reinstalling:"
     echo "  /plugin uninstall cc-polymath"
-    echo "  /plugin install https://github.com/rand/cc-polymath"
+    echo "  /plugin marketplace add rand/cc-polymath
+/plugin install cc-polymath@cc-polymath"
     echo ""
     echo "For more help:"
     echo "  • Troubleshooting: $PLUGIN_DIR/docs/TROUBLESHOOTING.md"

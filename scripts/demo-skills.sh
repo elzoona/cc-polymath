@@ -15,7 +15,8 @@ PLUGIN_DIR="$HOME/.claude/plugins/cc-polymath"
 if [ ! -d "$PLUGIN_DIR" ]; then
     echo "Error: cc-polymath plugin not found at $PLUGIN_DIR"
     echo ""
-    echo "Install with: /plugin install https://github.com/rand/cc-polymath"
+    echo "Install with: /plugin marketplace add rand/cc-polymath
+/plugin install cc-polymath@cc-polymath"
     exit 1
 fi
 
