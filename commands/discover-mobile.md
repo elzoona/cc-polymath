@@ -7,7 +7,7 @@ description: Load mobile development skills (iOS, Swift, SwiftUI, React Native)
 Load the mobile development gateway skill:
 
 ```bash
-cat ~/.claude/skills/discover-mobile/SKILL.md
+cat ~/.claude/plugins/cc-polymath/skills/discover-mobile/SKILL.md
 ```
 
 This activates skills for:

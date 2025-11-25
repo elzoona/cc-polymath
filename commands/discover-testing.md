@@ -7,7 +7,7 @@ description: Load testing skills (unit, integration, e2e, TDD, coverage)
 Load the testing gateway skill:
 
 ```bash
-cat ~/.claude/skills/discover-testing/SKILL.md
+cat ~/.claude/plugins/cc-polymath/skills/discover-testing/SKILL.md
 ```
 
 This activates skills for:

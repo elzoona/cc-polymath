@@ -7,7 +7,7 @@ description: Load infrastructure skills (Terraform, IaC, cloud platforms, contai
 Load the infrastructure gateway skill:
 
 ```bash
-cat ~/.claude/skills/discover-infrastructure/SKILL.md
+cat ~/.claude/plugins/cc-polymath/skills/discover-infrastructure/SKILL.md
 ```
 
 This activates skills for:

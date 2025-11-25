@@ -24,10 +24,10 @@ Restart Claude Code, then try:
 ```
 RECOMMENDED FOR THIS PROJECT:
 → discover-frontend
-  cat ~/.claude/skills/discover-frontend/SKILL.md
+  cat ~/.claude/plugins/cc-polymath/skills/discover-frontend/SKILL.md
 
 → discover-database
-  cat ~/.claude/skills/discover-database/SKILL.md
+  cat ~/.claude/plugins/cc-polymath/skills/discover-database/SKILL.md
 
 CATEGORIES (292 skills):
 Frontend (8) | Database (8) | API (7) | Testing (6) | Diagrams (8) | ML (30)

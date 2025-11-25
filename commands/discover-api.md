@@ -7,7 +7,7 @@ description: Load API design skills (REST, GraphQL, auth, rate limiting)
 Load the API design gateway skill:
 
 ```bash
-cat ~/.claude/skills/discover-api/SKILL.md
+cat ~/.claude/plugins/cc-polymath/skills/discover-api/SKILL.md
 ```
 
 This activates skills for:

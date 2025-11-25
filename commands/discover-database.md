@@ -7,7 +7,7 @@ description: Load database skills (PostgreSQL, MongoDB, Redis, optimization)
 Load the database gateway skill:
 
 ```bash
-cat ~/.claude/skills/discover-database/SKILL.md
+cat ~/.claude/plugins/cc-polymath/skills/discover-database/SKILL.md
 ```
 
 This activates skills for:

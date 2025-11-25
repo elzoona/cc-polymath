@@ -17,7 +17,7 @@ Follow these steps:
 
 Read the master catalog:
 ```bash
-cat ~/.claude/skills/README.md
+cat ~/.claude/plugins/cc-polymath/skills/README.md
 ```
 
 ### 2. Detect Project Context
@@ -76,10 +76,10 @@ Display in this format:
 ```
 RECOMMENDED FOR THIS PROJECT:
 → discover-[category]
-  cat ~/.claude/skills/discover-[category]/SKILL.md
+  cat ~/.claude/plugins/cc-polymath/skills/discover-[category]/SKILL.md
 
 → discover-[category]
-  cat ~/.claude/skills/discover-[category]/SKILL.md
+  cat ~/.claude/plugins/cc-polymath/skills/discover-[category]/SKILL.md
 
 CATEGORIES (292 skills):
 Frontend (8) | Database (8) | API (7) | Testing (6) | Diagrams (8) | ML (30)
@@ -105,11 +105,11 @@ Recommend 2-4 gateway skills that match:
 RECOMMENDED GATEWAYS:
 → discover-api
   Keywords: REST, GraphQL, authentication, authorization, rate limiting
-  cat ~/.claude/skills/discover-api/SKILL.md
+  cat ~/.claude/plugins/cc-polymath/skills/discover-api/SKILL.md
 
 → discover-database
   Keywords: PostgreSQL, MongoDB, Redis, query optimization
-  cat ~/.claude/skills/discover-database/SKILL.md
+  cat ~/.claude/plugins/cc-polymath/skills/discover-database/SKILL.md
 ```
 
 **If ARGUMENT = category name:**
@@ -126,8 +126,8 @@ KEY SKILLS:
 [List 3-5 key skills with one-line descriptions]
 
 LOAD:
-cat ~/.claude/skills/{category}/INDEX.md          # All skills in category
-cat ~/.claude/skills/discover-{category}/SKILL.md # Gateway overview
+cat ~/.claude/plugins/cc-polymath/skills/{category}/INDEX.md          # All skills in category
+cat ~/.claude/plugins/cc-polymath/skills/discover-{category}/SKILL.md # Gateway overview
 ```
 
 **B) If searching root-level skills:**
@@ -153,9 +153,9 @@ SKILLS:
 7. api-error-handling - RFC 7807, validation errors
 
 LOAD:
-cat ~/.claude/skills/api/INDEX.md                  # Full details
-cat ~/.claude/skills/discover-api/SKILL.md         # Gateway overview
-cat ~/.claude/skills/api/rest-api-design.md        # Specific skill
+cat ~/.claude/plugins/cc-polymath/skills/api/INDEX.md                  # Full details
+cat ~/.claude/plugins/cc-polymath/skills/discover-api/SKILL.md         # Gateway overview
+cat ~/.claude/plugins/cc-polymath/skills/api/rest-api-design.md        # Specific skill
 ```
 
 **If ARGUMENT = search term:**
@@ -173,20 +173,20 @@ SEARCH: 'postgres'
 GATEWAY:
 → discover-database
   Keywords: PostgreSQL, MongoDB, Redis, query optimization
-  cat ~/.claude/skills/discover-database/SKILL.md
+  cat ~/.claude/plugins/cc-polymath/skills/discover-database/SKILL.md
 
 SKILLS:
 → postgres-query-optimization.md
   Debug slow queries, EXPLAIN plans, index design
-  cat ~/.claude/skills/database/postgres-query-optimization.md
+  cat ~/.claude/plugins/cc-polymath/skills/database/postgres-query-optimization.md
 
 → postgres-migrations.md
   Schema changes, zero-downtime deployments
-  cat ~/.claude/skills/database/postgres-migrations.md
+  cat ~/.claude/plugins/cc-polymath/skills/database/postgres-migrations.md
 
 → postgres-schema-design.md
   Designing schemas, relationships, data types
-  cat ~/.claude/skills/database/postgres-schema-design.md
+  cat ~/.claude/plugins/cc-polymath/skills/database/postgres-schema-design.md
 
 RELATED: discover-observability, discover-caching
 ```
@@ -290,7 +290,7 @@ No skills found matching '$ARGUMENTS'
 Try:
 - Broader search term
 - View all gateways: /skills list
-- Browse full catalog: cat ~/.claude/skills/README.md
+- Browse full catalog: cat ~/.claude/plugins/cc-polymath/skills/README.md
 - Check a category: /skills api
 ```
 
@@ -302,7 +302,7 @@ No project files detected in current directory.
 
 GENERAL-PURPOSE GATEWAYS:
 → discover-collab - Collaboration, documentation, CodeTour walkthroughs
-  Load: cat ~/.claude/skills/discover-collab/SKILL.md
+  Load: cat ~/.claude/plugins/cc-polymath/skills/discover-collab/SKILL.md
 
 ROOT-LEVEL SKILLS:
 → beads-workflow.md - Multi-session task management
@@ -310,7 +310,7 @@ ROOT-LEVEL SKILLS:
 → skill-repo-discovery.md - Discover skills for repositories
 
 [View all: /skills list]
-[Browse catalog: cat ~/.claude/skills/README.md]
+[Browse catalog: cat ~/.claude/plugins/cc-polymath/skills/README.md]
 ```
 
 ## Remember

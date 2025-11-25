@@ -7,7 +7,7 @@ description: Load ML/AI skills (DSPy, training, RAG, embeddings, evaluation)
 Load the ML/AI gateway skill:
 
 ```bash
-cat ~/.claude/skills/discover-ml/SKILL.md
+cat ~/.claude/plugins/cc-polymath/skills/discover-ml/SKILL.md
 ```
 
 This activates skills for:

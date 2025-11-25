@@ -7,7 +7,7 @@ description: Load debugging skills (GDB, LLDB, profiling, memory analysis)
 Load the debugging gateway skill:
 
 ```bash
-cat ~/.claude/skills/discover-debugging/SKILL.md
+cat ~/.claude/plugins/cc-polymath/skills/discover-debugging/SKILL.md
 ```
 
 This activates skills for:

@@ -7,7 +7,7 @@ description: Load container skills (Docker, Kubernetes, security, optimization)
 Load the containers gateway skill:
 
 ```bash
-cat ~/.claude/skills/discover-containers/SKILL.md
+cat ~/.claude/plugins/cc-polymath/skills/discover-containers/SKILL.md
 ```
 
 This activates skills for:

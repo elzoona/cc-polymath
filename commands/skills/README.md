@@ -97,7 +97,7 @@ RECOMMENDED FOR THIS PROJECT:
 CATEGORIES (292 total skills):
 Frontend (8) | Database (8) | API (7) | Testing (6) | Diagrams (8) | ML (30)
 Math (19) | Debugging (14) | Build Systems (8) | Caching (7) | Observability (8)
-[View full catalog: ~/.claude/skills/README.md]
+[View full catalog: ~/.claude/plugins/cc-polymath/skills/README.md]
 
 COMMANDS:
 /skills frontend     - View all Frontend skills
@@ -122,9 +122,9 @@ SKILLS:
 8. nextjs-seo - SEO best practices, metadata, structured data
 
 LOAD:
-cat ~/.claude/skills/frontend/INDEX.md                  # Full details
-cat ~/.claude/skills/discover-frontend/SKILL.md         # Gateway overview
-cat ~/.claude/skills/frontend/react-component-patterns.md  # Specific skill
+cat ~/.claude/plugins/cc-polymath/skills/frontend/INDEX.md                  # Full details
+cat ~/.claude/plugins/cc-polymath/skills/discover-frontend/SKILL.md         # Gateway overview
+cat ~/.claude/plugins/cc-polymath/skills/frontend/react-component-patterns.md  # Specific skill
 ```
 
 ### Search Results (`/skills postgres`)
@@ -135,20 +135,20 @@ SEARCH: 'postgres'
 GATEWAY:
 → discover-database
   Keywords: PostgreSQL, MongoDB, Redis, query optimization
-  cat ~/.claude/skills/discover-database/SKILL.md
+  cat ~/.claude/plugins/cc-polymath/skills/discover-database/SKILL.md
 
 SKILLS:
 → postgres-query-optimization.md
   Debug slow queries, EXPLAIN plans, index design
-  cat ~/.claude/skills/database/postgres-query-optimization.md
+  cat ~/.claude/plugins/cc-polymath/skills/database/postgres-query-optimization.md
 
 → postgres-migrations.md
   Schema changes, zero-downtime deployments
-  cat ~/.claude/skills/database/postgres-migrations.md
+  cat ~/.claude/plugins/cc-polymath/skills/database/postgres-migrations.md
 
 → postgres-schema-design.md
   Designing schemas, relationships, data types
-  cat ~/.claude/skills/database/postgres-schema-design.md
+  cat ~/.claude/plugins/cc-polymath/skills/database/postgres-schema-design.md
 
 RELATED: discover-observability, discover-caching
 ```
@@ -174,9 +174,9 @@ Based on detected context, it recommends skills that:
 ### Read-Only Operations
 
 The command **only reads** from:
-- `~/.claude/skills/README.md` (master catalog)
-- `~/.claude/skills/{category}/INDEX.md` (category indexes)
-- `~/.claude/skills/discover-*/SKILL.md` (gateway skills)
+- `~/.claude/plugins/cc-polymath/skills/README.md` (master catalog)
+- `~/.claude/plugins/cc-polymath/skills/{category}/INDEX.md` (category indexes)
+- `~/.claude/plugins/cc-polymath/skills/discover-*/SKILL.md` (gateway skills)
 - Current working directory (for project detection)
 
 It **never modifies**:
@@ -239,15 +239,15 @@ The `cc-polymath` plugin should no longer appear in the list. All commands (incl
 
 **Possible causes:**
 - Empty/new project directory → Expected behavior, shows general skills
-- Skills catalog not found → Check `~/.claude/skills/README.md` exists
+- Skills catalog not found → Check `~/.claude/plugins/cc-polymath/skills/README.md` exists
 
 ### Skills Catalog Not Found
 
 **Problem:** Error message about missing `README.md`
 
 **Solution:**
-1. Verify skills directory: `ls ~/.claude/skills/`
-2. Check catalog exists: `cat ~/.claude/skills/README.md`
+1. Verify skills directory: `ls ~/.claude/plugins/cc-polymath/skills/`
+2. Check catalog exists: `cat ~/.claude/plugins/cc-polymath/skills/README.md`
 3. If missing, restore from your skills repository (cc-polymath)
 
 ## Examples
@@ -309,7 +309,7 @@ cd ~/projects/slow-app
 
 This slash command is designed to be self-contained and maintenance-free. However, if you find issues or have suggestions:
 
-1. The command reads from `~/.claude/skills/README.md` (master catalog)
+1. The command reads from `~/.claude/plugins/cc-polymath/skills/README.md` (master catalog)
 2. Keep that file updated as you add new skills
 3. Update individual category `INDEX.md` files as needed
 4. The command will automatically show new skills

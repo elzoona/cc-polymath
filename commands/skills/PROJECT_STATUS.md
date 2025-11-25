@@ -10,7 +10,7 @@
 
 ## What Was Built
 
-A context-aware skills discovery slash command for Claude Code that helps users discover and activate relevant skills from their `~/.claude/skills/` library using a gateway-based progressive loading architecture.
+A context-aware skills discovery slash command for Claude Code that helps users discover and activate relevant skills from their `~/.claude/plugins/cc-polymath/skills/` library using a gateway-based progressive loading architecture.
 
 ## Project Files
 
@@ -175,15 +175,15 @@ Complete removal with no traces left.
 
 **Dependencies:**
 - None (uses Claude Code built-in slash command system)
-- Reads from existing `~/.claude/skills/` directory
+- Reads from existing `~/.claude/plugins/cc-polymath/skills/` directory
 - Compatible with all skill discovery mechanisms
 
 ### Read Operations
 
 The command reads from:
-- `~/.claude/skills/README.md` (master catalog)
-- `~/.claude/skills/{category}/INDEX.md` (category indexes)
-- `~/.claude/skills/discover-*/SKILL.md` (gateway skills)
+- `~/.claude/plugins/cc-polymath/skills/README.md` (master catalog)
+- `~/.claude/plugins/cc-polymath/skills/{category}/INDEX.md` (category indexes)
+- `~/.claude/plugins/cc-polymath/skills/discover-*/SKILL.md` (gateway skills)
 - Current working directory (for project detection)
 - Conversation context (provided by Claude Code)
 

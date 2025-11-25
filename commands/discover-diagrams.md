@@ -7,7 +7,7 @@ description: Load diagram skills (Mermaid flowcharts, sequence, ER, architecture
 Load the diagrams gateway skill:
 
 ```bash
-cat ~/.claude/skills/discover-diagrams/SKILL.md
+cat ~/.claude/plugins/cc-polymath/skills/discover-diagrams/SKILL.md
 ```
 
 This activates skills for:

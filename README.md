@@ -6,7 +6,27 @@
 
 **Context-efficient development knowledge via progressive skill discovery**
 
-> **Claude Code Plugin**: Install with `/plugin install https://github.com/rand/cc-polymath`
+## 🚀 New? Start Here
+
+**Install in 30 seconds**:
+```
+/plugin install https://github.com/rand/cc-polymath
+```
+
+**Your first 3 commands**:
+```bash
+/skills                    # See what's recommended for your project
+/discover-frontend         # Load React, Next.js, TypeScript skills (example)
+bash ~/.claude/plugins/cc-polymath/scripts/verify-install.sh  # Verify installation
+```
+
+**Learn more**:
+- 📖 **[Getting Started Guide](docs/GETTING_STARTED.md)** - 5-minute quick start
+- 💬 **[Example Conversations](docs/FIRST_CONVERSATIONS.md)** - See it in action
+- 🆘 **[Troubleshooting](docs/TROUBLESHOOTING.md)** - Common issues & solutions
+- ❓ **[FAQ](docs/FAQ.md)** - Quick answers
+
+---
 
 This repository solves a tradeoff problem: how to give Claude Code access to comprehensive development knowledge without overwhelming its context window on boot. The solution is atomic, composable skills organized through a multi-tier discovery system.
 
