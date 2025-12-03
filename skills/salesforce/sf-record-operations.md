@@ -161,9 +161,10 @@ if [ -z "$DEFAULT_ORG" ]; then
   fi
 fi
 
-# Get user ID
+# Get user ID (using dynamic user email)
+USER_EMAIL=$(sf org list --json | jq -r --arg org "$DEFAULT_ORG" '.result.nonScratchOrgs[] | select(.alias == $org or .username == $org) | .username')
 USER_ID=$(sf data query \
-  --query "SELECT Id FROM User WHERE Email = 'user@example.com'" \
+  --query "SELECT Id FROM User WHERE Email = '${USER_EMAIL}'" \
   --result-format json \
   --target-org "$DEFAULT_ORG" | jq -r '.result.records[0].Id')
 
