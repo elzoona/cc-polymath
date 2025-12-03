@@ -250,14 +250,14 @@ sf data create record \
 # Create a new Sprint
 sf data create record \
   --sobject ADM_Sprint__c \
-  --values "Name='Sprint 42' Start_Date__c=2024-01-15 End_Date__c=2024-01-29 Status__c='Planned'" \
-  --target-org my-org
+  --values "Name='Sprint 42' Start_Date__c=2024-01-15 End_Date__c=2024-01-29" \
+  --target-org gus
 
 # Create a Build (Scheduled Build)
 sf data create record \
   --sobject ADM_Build__c \
-  --values "Name='Release 1.0' Scheduled_Date__c=2024-02-01 Status__c='Scheduled'" \
-  --target-org my-org
+  --values "Name='Release 1.0' External_ID__c='R010'" \
+  --target-org gus
 
 # Assign work items to sprint
 sf data update record \
@@ -435,9 +435,9 @@ sf data create record \
 Object API Name        | Description              | Key Fields
 -----------------------|--------------------------|----------------------------------
 ADM_Work__c            | Work Items/Stories/Bugs  | Subject__c, Status__c, Priority__c, Assignee__c
-ADM_Epic__c            | Epics                    | Name, Status__c, Description__c
-ADM_Sprint__c          | Sprints                  | Name, Start_Date__c, End_Date__c, Status__c
-ADM_Build__c           | Scheduled Builds         | Name, Scheduled_Date__c, Status__c
+ADM_Epic__c            | Epics                    | Name, Description__c, Health__c, Priority__c
+ADM_Sprint__c          | Sprints                  | Name, Start_Date__c, End_Date__c
+ADM_Build__c           | Scheduled Builds         | Name, External_ID__c
 ADM_Product_Tag__c     | Product Tags             | Name
 FeedItem               | Chatter Posts            | ParentId, Body, Type
 FeedComment            | Chatter Comments         | FeedItemId, CommentBody
@@ -450,10 +450,12 @@ User                   | Users                    | Name, Email, Username
 Object      | Status Field   | Common Values
 ------------|----------------|----------------------------------------------
 Work Items  | Status__c      | New, In Progress, Code Review, Fixed, Closed
-Epics       | Status__c      | New, In Progress, Completed
-Sprints     | Status__c      | Planned, Active, Completed
-Builds      | Status__c      | Scheduled, In Progress, Released
 ```
+
+**Important Notes**:
+- **Epic** objects (`ADM_Epic__c`) do not have a `Status__c` field. They use `Health__c` instead (values: "On Track", "At Risk", etc.)
+- **Sprint** objects (`ADM_Sprint__c`) do not have a `Status__c` field. Use `Start_Date__c` and `End_Date__c` to determine sprint status.
+- **Build** objects (`ADM_Build__c`) do not have a `Status__c` or `Scheduled_Date__c` field. They use `Name` and `External_ID__c` for identification.
 
 ### Key Guidelines
 
