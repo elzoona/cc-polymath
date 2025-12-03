@@ -1,6 +1,6 @@
 ---
 name: discover-salesforce
-description: Automatically discover Salesforce CLI (sf) skills when working with Salesforce orgs, Agile Accelerator (GUS), SOQL queries, work items (WI), user stories, sprints, or Chatter. Activates for Salesforce integration and automation tasks.
+description: Automatically discover Salesforce CLI (sf) skills when working with Salesforce orgs, Agile Accelerator (GUS), SOQL queries, work items (WI, wis, wi, WIs), user stories, sprints, epics, or Chatter. Activates for Salesforce integration and automation tasks.
 ---
 
 # Salesforce Skills Discovery
@@ -25,9 +25,15 @@ This skill auto-activates when you're working with:
 
 ### Quick Reference
 
-The Salesforce category contains 1 comprehensive skill:
+The Salesforce category contains **7 focused skills**:
 
-1. **sf-cli-operations** - Complete guide to Salesforce CLI operations, SOQL, record management, bulk operations, and Agile Accelerator workflows
+1. **sf-org-auth** - Authentication, org management, and user information
+2. **sf-soql-queries** - SOQL queries and data retrieval
+3. **sf-record-operations** - Creating and updating individual records
+4. **sf-work-items** - Managing work items, sprints, epics, and builds (GUS)
+5. **sf-chatter** - Chatter posts, comments, and feed interactions
+6. **sf-bulk-operations** - Bulk updates, exports, and large-scale operations
+7. **sf-automation** - Git integration, WI inference, and automated workflows
 
 **Note**: All examples use `gus` as the default org alias. This refers to your Salesforce org where Agile Accelerator (GUS) is configured. If your org has a different alias, simply replace `--target-org gus` with your org alias throughout.
 
@@ -47,79 +53,120 @@ This loads the full Salesforce category index with:
 
 ### Load Specific Skills
 
-Load the Salesforce CLI operations skill:
+Load individual skills as needed:
 
 ```bash
-cat ~/.claude/skills/salesforce/sf-cli-operations.md
+# Authentication and org management
+cat ~/.claude/skills/salesforce/sf-org-auth.md
+
+# SOQL queries and data retrieval
+cat ~/.claude/skills/salesforce/sf-soql-queries.md
+
+# Create/update individual records
+cat ~/.claude/skills/salesforce/sf-record-operations.md
+
+# Work items, sprints, and epics
+cat ~/.claude/skills/salesforce/sf-work-items.md
+
+# Chatter posts and comments
+cat ~/.claude/skills/salesforce/sf-chatter.md
+
+# Bulk operations and exports
+cat ~/.claude/skills/salesforce/sf-bulk-operations.md
+
+# Git integration and automation
+cat ~/.claude/skills/salesforce/sf-automation.md
 ```
 
 ## Common Workflows
 
 ### Create User Story
-**Sequence**: Query dependencies → Create work item → Add Chatter update
+**Sequence**: Get user → Query IDs → Create work item → Add Chatter update
 
 ```bash
-cat ~/.claude/skills/salesforce/sf-cli-operations.md
+cat ~/.claude/skills/salesforce/sf-org-auth.md        # Get current user
+cat ~/.claude/skills/salesforce/sf-soql-queries.md    # Query for IDs
+cat ~/.claude/skills/salesforce/sf-work-items.md      # Create work item
+cat ~/.claude/skills/salesforce/sf-chatter.md          # Add Chatter post
 ```
-
-Use Pattern 1 (Creating User Stories with Dependencies) and Pattern 6 (Finding Record IDs).
 
 ### Sprint Planning
 **Sequence**: Create sprint → Query backlog → Bulk assign items
 
 ```bash
-cat ~/.claude/skills/salesforce/sf-cli-operations.md
+cat ~/.claude/skills/salesforce/sf-work-items.md        # Create sprint
+cat ~/.claude/skills/salesforce/sf-soql-queries.md      # Query backlog
+cat ~/.claude/skills/salesforce/sf-bulk-operations.md   # Bulk assign
 ```
-
-Use Pattern 4 (Managing Sprints and Builds) and Pattern 2 (Bulk Status Updates).
 
 ### Bulk Status Update
 **Sequence**: Query work items → Export CSV → Bulk update → Verify
 
 ```bash
-cat ~/.claude/skills/salesforce/sf-cli-operations.md
+cat ~/.claude/skills/salesforce/sf-soql-queries.md       # Query items
+cat ~/.claude/skills/salesforce/sf-bulk-operations.md    # Bulk update
 ```
 
-Use Pattern 2 (Bulk Status Updates) and Pattern 7 (Bulk Data Export).
+### Git Integration
+**Sequence**: Extract WI from branch → Query details → Update status → Post to Chatter
+
+```bash
+cat ~/.claude/skills/salesforce/sf-automation.md        # WI inference
+cat ~/.claude/skills/salesforce/sf-soql-queries.md      # Query WI
+cat ~/.claude/skills/salesforce/sf-work-items.md        # Update status
+cat ~/.claude/skills/salesforce/sf-chatter.md            # Post update
+```
 
 ### Work Item Reporting
 **Sequence**: Query with related data → Export to CSV → Analyze
 
 ```bash
-cat ~/.claude/skills/salesforce/sf-cli-operations.md
+cat ~/.claude/skills/salesforce/sf-soql-queries.md       # Complex queries
+cat ~/.claude/skills/salesforce/sf-bulk-operations.md    # Export data
 ```
-
-Use Pattern 7 (Bulk Data Export) and SOQL query patterns from Concept 2.
 
 ## Skill Selection Guide
 
-**Use sf-cli-operations when:**
-- Creating or updating work items in Agile Accelerator (GUS)
-- Performing bulk operations on Salesforce data
-- Querying Salesforce using SOQL
-- Managing sprints, epics, and builds
-- Posting updates to Chatter feeds
-- Automating Salesforce workflows
-- Integrating Salesforce with other tools
-- Exporting data for reporting and analysis
+**Use sf-org-auth when:**
+- Logging into Salesforce orgs
+- Managing multiple org connections
+- Getting current user email/ID dynamically
+- Switching between environments
 
-**Common Operations:**
-- **Authentication**: `sf org login web`, `sf org list`, `sf org display`
-- **Queries**: `sf data query` with SOQL syntax
-- **Record Creation**: `sf data create record` with `--sobject` and `--values`
-- **Record Updates**: `sf data update record` by ID or field match
-- **Bulk Operations**: `sf data update bulk`, `sf data export bulk`
-- **REST API**: `sf api request rest` for custom operations
+**Use sf-soql-queries when:**
+- Querying Salesforce data
+- Finding record IDs (Users, Epics, Sprints, etc.)
+- Building reports or dashboards
+- Working with related objects
 
-**Common Objects:**
-- `ADM_Work__c` - Work Items (Stories, Bugs, Tasks)
-- `ADM_Epic__c` - Epics
-- `ADM_Sprint__c` - Sprints
-- `ADM_Build__c` - Scheduled Builds
-- `ADM_Product_Tag__c` - Product Tags
-- `FeedItem` - Chatter Posts
-- `FeedComment` - Chatter Comments
-- `User` - Salesforce Users
+**Use sf-record-operations when:**
+- Creating 1-5 records individually
+- Updating specific records by ID
+- Working with custom objects
+- Using REST API for advanced operations
+
+**Use sf-work-items when:**
+- Creating user stories, bugs, or tasks
+- Managing sprints and sprint planning
+- Working with epics and product tags
+- Sprint reporting
+
+**Use sf-chatter when:**
+- Posting updates to work items
+- Adding comments to records
+- Automating notifications from CI/CD
+
+**Use sf-bulk-operations when:**
+- Updating 10+ records at once
+- Exporting large datasets (>2000 records)
+- Bulk status changes
+- Avoiding API rate limits
+
+**Use sf-automation when:**
+- Extracting WI numbers from git branches
+- Automating Chatter posts from commits
+- Creating git hooks for Salesforce
+- CI/CD integration with GUS
 
 ## Integration with Other Skills
 
@@ -159,74 +206,77 @@ Salesforce skills commonly combine with:
 
 1. **Auto-activation**: This skill loads automatically when Claude Code detects Salesforce-related work
 2. **Browse skills**: Run `cat ~/.claude/skills/salesforce/INDEX.md` for full category overview
-3. **Load specific skills**: Use bash command above to load the comprehensive sf-cli-operations skill
-4. **Follow patterns**: Use the 8+ patterns for common Salesforce operations
+3. **Load specific skills**: Use bash commands above to load individual skills
+4. **Follow patterns**: Each skill contains 5-10 patterns for common operations
 5. **Combine skills**: Load related skills for comprehensive Salesforce integration
 
 ## Progressive Loading
 
-This gateway skill (~250 lines, ~2.5K tokens) enables progressive loading:
+This gateway skill (~300 lines, ~3K tokens) enables progressive loading:
 - **Level 1**: Gateway loads automatically (you're here now)
-- **Level 2**: Load category INDEX.md (~3K tokens) for full overview
-- **Level 3**: Load sf-cli-operations.md (~4K tokens) for complete guide
+- **Level 2**: Load category INDEX.md (~350 lines, ~3.5K tokens) for full overview
+- **Level 3**: Load specific skill (~150-220 lines, ~1.5-2K tokens each) for detailed guidance
 
-Total context: 2.5K + 3K + 4K = ~10K tokens for complete Salesforce expertise.
+Total context: 3K + 3.5K + (1.5-2K per skill) = efficient skill discovery and usage.
 
 ## Quick Start Examples
 
+**"Authenticate to Salesforce"**:
+```bash
+cat ~/.claude/skills/salesforce/sf-org-auth.md
+```
+
+**"Query my work items"**:
+```bash
+cat ~/.claude/skills/salesforce/sf-soql-queries.md
+```
+
 **"Create a user story in GUS"**:
 ```bash
-cat ~/.claude/skills/salesforce/sf-cli-operations.md
+cat ~/.claude/skills/salesforce/sf-work-items.md
 ```
-See Pattern 1: Creating User Stories with Dependencies
-
-**"Query work items for a sprint"**:
-```bash
-cat ~/.claude/skills/salesforce/sf-cli-operations.md
-```
-See Concept 2: SOQL Queries and Pattern 6: Finding Record IDs
 
 **"Update status for multiple work items"**:
 ```bash
-cat ~/.claude/skills/salesforce/sf-cli-operations.md
+cat ~/.claude/skills/salesforce/sf-bulk-operations.md
 ```
-See Pattern 2: Bulk Status Updates
 
-**"Create a sprint and assign work items"**:
+**"Post update to Chatter"**:
 ```bash
-cat ~/.claude/skills/salesforce/sf-cli-operations.md
+cat ~/.claude/skills/salesforce/sf-chatter.md
 ```
-See Pattern 4: Managing Sprints and Builds
 
-**"Add a comment to Chatter"**:
+**"Extract WI from git branch"**:
 ```bash
-cat ~/.claude/skills/salesforce/sf-cli-operations.md
+cat ~/.claude/skills/salesforce/sf-automation.md
 ```
-See Pattern 3: Creating Chatter Posts
 
 **"Export work items for reporting"**:
 ```bash
-cat ~/.claude/skills/salesforce/sf-cli-operations.md
+cat ~/.claude/skills/salesforce/sf-bulk-operations.md
 ```
-See Pattern 7: Bulk Data Export
 
 ## Best Practices
 
 **Always:**
 - **Use `sf` CLI tool directly** for all Salesforce operations
-- Infer WI number from git branch name when not explicitly provided (see Pattern 9)
+- Infer WI number from git branch name when not explicitly provided
+- Dynamically fetch user email/ID instead of hardcoding
 - Specify `--target-org gus` (or your org alias) to avoid ambiguity
 - Query for IDs before creating related records
-- Use bulk operations for multiple record updates
+- Use bulk operations for 10+ record updates
 - Verify target org before destructive operations
 - Include all required fields when creating records
+- Validate query results before using extracted values
 
 **Never:**
 - Hardcode record IDs (they vary across orgs)
+- Hardcode user emails (fetch dynamically)
 - Update records without verifying they exist first
 - Use single updates in loops (use bulk operations)
-- Forget API name suffixes (`__c` for custom fields)
+- Forget API name suffixes (`__c` for custom fields, `__r` for relationships)
 - Commit authentication tokens or credentials
+- Skip validation of jq output (check for null/empty)
 
 **Security:**
 - ⚠️ Always verify target org before updates
@@ -234,7 +284,9 @@ See Pattern 7: Bulk Data Export
 - ⚠️ Be cautious with bulk delete operations
 - ⚠️ Use `--target-org` flag for all operations
 - ⚠️ Never commit credentials to version control
+- ⚠️ Don't post sensitive data to Chatter
+- ⚠️ Test automation in sandbox before production
 
 ---
 
-**Next Steps**: Run `cat ~/.claude/skills/salesforce/INDEX.md` to see full category details, or load `sf-cli-operations.md` for the complete Salesforce CLI guide.
+**Next Steps**: Run `cat ~/.claude/skills/salesforce/INDEX.md` to see full category details, or load specific skills using the commands above.
