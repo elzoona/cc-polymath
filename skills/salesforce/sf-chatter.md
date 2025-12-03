@@ -7,7 +7,7 @@ keywords: chatter, salesforce, gus, post, comment, feed, FeedItem, FeedComment, 
 # Salesforce Chatter Operations
 
 **Scope**: Creating Chatter posts, comments, and feed interactions
-**Lines**: ~180
+**Lines**: ~418
 **Last Updated**: 2025-12-03
 **Format Version**: 1.0 (Atomic)
 

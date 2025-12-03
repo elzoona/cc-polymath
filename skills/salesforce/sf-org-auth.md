@@ -7,7 +7,7 @@ keywords: salesforce, gus, authentication, login, org, user info, sf cli, connec
 # Salesforce Org Authentication
 
 **Scope**: Org authentication, connection management, and user information retrieval
-**Lines**: ~180
+**Lines**: ~348
 **Last Updated**: 2025-12-03
 **Format Version**: 1.0 (Atomic)
 

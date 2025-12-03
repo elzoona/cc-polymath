@@ -7,7 +7,7 @@ keywords: salesforce, gus, bulk, mass update, export, import, CSV, bulk API, lar
 # Salesforce Bulk Operations
 
 **Scope**: Bulk data updates, exports, and large-scale operations
-**Lines**: ~150
+**Lines**: ~356
 **Last Updated**: 2025-12-03
 **Format Version**: 1.0 (Atomic)
 

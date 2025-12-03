@@ -7,7 +7,7 @@ keywords: gus, agile accelerator, work items, story, bug, task, sprint, epic, te
 # Salesforce Agile Accelerator Work Items
 
 **Scope**: Creating and managing work items, sprints, epics, and builds in GUS
-**Lines**: ~220
+**Lines**: ~402
 **Last Updated**: 2025-12-03
 **Format Version**: 1.0 (Atomic)
 

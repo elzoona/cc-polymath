@@ -13,7 +13,7 @@ Comprehensive skills for working with Salesforce CLI (sf) and Agile Accelerator 
 
 ### sf-org-auth.md
 **Description**: Authenticate and manage Salesforce orgs using sf CLI
-**Lines**: ~180
+**Lines**: ~348
 **Use When**:
 - Logging into Salesforce orgs
 - Managing multiple org connections
@@ -44,7 +44,7 @@ Comprehensive skills for working with Salesforce CLI (sf) and Agile Accelerator 
 
 ### sf-soql-basics.md
 **Description**: Basic SOQL queries, field discovery, and fundamental patterns for Salesforce
-**Lines**: ~350
+**Lines**: ~402
 **Use When**:
 - Starting with SOQL queries (learn basics first)
 - Querying simple data (users, work items by ID, basic lookups)
@@ -58,7 +58,7 @@ Comprehensive skills for working with Salesforce CLI (sf) and Agile Accelerator 
 
 ### sf-soql-advanced.md
 **Description**: Advanced SOQL queries for GUS - work items, aggregation, date filters, and tooling API
-**Lines**: ~350
+**Lines**: ~292
 **Use When**:
 - Querying work items by various criteria (assignee, sprint, epic, status)
 - Aggregating data (counts, sums, grouped results)
@@ -72,7 +72,7 @@ Comprehensive skills for working with Salesforce CLI (sf) and Agile Accelerator 
 
 ### sf-soql-troubleshooting.md
 **Description**: Common SOQL errors, anti-patterns, and troubleshooting for Salesforce queries
-**Lines**: ~450
+**Lines**: ~507
 **Use When**:
 - Debugging SOQL query errors (INVALID_FIELD, relationship errors, operator errors)
 - Understanding common mistakes (why queries fail and how to fix them)
@@ -86,7 +86,7 @@ Comprehensive skills for working with Salesforce CLI (sf) and Agile Accelerator 
 
 ### sf-record-operations.md
 **Description**: Create and update Salesforce records using sf CLI
-**Lines**: ~200
+**Lines**: ~438
 **Use When**:
 - Creating new Salesforce records
 - Updating existing records
@@ -100,7 +100,7 @@ Comprehensive skills for working with Salesforce CLI (sf) and Agile Accelerator 
 
 ### sf-work-items.md
 **Description**: Manage Agile Accelerator (GUS) work items, sprints, and epics
-**Lines**: ~220
+**Lines**: ~402
 **Use When**:
 - Creating user stories, bugs, or tasks in GUS
 - Managing sprints and sprint planning
@@ -114,7 +114,7 @@ Comprehensive skills for working with Salesforce CLI (sf) and Agile Accelerator 
 
 ### sf-chatter.md
 **Description**: Create and manage Chatter posts and comments in Salesforce
-**Lines**: ~180
+**Lines**: ~418
 **Use When**:
 - Posting updates to Chatter feeds
 - Adding comments to work items
@@ -128,7 +128,7 @@ Comprehensive skills for working with Salesforce CLI (sf) and Agile Accelerator 
 
 ### sf-bulk-operations.md
 **Description**: Perform bulk data operations on Salesforce objects
-**Lines**: ~150
+**Lines**: ~356
 **Use When**:
 - Updating multiple records at once
 - Exporting large datasets
@@ -142,7 +142,7 @@ Comprehensive skills for working with Salesforce CLI (sf) and Agile Accelerator 
 
 ### sf-automation.md
 **Description**: Automate Salesforce operations with git integration and CI/CD
-**Lines**: ~170
+**Lines**: ~437
 **Use When**:
 - Integrating Salesforce with git workflows
 - Inferring WI numbers from branch names

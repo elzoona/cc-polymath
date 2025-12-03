@@ -7,7 +7,7 @@ keywords: salesforce, gus, automation, git, CI/CD, work item, branch, workflow, 
 # Salesforce Automation
 
 **Scope**: Git integration, WI inference, and automated workflows
-**Lines**: ~170
+**Lines**: ~437
 **Last Updated**: 2025-12-03
 **Format Version**: 1.0 (Atomic)
 

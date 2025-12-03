@@ -7,7 +7,7 @@ keywords: salesforce, gus, create, update, record, work item, epic, sprint, sf d
 # Salesforce Record Operations
 
 **Scope**: Creating, updating, and managing individual Salesforce records
-**Lines**: ~200
+**Lines**: ~438
 **Last Updated**: 2025-12-03
 **Format Version**: 1.0 (Atomic)
 
