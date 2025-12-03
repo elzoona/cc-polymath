@@ -6,7 +6,7 @@ description: Using Salesforce CLI (sf) for managing orgs, data, and records
 # Salesforce CLI Operations
 
 **Scope**: Comprehensive guide to using the Salesforce CLI (sf) for common operations
-**Lines**: ~400
+**Lines**: ~720
 **Last Updated**: 2025-12-03
 **Format Version**: 1.0 (Atomic)
 
@@ -28,6 +28,7 @@ Activate this skill when:
 **Important Notes**:
 - **Always use `sf` CLI tool directly** for all Salesforce operations
 - **WI Number Inference**: If no WI number is explicitly mentioned, check the current git branch name for WI patterns (e.g., `W-12345678`, `wi-12345678`, `12345678-feature-name`)
+- **User Email Detection**: Never hardcode user emails. Always fetch the current user's email dynamically using `sf org list --json` or `sf org display user --json` (see Pattern 10)
 - **Default Org**: This skill uses `gus` as the default org alias for examples. If your org has a different alias, replace `--target-org gus` with your org alias (e.g., `--target-org my-gus`, `--target-org production-gus`, etc.)
 
 ## Core Concepts
@@ -444,6 +445,85 @@ sf data create record \
 - Extract the `Id` field from query results for record operations
 - Use `--json` flag for easier parsing with `jq`
 
+### Pattern 10: Getting Current User Information
+
+**Use case**: Dynamically retrieve the logged-in user's email and other details for queries
+
+**IMPORTANT**: Never hardcode user emails (like `user@gus.com`). Always fetch the current user's email dynamically from the authenticated org.
+
+```bash
+# ❌ Bad: Hardcoding user email
+sf data query \
+  --query "SELECT Name, Subject__c, Status__c FROM ADM_Work__c WHERE Assignee__r.Email = 'user@gus.com'" \
+  --target-org gus
+
+# ✅ Good: Get current user email from authenticated org (by alias)
+USER_EMAIL=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.alias == "gus") | .username')
+
+# Query work items for the logged-in user
+sf data query \
+  --query "SELECT Name, Subject__c, Status__c, Priority__c, Type__c, Sprint__c
+    FROM ADM_Work__c
+    WHERE Assignee__r.Email = '${USER_EMAIL}'
+    AND Status__c != 'Closed'" \
+  --target-org gus \
+  --result-format json
+
+# Alternative: Get from most recently used org
+USER_EMAIL=$(sf org list --json | jq -r '.result.nonScratchOrgs | sort_by(.lastUsed) | reverse | .[0].username')
+
+# Alternative: Get user details from org display user
+USER_INFO=$(sf org display user --target-org gus --json)
+USER_EMAIL=$(echo "$USER_INFO" | jq -r '.result.email')
+USER_ID=$(echo "$USER_INFO" | jq -r '.result.id')
+USER_NAME=$(echo "$USER_INFO" | jq -r '.result.username')
+
+# Use the user ID directly in queries (more efficient than joining on email)
+sf data query \
+  --query "SELECT Name, Subject__c, Status__c, Priority__c
+    FROM ADM_Work__c
+    WHERE Assignee__c = '${USER_ID}'
+    AND Status__c = 'In Progress'" \
+  --target-org gus
+
+# Get user's org details
+ORG_INFO=$(sf org display --target-org gus --json)
+ORG_ID=$(echo "$ORG_INFO" | jq -r '.result.id')
+INSTANCE_URL=$(echo "$ORG_INFO" | jq -r '.result.instanceUrl')
+
+echo "Logged in as: $USER_EMAIL"
+echo "User ID: $USER_ID"
+echo "Org ID: $ORG_ID"
+echo "Instance: $INSTANCE_URL"
+```
+
+**Benefits**:
+- Works across different users and orgs without code changes
+- No need to hardcode usernames or emails
+- Scripts are portable and can be shared with team members
+- Safer - prevents accidentally using wrong user credentials
+
+**Key Points**:
+- Use `sf org list --json` to get username from authenticated orgs
+- Use `sf org display user --json` for complete user details including ID
+- Filter by org alias when multiple orgs are authenticated
+- Use User ID (`Assignee__c`) in queries instead of email when possible (more efficient)
+- Always validate that the user info was retrieved successfully before using
+
+**Error Handling Pattern**:
+```bash
+# Get user email with validation
+USER_EMAIL=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.alias == "gus") | .username')
+
+if [ -z "$USER_EMAIL" ] || [ "$USER_EMAIL" = "null" ]; then
+  echo "Error: Could not retrieve user email. Is the org authenticated?"
+  echo "Run: sf org login web --alias gus"
+  exit 1
+fi
+
+echo "Querying work items for: $USER_EMAIL"
+```
+
 ---
 
 ## Quick Reference
@@ -491,6 +571,7 @@ Builds (ADM_Build__c)    | (none)           | Use Name and External_ID__c
 ✅ DO: Use HTML formatting for rich text fields
 ✅ DO: Always use sf CLI tool directly for all operations
 ✅ DO: Infer WI number from git branch name when not explicitly provided
+✅ DO: Dynamically fetch user email/ID instead of hardcoding (Pattern 10)
 ✅ DO: Add error handling for queries that may return no results
 ✅ DO: Validate extracted values before using them in subsequent commands
 ```
@@ -498,6 +579,7 @@ Builds (ADM_Build__c)    | (none)           | Use Name and External_ID__c
 **Common Mistakes to Avoid:**
 ```
 ❌ DON'T: Hardcode record IDs (query for them instead)
+❌ DON'T: Hardcode user emails (fetch dynamically with Pattern 10)
 ❌ DON'T: Create records without required fields
 ❌ DON'T: Use single updates for large datasets (use bulk)
 ❌ DON'T: Forget to specify API names (use __c suffix for custom fields)

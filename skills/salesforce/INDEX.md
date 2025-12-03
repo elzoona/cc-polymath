@@ -13,7 +13,7 @@ Comprehensive skills for working with Salesforce CLI (sf) and Agile Accelerator 
 
 ### sf-cli-operations.md
 **Description**: Using Salesforce CLI (sf) for managing orgs, data, and records
-**Lines**: ~400
+**Lines**: ~720
 **Use When**:
 - Creating or updating Salesforce records (Work Items/WI, User Stories, Bugs, Epics, Sprints)
 - Querying Salesforce data using SOQL
@@ -164,6 +164,7 @@ Comprehensive skills for working with Salesforce CLI (sf) and Agile Accelerator 
 - Export data before bulk deletes
 - **Always use `sf` CLI directly** for all Salesforce operations
 - Infer WI number from git branch name when not explicitly provided
+- Dynamically fetch user email/ID instead of hardcoding (see Pattern 10)
 
 ---
 
