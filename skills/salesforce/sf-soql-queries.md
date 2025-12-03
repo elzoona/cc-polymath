@@ -26,7 +26,30 @@ Activate this skill when:
 
 ## Core Concepts
 
-### Concept 1: Basic SOQL Syntax
+### Concept 1: Field Discovery Before Querying
+
+**CRITICAL**: Always use `sf sobject describe` when uncertain about field names. This prevents INVALID_FIELD errors.
+
+```bash
+# Discover all fields on an object
+sf sobject describe --sobject ADM_Work__c --target-org "$DEFAULT_ORG"
+
+# Search for specific fields (e.g., team-related)
+sf sobject describe --sobject User --target-org "$DEFAULT_ORG" | grep -i team
+
+# Find relationship fields
+sf sobject describe --sobject ADM_Work__c --target-org "$DEFAULT_ORG" | \
+  jq '.fields[] | select(.relationshipName != null) | {name: .name, relationshipName: .relationshipName, referenceTo: .referenceTo}'
+```
+
+**Why this matters**: Guessing field names leads to errors like:
+- `No such column 'Team__c' on entity 'User'` (field doesn't exist)
+- Wrong field type or reference target
+- Missing junction objects for many-to-many relationships
+
+See **Pattern 1: Discovering Object Fields** below for detailed examples.
+
+### Concept 2: Basic SOQL Syntax
 
 **Query Structure**:
 ```sql
@@ -69,7 +92,77 @@ sf data query \
   --target-org "$DEFAULT_ORG"
 ```
 
-### Concept 2: Output Formats
+### Concept 2: Verified Field Names
+
+**Common GUS Objects** (verified via `sf sobject describe`):
+
+**ADM_Work__c (Work Items)**:
+```
+Id, Name, Subject__c, Status__c, Priority__c, Type__c
+Story_Points__c, Assignee__c (→User), Sprint__c (→ADM_Sprint__c)
+Epic__c (→ADM_Epic__c), Found_in_Build__c (→ADM_Build__c)
+Product_Tag__c (→ADM_Product_Tag__c), Description__c
+CreatedDate, LastModifiedDate
+```
+
+**ADM_Epic__c (Epics)**:
+```
+Id, Name, Description__c, Health__c (not Status__c!)
+Priority__c, OwnerId (→User)
+CreatedDate, LastModifiedDate
+```
+
+**ADM_Sprint__c (Sprints)**:
+```
+Id, Name, Start_Date__c, End_Date__c
+Scrum_Team__c (→ADM_Scrum_Team__c)
+CreatedDate, LastModifiedDate
+```
+
+**ADM_Build__c (Builds)**:
+```
+Id, Name, CreatedDate, LastModifiedDate
+```
+
+**ADM_Product_Tag__c (Product Tags)**:
+```
+Id, Name, CreatedDate, LastModifiedDate
+```
+
+**ADM_Scrum_Team_Member__c (Team Membership - Junction Object)**:
+```
+Id, Name, Member_Name__c (→User), Scrum_Team__c (→ADM_Scrum_Team__c)
+CreatedDate, LastModifiedDate
+```
+
+**User (Standard Object)**:
+```
+Id, Name, Email, Username, IsActive, ProfileId
+Note: No Team__c field - use ADM_Scrum_Team_Member__c junction object
+```
+
+**FeedItem (Chatter Posts)**:
+```
+Id, ParentId, Body, Type, LinkUrl, Visibility
+CreatedDate, CreatedById
+```
+
+**FeedComment (Chatter Comments)**:
+```
+Id, FeedItemId, CommentBody, CreatedDate, CreatedById
+```
+
+**Related Field Notation**:
+```
+Assignee__r.Name            # User name
+Assignee__r.Email           # User email
+Sprint__r.Name              # Sprint name
+Epic__r.Name                # Epic name
+Scrum_Team__r.Name          # Team name
+Found_in_Build__r.Name      # Build name
+```
+
+### Concept 3: Output Formats
 
 **Available Formats**:
 - `human` - Table format (default)
@@ -105,7 +198,62 @@ sf data query \
 
 ## Patterns
 
-### Pattern 1: Finding Record IDs
+### Pattern 1: Discovering Object Fields
+
+**Use case**: Find available fields on an object before querying (avoids INVALID_FIELD errors)
+
+**IMPORTANT**: Always use `sf sobject describe` when unsure about field names. This prevents errors like `No such column 'Team__c' on entity 'User'`.
+
+```bash
+# Get default org
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
+# List all fields on an object
+sf sobject describe --sobject User --target-org "$DEFAULT_ORG"
+
+# Search for specific field names (e.g., team-related)
+sf sobject describe --sobject User --target-org "$DEFAULT_ORG" | grep -i team
+
+# Find fields that reference another object (e.g., User)
+sf sobject describe --sobject ADM_Scrum_Team_Member__c --target-org "$DEFAULT_ORG" | \
+  jq '.fields[] | select(.referenceTo[]? == "User") | {name: .name, label: .label, relationshipName: .relationshipName}'
+
+# Get all custom fields (fields ending in __c)
+sf sobject describe --sobject ADM_Work__c --target-org "$DEFAULT_ORG" | \
+  jq '.fields[] | select(.name | endswith("__c")) | {name: .name, label: .label, type: .type}'
+
+# Find relationship fields (__r notation)
+sf sobject describe --sobject ADM_Work__c --target-org "$DEFAULT_ORG" | \
+  jq '.fields[] | select(.relationshipName != null) | {name: .name, relationshipName: .relationshipName, referenceTo: .referenceTo}'
+```
+
+**Example: Finding team membership fields**
+```bash
+# Discovered that User doesn't have Team__c, but ADM_Scrum_Team_Member__c has Member_Name__c
+USER_ID="005EE000001JW5FYAW"
+
+# Query teams through the junction object
+sf data query \
+  --query "SELECT Id, Name, Scrum_Team__r.Name
+    FROM ADM_Scrum_Team_Member__c
+    WHERE Member_Name__c = '${USER_ID}'" \
+  --result-format json \
+  --target-org "$DEFAULT_ORG" | jq -r '.result.records[] | .Scrum_Team__r.Name'
+```
+
+**Benefits**:
+- Avoids INVALID_FIELD errors from guessing field names
+- Discovers correct relationship field names (__r notation)
+- Finds junction objects for many-to-many relationships
+- Identifies custom vs standard fields
+
+### Pattern 2: Finding Record IDs
 
 **Use case**: Locate record IDs for references (Users, Epics, Sprints, Product Tags)
 
@@ -146,7 +294,7 @@ USER_ID=$(sf data query \
 echo "User ID: $USER_ID"
 ```
 
-### Pattern 2: Querying Work Items
+### Pattern 3: Querying Work Items
 
 **Use case**: Find work items by various criteria
 
@@ -217,9 +365,22 @@ sf data query \
     WHERE Owner.Email = '${USER_EMAIL}'
     ORDER BY LastModifiedDate DESC" \
   --target-org "$DEFAULT_ORG"
+
+# Query work items with epics (filter non-null with jq)
+# IMPORTANT: Avoid != in queries due to shell escaping - filter with jq instead
+sf data query \
+  --query "SELECT Id, Name, Subject__c, Epic__c, Epic__r.Name, Epic__r.Id
+    FROM ADM_Work__c
+    WHERE Assignee__r.Email = '${USER_EMAIL}'
+    ORDER BY LastModifiedDate DESC
+    LIMIT 50" \
+  --result-format json \
+  --target-org "$DEFAULT_ORG" | jq -r '.result.records[] | select(.Epic__r) | "\(.Epic__r.Name) - \(.Name): \(.Subject__c)"' | sort -u
 ```
 
-### Pattern 3: Complex Queries with Aggregation
+**Note on filtering null values**: Due to shell escaping issues with `!=` (the `!` triggers history expansion), it's best to query all records and filter with jq using `select(.Epic__r)` to check for non-null relationships.
+
+### Pattern 4: Complex Queries with Aggregation
 
 **Use case**: Get counts, sums, and grouped data
 
@@ -229,13 +390,13 @@ sf data query \
   --query "SELECT Status__c, COUNT(Id) total FROM ADM_Work__c GROUP BY Status__c" \
   --target-org "$DEFAULT_ORG"
 
-# Sum story points by sprint
+# Sum story points by sprint (filter null sprints with jq)
 sf data query \
   --query "SELECT Sprint__r.Name, SUM(Story_Points__c) total_points
     FROM ADM_Work__c
-    WHERE Sprint__r.Name != null
     GROUP BY Sprint__r.Name" \
-  --target-org "$DEFAULT_ORG"
+  --result-format json \
+  --target-org "$DEFAULT_ORG" | jq -r '.result.records[] | select(.Sprint__r) | "\(.Sprint__r.Name): \(.total_points) points"'
 
 # Count by assignee
 sf data query \
@@ -333,13 +494,16 @@ LAST_WEEK           Previous week
 THIS_QUARTER        Current quarter
 ```
 
-### Common Fields
+### Common Fields (All Verified)
 
-**Work Items (ADM_Work__c)**:
+See **Concept 2: Verified Field Names** above for complete field listings.
+
+**Quick Reference - Most Used Fields**:
 ```
-Id, Name, Subject__c, Status__c, Priority__c, Type__c
-Story_Points__c, Assignee__c, Sprint__c, Epic__c
-CreatedDate, LastModifiedDate, Description__c
+ADM_Work__c: Subject__c, Status__c, Priority__c, Type__c, Assignee__c, Sprint__c, Epic__c
+ADM_Epic__c: Description__c, Health__c (NOT Status__c!), Priority__c, OwnerId
+ADM_Sprint__c: Start_Date__c, End_Date__c, Scrum_Team__c
+User: Name, Email (no Team__c - use ADM_Scrum_Team_Member__c)
 ```
 
 **Related Field Notation**:
@@ -348,8 +512,11 @@ Assignee__r.Name            # User name
 Assignee__r.Email           # User email
 Sprint__r.Name              # Sprint name
 Epic__r.Name                # Epic name
+Scrum_Team__r.Name          # Team name
 Found_in_Build__r.Name      # Build name
 ```
+
+**IMPORTANT**: When uncertain about fields, always use `sf sobject describe --sobject <ObjectName>` to verify field existence and names before querying.
 
 ---
 
@@ -357,21 +524,26 @@ Found_in_Build__r.Name      # Build name
 
 **Essential Practices:**
 ```
+✅ DO: Use `sf sobject describe` when uncertain about field names (prevents INVALID_FIELD errors)
 ✅ DO: Use --result-format json for scripting
 ✅ DO: Use LIMIT to avoid timeouts on large datasets
 ✅ DO: Query for IDs before creating related records
 ✅ DO: Use relationship queries (__r) instead of multiple queries
 ✅ DO: Validate query results before using extracted values
 ✅ DO: Use WHERE clauses to filter data server-side
+✅ DO: Refer to Concept 2 for verified field names
 ```
 
 **Common Mistakes to Avoid:**
 ```
+❌ DON'T: Guess field names without verifying (use sf sobject describe)
+❌ DON'T: Use != in double-quoted queries (shell escapes !)
 ❌ DON'T: Query without LIMIT (can timeout)
 ❌ DON'T: Use SELECT * (not supported in SOQL)
 ❌ DON'T: Assume queries will always return results
 ❌ DON'T: Forget __c suffix on custom fields
 ❌ DON'T: Skip validation of jq output (check for null)
+❌ DON'T: Assume User has Team__c field (use junction object)
 ```
 
 ---
@@ -379,6 +551,23 @@ Found_in_Build__r.Name      # Build name
 ## Anti-Patterns
 
 ### Critical Violations
+
+```bash
+# ❌ NEVER: Use != in double-quoted strings (shell escapes the !)
+sf data query --query "SELECT Id FROM ADM_Work__c WHERE Epic__c != null" --target-org gus
+# Error: unexpected token: '\'
+
+# ✅ CORRECT: Filter null values using jq instead
+sf data query --query "SELECT Id, Epic__c, Epic__r.Name FROM ADM_Work__c WHERE Assignee__c = '005xx000001X8Uz' LIMIT 50" \
+  --result-format json --target-org "$DEFAULT_ORG" | jq -r '.result.records[] | select(.Epic__r) | "\(.Epic__r.Name)"'
+```
+
+**Why this happens**: In bash/zsh, `!` triggers history expansion even in double quotes, causing the shell to escape it as `\!`. SOQL doesn't recognize this escaped form.
+
+**Solutions**:
+1. **Query all records and filter with jq** (recommended for complex conditions)
+2. Use `IS NOT NULL` syntax if your SOQL version supports it
+3. Use relationship fields like `Epic__r.Id` and check with `select(.Epic__r)` in jq
 
 ```bash
 # ❌ NEVER: Query without checking results
@@ -413,6 +602,42 @@ if [ -z "$WORK_ITEM_ID" ] || [ "$WORK_ITEM_ID" = "null" ]; then
   exit 1
 fi
 ```
+
+```bash
+# ❌ NEVER: Guess field names without verification
+sf data query --query "SELECT Id, Name, Team__c FROM User WHERE Id = '005EE000001JW5FYAW'" --target-org gus
+# Error: No such column 'Team__c' on entity 'User'
+
+# ✅ CORRECT: Use sf sobject describe to discover correct fields
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
+# Discover available fields
+sf sobject describe --sobject User --target-org "$DEFAULT_ORG" | grep -i team
+# Result: No Team__c field exists
+
+# Find junction object for team membership
+sf sobject describe --sobject ADM_Scrum_Team_Member__c --target-org "$DEFAULT_ORG" | \
+  jq '.fields[] | select(.referenceTo[]? == "User") | {name: .name, relationshipName: .relationshipName}'
+# Result: Member_Name__c field references User
+
+# Query using correct field
+sf data query \
+  --query "SELECT Scrum_Team__r.Name FROM ADM_Scrum_Team_Member__c WHERE Member_Name__c = '005EE000001JW5FYAW'" \
+  --result-format json \
+  --target-org "$DEFAULT_ORG" | jq -r '.result.records[] | .Scrum_Team__r.Name'
+```
+
+**Why this matters**:
+- Field names vary across Salesforce implementations
+- Many-to-many relationships use junction objects
+- `sf sobject describe` is the authoritative source
+- See **Pattern 1: Discovering Object Fields** for detailed examples
 
 ---
 

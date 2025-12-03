@@ -214,35 +214,42 @@ else
 fi
 ```
 
-### Pattern 5: Querying Chatter Feed
+### Pattern 5: Querying Chatter Feed (REST API)
 
 **Use case**: Read Chatter posts and comments
 
+**IMPORTANT**: FeedItem has strict query restrictions in SOQL. You cannot query FeedItem with `WHERE ParentId` or `WHERE CreatedById` filters. Use the Chatter REST API instead.
+
 ```bash
-# Query Chatter feed for a record
-sf data query \
-  --query "SELECT Id, Body, CreatedBy.Name, CreatedDate
-    FROM FeedItem
-    WHERE ParentId = 'a07xx00000ABCDE'
-    ORDER BY CreatedDate DESC
-    LIMIT 20" \
+# ❌ This SOQL query FAILS with "Implementation restriction: FeedItem requires a filter by Id"
+# sf data query --query "SELECT Id, Body FROM FeedItem WHERE ParentId = 'a07xx00000ABCDE'"
+
+# ✅ CORRECT: Use Chatter REST API to query feed for a record
+sf api request rest \
+  "/services/data/v61.0/chatter/feeds/record/a07xx00000ABCDE/feed-elements" \
+  --target-org "$DEFAULT_ORG" | jq -r '.elements[] | "[\(.createdDate)] \(.actor.name): \(.body.text)"'
+
+# Get full feed details with formatting
+sf api request rest \
+  "/services/data/v61.0/chatter/feeds/record/a07xx00000ABCDE/feed-elements?pageSize=10" \
+  --target-org "$DEFAULT_ORG" | jq '.'
+
+# Query user's feed (user profile posts)
+sf api request rest \
+  "/services/data/v61.0/chatter/feeds/user-profile/005xx000001X8Uz/feed-elements" \
   --target-org "$DEFAULT_ORG"
 
-# Query comments on a post
+# Query comments on a specific feed item
+sf api request rest \
+  "/services/data/v61.0/chatter/feed-elements/0D5xx00000FGHIJ/capabilities/comments/items" \
+  --target-org "$DEFAULT_ORG" | jq -r '.items[] | "[\(.createdDate)] \(.user.name): \(.body.text)"'
+
+# FeedComment CAN be queried with SOQL (unlike FeedItem)
 sf data query \
   --query "SELECT CommentBody, CreatedBy.Name, CreatedDate
     FROM FeedComment
     WHERE FeedItemId = '0D5xx00000FGHIJ'
     ORDER BY CreatedDate ASC" \
-  --target-org "$DEFAULT_ORG"
-
-# Find recent posts mentioning keywords
-sf data query \
-  --query "SELECT Id, Body, Parent.Name, CreatedBy.Name, CreatedDate
-    FROM FeedItem
-    WHERE Body LIKE '%deployment%'
-    AND CreatedDate = LAST_N_DAYS:7
-    ORDER BY CreatedDate DESC" \
   --target-org "$DEFAULT_ORG"
 ```
 
@@ -284,12 +291,14 @@ sf data create record --sobject FeedItem --values "ParentId=<Id> Body='<text>'" 
 # Create comment
 sf data create record --sobject FeedComment --values "FeedItemId=<Id> CommentBody='<text>'" --target-org <alias>
 
-# Query feed
-sf data query --query "SELECT Body, CreatedBy.Name FROM FeedItem WHERE ParentId = '<Id>'" --target-org <alias>
+# Query feed (USE REST API - SOQL has strict limitations)
+sf api request rest "/services/data/v61.0/chatter/feeds/record/<RecordId>/feed-elements" --target-org <alias>
 
-# Query comments
+# Query comments (SOQL works for FeedComment)
 sf data query --query "SELECT CommentBody FROM FeedComment WHERE FeedItemId = '<Id>'" --target-org <alias>
 ```
+
+**IMPORTANT**: FeedItem cannot be queried with `WHERE ParentId` or `WHERE CreatedById` in SOQL. Always use Chatter REST API for reading feeds.
 
 ### Key Fields
 
@@ -324,6 +333,7 @@ CommentBody     - Comment text (required, max 10000 chars)
 
 **Common Mistakes to Avoid:**
 ```
+❌ DON'T: Query FeedItem with SOQL WHERE clauses (use REST API)
 ❌ DON'T: Post sensitive information (passwords, tokens)
 ❌ DON'T: Spam feeds with automated posts
 ❌ DON'T: Use Chatter for private/confidential data
@@ -336,6 +346,19 @@ CommentBody     - Comment text (required, max 10000 chars)
 ## Anti-Patterns
 
 ### Critical Violations
+
+```bash
+# ❌ NEVER: Query FeedItem with WHERE ParentId (will fail)
+sf data query \
+  --query "SELECT Id, Body FROM FeedItem WHERE ParentId = 'a07xx00000ABCDE'" \
+  --target-org "$DEFAULT_ORG"
+# Error: Implementation restriction: FeedItem requires a filter by Id
+
+# ✅ CORRECT: Use Chatter REST API instead
+sf api request rest \
+  "/services/data/v61.0/chatter/feeds/record/a07xx00000ABCDE/feed-elements" \
+  --target-org "$DEFAULT_ORG"
+```
 
 ```bash
 # ❌ NEVER: Post without validating ParentId
