@@ -7,9 +7,9 @@ keywords: salesforce, gus, soql, query, work items, epic, sprint, team, agile ac
 # Salesforce SOQL Queries
 
 **Scope**: SOQL query syntax, data retrieval, and result formatting
-**Lines**: ~250
+**Lines**: ~920
 **Last Updated**: 2025-12-03
-**Format Version**: 1.1 (Atomic - Enhanced field verification requirements)
+**Format Version**: 1.2 (Atomic - Added ADM_Scrum_Team_Member__c field details and LIKE operator on reference fields anti-pattern)
 
 ---
 
@@ -173,8 +173,21 @@ Id, Name, CreatedDate, LastModifiedDate
 
 **ADM_Scrum_Team_Member__c (Team Membership - Junction Object)**:
 ```
-Id, Name, Member_Name__c (→User), Scrum_Team__c (→ADM_Scrum_Team__c)
+Id, Name (auto-number: STM-######)
+Member_Name__c (→User - ID field, use = not LIKE)
+Scrum_Team__c (→ADM_Scrum_Team__c)
+Scrum_Team_Name__c (formula field with team name)
+Internal_Email__c (member's email address)
+Role__c (member's role on team)
+Allocation__c, Department__c, Functional_Area__c
+Active__c (boolean indicating active membership)
 CreatedDate, LastModifiedDate
+
+CRITICAL NOTES:
+- Member_Name__c is a User ID lookup field - use = for exact match, NOT LIKE
+- Name is auto-numbered (STM-######), not searchable by member name
+- Use Internal_Email__c for email, NOT Email__c (doesn't exist)
+- No User__c field exists - use Member_Name__c instead
 ```
 
 **User (Standard Object)**:
@@ -312,7 +325,71 @@ sf data query \
 - Finds junction objects for many-to-many relationships
 - Identifies custom vs standard fields
 
-### Pattern 2: Finding Record IDs
+### Pattern 2: Querying Team Memberships (Common Pitfall Example)
+
+**Use case**: Find which Scrum teams a user belongs to
+
+**COMMON ERRORS** (see error explanations at bottom):
+```bash
+# ❌ WRONG: Using non-existent fields
+sf data query --query "SELECT Id, Name, User__c FROM ADM_Scrum_Team_Member__c WHERE User__c = '005xx'" --target-org gus
+# Error: No such column 'User__c' on entity 'ADM_Scrum_Team_Member__c'
+
+# ❌ WRONG: Using LIKE on an ID field
+sf data query --query "SELECT Id, Name FROM ADM_Scrum_Team_Member__c WHERE Member_Name__c LIKE '%Polillo%'" --target-org gus
+# Error: invalid operator on id field
+
+# ❌ WRONG: Looking for email field that doesn't exist
+sf data query --query "SELECT Id, Name, Email__c FROM ADM_Scrum_Team_Member__c LIMIT 3" --target-org gus
+# Error: No such column 'Email__c' on entity 'ADM_Scrum_Team_Member__c'
+```
+
+**CORRECT APPROACH** (following mandatory field verification):
+```bash
+# STEP 1: ALWAYS describe the object first
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
+sf sobject describe --sobject ADM_Scrum_Team_Member__c --target-org "$DEFAULT_ORG" | \
+  jq '.fields[] | select(.custom == true) | {name: .name, type: .type, referenceTo: .referenceTo}'
+
+# STEP 2: Verify discovered field names (from describe above):
+# - Member_Name__c (User ID lookup - use = not LIKE)
+# - Scrum_Team__c (Team ID lookup)
+# - Scrum_Team_Name__c (formula field with team name)
+# - Internal_Email__c (email field, NOT Email__c)
+# - Role__c (member's role)
+
+# STEP 3: Query using verified field names
+USER_ID="005EE000001JW5FYAW"
+
+sf data query \
+  --query "SELECT Id, Name, Scrum_Team_Name__c, Member_Name__c, Role__c, Internal_Email__c
+    FROM ADM_Scrum_Team_Member__c
+    WHERE Member_Name__c = '${USER_ID}'" \
+  --target-org "$DEFAULT_ORG"
+
+# Get just team names as a list
+sf data query \
+  --query "SELECT Scrum_Team__r.Name
+    FROM ADM_Scrum_Team_Member__c
+    WHERE Member_Name__c = '${USER_ID}'" \
+  --result-format json \
+  --target-org "$DEFAULT_ORG" | jq -r '.result.records[] | .Scrum_Team__r.Name'
+```
+
+**Error Explanations**:
+- **No `User__c` field**: The correct field is `Member_Name__c` (found via describe)
+- **No `Email__c` field**: The correct field is `Internal_Email__c` (found via describe)
+- **Cannot use LIKE on `Member_Name__c`**: It's a User ID lookup field (reference type), not a text field
+- **`Name` field is auto-numbered**: The Name field is STM-###### (auto-number), not the member's name
+
+### Pattern 3: Finding Record IDs
 
 **Use case**: Locate record IDs for references (Users, Epics, Sprints, Product Tags)
 
@@ -353,7 +430,7 @@ USER_ID=$(sf data query \
 echo "User ID: $USER_ID"
 ```
 
-### Pattern 3: Querying Work Items
+### Pattern 4: Querying Work Items
 
 **Use case**: Find work items by various criteria
 
@@ -439,7 +516,7 @@ sf data query \
 
 **Note on filtering null values**: Due to shell escaping issues with `!=` (the `!` triggers history expansion), it's best to query all records and filter with jq using `select(.Epic__r)` to check for non-null relationships.
 
-### Pattern 4: Complex Queries with Aggregation
+### Pattern 5: Complex Queries with Aggregation
 
 **Use case**: Get counts, sums, and grouped data
 
@@ -467,7 +544,7 @@ sf data query \
   --target-org "$DEFAULT_ORG"
 ```
 
-### Pattern 4: Querying with Date Filters
+### Pattern 6: Querying with Date Filters
 
 **Use case**: Find records by date ranges
 
@@ -499,7 +576,7 @@ sf data query \
   --target-org "$DEFAULT_ORG"
 ```
 
-### Pattern 5: Using Tooling API
+### Pattern 7: Using Tooling API
 
 **Use case**: Query metadata objects
 
@@ -739,7 +816,43 @@ if [ -z "$WORK_ITEM_ID" ] || [ "$WORK_ITEM_ID" = "null" ]; then
 fi
 ```
 
-### Critical Violation #3: Assuming Fields Exist Without Verification
+### Critical Violation #3: Using LIKE on ID/Reference Fields
+
+```bash
+# ❌ NEVER: Use LIKE operator on reference/ID fields
+sf data query --query "SELECT Id, Name FROM ADM_Scrum_Team_Member__c WHERE Member_Name__c LIKE '%Polillo%'" --target-org gus
+# Error: invalid operator on id field
+
+# ✅ CORRECT: Reference fields require exact match with = operator
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
+# STEP 1: Find the User ID first
+USER_ID=$(sf data query \
+  --query "SELECT Id FROM User WHERE Name LIKE '%Polillo%' LIMIT 1" \
+  --result-format json \
+  --target-org "$DEFAULT_ORG" | jq -r '.result.records[0].Id')
+
+# STEP 2: Use the ID with = operator (NOT LIKE)
+sf data query \
+  --query "SELECT Id, Name, Scrum_Team_Name__c, Role__c
+    FROM ADM_Scrum_Team_Member__c
+    WHERE Member_Name__c = '${USER_ID}'" \
+  --target-org "$DEFAULT_ORG"
+```
+
+**Why this happens**:
+- Reference fields (fields ending in __c that link to other objects) store IDs, not text
+- LIKE is only valid for text fields (string, textarea)
+- You must query the referenced object first to get the ID, then use = for exact match
+- Check field type with `sf sobject describe` - if `type: "reference"`, use = not LIKE
+
+### Critical Violation #4: Assuming Fields Exist Without Verification
 
 **NOTE**: This is another example of Violation #1. See above for the full explanation.
 
@@ -801,4 +914,4 @@ sf data query \
 ---
 
 **Last Updated**: 2025-12-03
-**Format Version**: 1.1 (Atomic - Enhanced field verification requirements)
+**Format Version**: 1.2 (Atomic - Added ADM_Scrum_Team_Member__c field details and LIKE operator on reference fields anti-pattern)
