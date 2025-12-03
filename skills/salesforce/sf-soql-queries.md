@@ -155,7 +155,8 @@ ALWAYS use sf sobject describe to get the relationshipName field.
 ❌ DON'T: Query fields without sf sobject describe first
 ❌ DON'T: Assume relationship names match object names
 ❌ DON'T: Use LIKE on ID/reference fields (use = instead)
-❌ DON'T: Use != in double-quoted queries (shell escapes !)
+❌ DON'T: Use != in CLI queries (use <> instead - shell escapes !)
+❌ DON'T: Check relationship name fields for null (check ID field instead)
 ❌ DON'T: Assume ANY field exists without verification
 ```
 

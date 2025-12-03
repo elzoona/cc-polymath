@@ -108,7 +108,7 @@ sf data query \
 
 ### Critical Violation #3: Using Shell Special Characters
 
-**Error Message**: `unexpected token: '\'`
+**Error Message**: `unexpected token: '\'` or `MALFORMED_QUERY`
 
 **Why This Happens**:
 In bash/zsh, `!` triggers history expansion even in double quotes, causing the shell to escape it as `\!`. SOQL doesn't recognize this escaped form.
@@ -118,21 +118,45 @@ In bash/zsh, `!` triggers history expansion even in double quotes, causing the s
 # ❌ NEVER: Use != in double-quoted strings (shell escapes the !)
 sf data query --query "SELECT Id FROM ADM_Work__c WHERE Epic__c != null" --target-org gus
 # Error: unexpected token: '\'
+# Error: MALFORMED_QUERY ... unexpected token: '\\'
 ```
 
 **Correct Solutions**:
 
-**Solution 1: Query all records and filter with jq (RECOMMENDED)**
+**Solution 1: Use `<>` instead of `!=` (RECOMMENDED - Most Reliable)**
 ```bash
 # Get default org
 DEFAULT_ORG=$(sf config get target-org --json 2>/dev/null | jq -r '.result[0].value // empty' || sf org list --json 2>/dev/null | jq -r '.result.nonScratchOrgs[0].alias // empty')
 
-# ✅ CORRECT: Filter null values using jq instead
+# ✅ BEST: Use <> operator instead of != to avoid shell escaping
+sf data query --query "SELECT Id, Name, Epic__r.Name FROM ADM_Work__c WHERE Epic__c <> null AND Status__c NOT IN ('Closed', 'Duplicate') LIMIT 50" \
+  --result-format json --target-org "$DEFAULT_ORG"
+
+# ✅ BEST: Use <> for checking if a reference field has a value
+sf data query --query "SELECT Id, Name FROM ADM_Work__c WHERE Scrum_Team__c <> null" \
+  --target-org "$DEFAULT_ORG"
+```
+
+**Solution 2: Check ID fields instead of relationship name fields (More Efficient)**
+```bash
+# ✅ GOOD: Check the ID field (Scrum_Team__c) instead of relationship name field (Scrum_Team__r.Name)
+# This is more efficient and avoids querying the related object
+sf data query \
+  --query "SELECT Id, Name, Scrum_Team__r.Name FROM ADM_Work__c WHERE Scrum_Team__c <> null" \
+  --target-org "$DEFAULT_ORG"
+
+# ❌ LESS EFFICIENT: Checking relationship name field
+# Don't check Scrum_Team__r.Name <> null when you can check Scrum_Team__c <> null
+```
+
+**Solution 3: Query all records and filter with jq (Alternative)**
+```bash
+# ✅ ALTERNATIVE: Filter null values using jq instead
 sf data query --query "SELECT Id, Epic__c, Epic__r.Name FROM ADM_Work__c WHERE Assignee__c = '005xx000001X8Uz' LIMIT 50" \
   --result-format json --target-org "$DEFAULT_ORG" | jq -r '.result.records[] | select(.Epic__r) | "\(.Epic__r.Name)"'
 ```
 
-**Solution 2: Use relationship fields and check with jq**
+**Solution 4: Use relationship fields and check with jq (Alternative)**
 ```bash
 # Check for non-null relationships using jq select()
 sf data query \
@@ -140,6 +164,25 @@ sf data query \
   --result-format json \
   --target-org "$DEFAULT_ORG" | jq -r '.result.records[] | select(.Epic__r) | .Name'
 ```
+
+**Solution 5: Use a query file (For Complex Queries)**
+```bash
+# ✅ Create a file with your query to avoid shell escaping entirely
+cat > query.soql <<'EOF'
+SELECT Id, Name, Subject__c
+FROM ADM_Work__c
+WHERE Scrum_Team__c != null
+AND Status__c NOT IN ('Closed', 'Duplicate')
+LIMIT 50
+EOF
+
+sf data query --file query.soql --target-org "$DEFAULT_ORG" --json
+```
+
+**Key Takeaways**:
+- **Always use `<>` instead of `!=`** in CLI queries to avoid shell escaping
+- **Check ID fields (`Field__c`)** not relationship name fields (`Field__r.Name`) for null checks - it's more efficient
+- **Use query files** for complex queries to avoid all shell escaping issues
 
 ---
 
@@ -404,7 +447,8 @@ sf data query \
 ❌ DON'T: Assume relationship names match object names
 ❌ DON'T: Use ADM_Scrum_Team__r when actual relationship is Scrum_Team__r
 ❌ DON'T: Assume ANY field exists without verification
-❌ DON'T: Use != in double-quoted queries (shell escapes !)
+❌ DON'T: Use != in CLI queries (use <> instead - shell escapes !)
+❌ DON'T: Check Scrum_Team__r.Name <> null when you can check Scrum_Team__c <> null
 ❌ DON'T: Use LIKE on ID/reference fields (use = instead)
 ❌ DON'T: Query without LIMIT (can timeout)
 ❌ DON'T: Use SELECT * (not supported in SOQL)
