@@ -71,7 +71,7 @@ sf org open --target-org gus
 # Query Work Items (Agile Accelerator)
 sf data query \
   --query "SELECT Id, Name, Status__c, Subject__c FROM ADM_Work__c WHERE Status__c = 'New' LIMIT 10" \
-  --target-org my-org \
+  --target-org gus \
   --result-format json
 
 # Query from file
@@ -79,13 +79,13 @@ sf data query \
   --file query.soql \
   --output-file results.csv \
   --result-format csv \
-  --target-org my-org
+  --target-org gus
 
 # Query using Tooling API
 sf data query \
   --query "SELECT Name, ApiVersion FROM ApexClass" \
   --use-tooling-api \
-  --target-org my-org
+  --target-org gus
 ```
 
 ### Concept 3: Record Creation and Updates
@@ -101,27 +101,27 @@ sf data query \
 sf data create record \
   --sobject ADM_Work__c \
   --values "Subject__c='Implement new feature' Status__c='New' Priority__c='P2' Assignee__c='005xx000001X8Uz'" \
-  --target-org my-org
+  --target-org gus
 
 # Create an Epic
 sf data create record \
   --sobject ADM_Epic__c \
   --values "Name='Q1 2024 Features' Status__c='New' Description__c='Major features for Q1'" \
-  --target-org my-org
+  --target-org gus
 
 # Update a record by ID
 sf data update record \
   --sobject ADM_Work__c \
   --record-id a07xx00000ABCDe \
   --values "Status__c='In Progress' Assignee__c='005xx000001X8Uz'" \
-  --target-org my-org
+  --target-org gus
 
 # Update a record by field match
 sf data update record \
   --sobject ADM_Work__c \
   --where "Subject__c='Old Feature Name'" \
   --values "Subject__c='New Feature Name' Priority__c='P1'" \
-  --target-org my-org
+  --target-org gus
 ```
 
 ---
@@ -140,7 +140,7 @@ sf data update record \
 sf data create record \
   --sobject ADM_Work__c \
   --values "Subject__c='Feature'" \
-  --target-org my-org
+  --target-org gus
 
 # ✅ Good: Complete story with all required fields
 sf data create record \
@@ -154,7 +154,7 @@ sf data create record \
            Assignee__c='005xx000001X8Uz' \
            Type__c='User Story' \
            Description__c='<p>As a user, I want to log in securely</p>'" \
-  --target-org my-org
+  --target-org gus
 ```
 
 **Benefits**:
@@ -171,7 +171,7 @@ sf data create record \
 sf data query \
   --query "SELECT Id FROM ADM_Work__c WHERE Sprint__c = 'a1Fxx000002EFGH' AND Status__c = 'Ready for Development'" \
   --result-format json \
-  --target-org my-org > work_items.json
+  --target-org gus > work_items.json
 
 # Create CSV for bulk update
 # work_items.csv:
@@ -185,7 +185,7 @@ sf data update bulk \
   --sobject ADM_Work__c \
   --file work_items.csv \
   --wait 10 \
-  --target-org my-org
+  --target-org gus
 ```
 
 ### Pattern 3: Creating Chatter Posts
@@ -193,7 +193,7 @@ sf data update bulk \
 **Use case**: Post updates to Chatter feeds for work items
 
 ```bash
-# Create a Chatter post on a Work Item (example with real output format)
+# Create a Chatter post on a Work Item
 sf data create record \
   --sobject FeedItem \
   --values "ParentId=a07xx00000ABCDE Body='Phase 1.2 complete: S3 Storage Service implemented with 32 tests, file size validation, and CI configuration.'" \
@@ -202,12 +202,6 @@ sf data create record \
 # Output:
 # Successfully created record: 0D5xx00000FGHIJ.
 # Creating record for FeedItem... done
-
-# Create a Chatter post with simple update
-sf data create record \
-  --sobject FeedItem \
-  --values "ParentId='a07xx00000ABCDE' Body='Work has been completed and is ready for review'" \
-  --target-org gus
 
 # Create a Chatter comment on an existing post
 sf data create record \
@@ -221,18 +215,25 @@ sf data query \
   --target-org gus \
   --json
 
-# Post to Chatter using WI from git branch
+# Post to Chatter using WI from git branch (with error handling)
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 WI_NUMBER=$(echo "$BRANCH" | grep -oE '[0-9]{8}' | head -1)
-WORK_ITEM_ID=$(sf data query \
-  --query "SELECT Id FROM ADM_Work__c WHERE Name = 'W-${WI_NUMBER}'" \
-  --target-org gus \
-  --json | jq -r '.result.records[0].Id')
 
-sf data create record \
-  --sobject FeedItem \
-  --values "ParentId=${WORK_ITEM_ID} Body='Feature implementation completed and ready for review'" \
-  --target-org gus
+if [ -n "$WI_NUMBER" ]; then
+  QUERY_RESULT=$(sf data query \
+    --query "SELECT Id FROM ADM_Work__c WHERE Name = 'W-${WI_NUMBER}'" \
+    --target-org gus \
+    --json)
+
+  WORK_ITEM_ID=$(echo "$QUERY_RESULT" | jq -r '.result.records[0].Id')
+
+  if [ -n "$WORK_ITEM_ID" ] && [ "$WORK_ITEM_ID" != "null" ]; then
+    sf data create record \
+      --sobject FeedItem \
+      --values "ParentId=${WORK_ITEM_ID} Body='Feature implementation completed and ready for review'" \
+      --target-org gus
+  fi
+fi
 ```
 
 **Key Points**:
@@ -264,7 +265,7 @@ sf data update record \
   --sobject ADM_Work__c \
   --where "Status__c='Ready for Development' AND Sprint__c = null" \
   --values "Sprint__c='a1Fxx000002EFGH'" \
-  --target-org my-org
+  --target-org gus
 ```
 
 ### Pattern 5: REST API Direct Calls
@@ -275,19 +276,19 @@ sf data update record \
 # Get Work Item details via REST API
 sf api request rest \
   "/services/data/v56.0/sobjects/ADM_Work__c/a07xx00000ABCDE" \
-  --target-org my-org
+  --target-org gus
 
 # Update multiple fields via PATCH
 sf api request rest \
   "/services/data/v56.0/sobjects/ADM_Work__c/a07xx00000ABCDE" \
   --method PATCH \
   --body '{"Status__c": "Fixed", "Resolved_On__c": "2024-01-15"}' \
-  --target-org my-org
+  --target-org gus
 
 # Query using REST API
 sf api request rest \
   "/services/data/v56.0/query?q=SELECT+Id,Name+FROM+ADM_Work__c+LIMIT+10" \
-  --target-org my-org
+  --target-org gus
 ```
 
 ### Pattern 6: Finding Record IDs
@@ -298,22 +299,22 @@ sf api request rest \
 # Find user ID by name
 sf data query \
   --query "SELECT Id, Name, Email FROM User WHERE Name LIKE '%John Doe%'" \
-  --target-org my-org
+  --target-org gus
 
 # Find Epic by name
 sf data query \
   --query "SELECT Id, Name FROM ADM_Epic__c WHERE Name LIKE '%Authentication%'" \
-  --target-org my-org
+  --target-org gus
 
 # Find Sprint by name
 sf data query \
   --query "SELECT Id, Name, Start_Date__c, End_Date__c FROM ADM_Sprint__c WHERE Name = 'Sprint 42'" \
-  --target-org my-org
+  --target-org gus
 
 # Find Product Tag
 sf data query \
   --query "SELECT Id, Name FROM ADM_Product_Tag__c WHERE Name LIKE '%Platform%'" \
-  --target-org my-org
+  --target-org gus
 ```
 
 ### Pattern 7: Bulk Data Export
@@ -327,14 +328,14 @@ sf data export bulk \
   --query "SELECT Id, Subject__c, Status__c, Priority__c, Assignee__r.Name, Story_Points__c FROM ADM_Work__c WHERE Sprint__c = 'a1Fxx000002EFGH'" \
   --output-file sprint_42_items.csv \
   --wait 10 \
-  --target-org my-org
+  --target-org gus
 
 # Export all open bugs
 sf data export bulk \
   --sobject ADM_Work__c \
   --query "SELECT Id, Subject__c, Status__c, Priority__c, Found_in_Build__r.Name FROM ADM_Work__c WHERE Type__c = 'Bug' AND Status__c NOT IN ('Fixed', 'Not a Bug')" \
   --output-file open_bugs.csv \
-  --target-org my-org
+  --target-org gus
 ```
 
 ### Pattern 8: Complex Field Updates with HTML
@@ -347,7 +348,7 @@ sf data update record \
   --sobject ADM_Work__c \
   --record-id a07xx00000ABCDE \
   --values "Description__c='<p><strong>Overview</strong></p><ul><li>Item 1</li><li>Item 2</li></ul><p>Additional details here.</p>'" \
-  --target-org my-org
+  --target-org gus
 
 # Create work item with formatted description
 sf data create record \
@@ -356,7 +357,7 @@ sf data create record \
            Description__c='<p><strong>Steps:</strong></p><ol><li>Backup current data</li><li>Run migration script</li><li>Verify integrity</li></ol>' \
            Status__c='New' \
            Type__c='User Story'" \
-  --target-org my-org
+  --target-org gus
 ```
 
 ### Pattern 9: Inferring WI Number from Git Branch
@@ -373,6 +374,12 @@ echo "What's the WI number?"
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 WI_NUMBER=$(echo "$BRANCH" | grep -oE '[0-9]{8}' | head -1)
 
+# Validate WI number was found
+if [ -z "$WI_NUMBER" ]; then
+  echo "Error: No WI number found in branch name: $BRANCH"
+  exit 1
+fi
+
 # Common branch patterns that contain WI numbers:
 # - W-12345678
 # - wi-12345678
@@ -382,16 +389,28 @@ WI_NUMBER=$(echo "$BRANCH" | grep -oE '[0-9]{8}' | head -1)
 
 # Query work item by Name field (NOT Id) to get the record details
 # The Name field contains 'W-12345678', the Id field contains Salesforce record ID
-sf data query \
+QUERY_RESULT=$(sf data query \
   --query "SELECT Id, Name, Subject__c, Status__c FROM ADM_Work__c WHERE Name = 'W-${WI_NUMBER}'" \
   --target-org gus \
-  --json
+  --json)
+
+# Check if query returned results
+RECORD_COUNT=$(echo "$QUERY_RESULT" | jq -r '.result.totalSize')
+if [ "$RECORD_COUNT" -eq 0 ]; then
+  echo "Error: Work item W-${WI_NUMBER} not found in GUS"
+  exit 1
+fi
+
+echo "$QUERY_RESULT"
 
 # Get the Salesforce record Id from the WI Name
-WORK_ITEM_ID=$(sf data query \
-  --query "SELECT Id FROM ADM_Work__c WHERE Name = 'W-${WI_NUMBER}'" \
-  --target-org gus \
-  --json | jq -r '.result.records[0].Id')
+WORK_ITEM_ID=$(echo "$QUERY_RESULT" | jq -r '.result.records[0].Id')
+
+# Validate we got a valid ID
+if [ -z "$WORK_ITEM_ID" ] || [ "$WORK_ITEM_ID" = "null" ]; then
+  echo "Error: Failed to extract Salesforce ID for W-${WI_NUMBER}"
+  exit 1
+fi
 
 # ❌ WRONG: Using WI number as if it were the Salesforce Id
 sf data update record \
@@ -409,7 +428,7 @@ sf data update record \
 # Add Chatter post to the WI using the Salesforce record Id
 sf data create record \
   --sobject FeedItem \
-  --values "ParentId='${WORK_ITEM_ID}' Body='Starting work on this feature' Type='TextPost'" \
+  --values "ParentId='${WORK_ITEM_ID}' Body='Starting work on this feature'" \
   --target-org gus
 ```
 
@@ -444,23 +463,27 @@ FeedComment            | Chatter Comments         | FeedItemId, CommentBody
 User                   | Users                    | Name, Email, Username
 ```
 
-### Common Status Values
+### Common Status and Health Fields
 
 ```
-Object      | Status Field   | Common Values
-------------|----------------|----------------------------------------------
-Work Items  | Status__c      | New, In Progress, Code Review, Fixed, Closed
+Object                | Status/Health Field | Common Values
+----------------------|---------------------|----------------------------------------------
+Work Items (ADM_Work__c) | Status__c        | New, In Progress, Code Review, Fixed, Closed
+Epics (ADM_Epic__c)      | Health__c        | On Track, At Risk, Off Track
+Sprints (ADM_Sprint__c)  | (none)           | Use Start_Date__c and End_Date__c
+Builds (ADM_Build__c)    | (none)           | Use Name and External_ID__c
 ```
 
 **Important Notes**:
-- **Epic** objects (`ADM_Epic__c`) do not have a `Status__c` field. They use `Health__c` instead (values: "On Track", "At Risk", etc.)
-- **Sprint** objects (`ADM_Sprint__c`) do not have a `Status__c` field. Use `Start_Date__c` and `End_Date__c` to determine sprint status.
-- **Build** objects (`ADM_Build__c`) do not have a `Status__c` or `Scheduled_Date__c` field. They use `Name` and `External_ID__c` for identification.
+- Work Items use `Status__c` for workflow tracking
+- Epics use `Health__c` instead of Status__c for health tracking
+- Sprints and Builds do not have status fields - use dates and identifiers
 
 ### Key Guidelines
 
+**Essential Practices:**
 ```
-✅ DO: Always specify --target-org to avoid ambiguity
+✅ DO: Always specify --target-org gus to avoid ambiguity
 ✅ DO: Use --result-format json for programmatic processing
 ✅ DO: Query for IDs before creating related records
 ✅ DO: Use bulk operations for updating multiple records
@@ -468,12 +491,38 @@ Work Items  | Status__c      | New, In Progress, Code Review, Fixed, Closed
 ✅ DO: Use HTML formatting for rich text fields
 ✅ DO: Always use sf CLI tool directly for all operations
 ✅ DO: Infer WI number from git branch name when not explicitly provided
+✅ DO: Add error handling for queries that may return no results
+✅ DO: Validate extracted values before using them in subsequent commands
+```
 
+**Common Mistakes to Avoid:**
+```
 ❌ DON'T: Hardcode record IDs (query for them instead)
 ❌ DON'T: Create records without required fields
 ❌ DON'T: Use single updates for large datasets (use bulk)
 ❌ DON'T: Forget to specify API names (use __c suffix for custom fields)
 ❌ DON'T: Update records without verifying they exist first
+❌ DON'T: Assume queries will always return results
+❌ DON'T: Skip validation of jq output (check for null/empty)
+```
+
+**Error Handling Pattern:**
+```bash
+# Query with result validation
+QUERY_RESULT=$(sf data query --query "..." --target-org gus --json)
+RECORD_COUNT=$(echo "$QUERY_RESULT" | jq -r '.result.totalSize')
+
+if [ "$RECORD_COUNT" -eq 0 ]; then
+  echo "Error: No records found"
+  exit 1
+fi
+
+RECORD_ID=$(echo "$QUERY_RESULT" | jq -r '.result.records[0].Id')
+
+if [ -z "$RECORD_ID" ] || [ "$RECORD_ID" = "null" ]; then
+  echo "Error: Failed to extract record ID"
+  exit 1
+fi
 ```
 
 ---
@@ -492,13 +541,13 @@ sf data update record \
 # ✅ CORRECT: Query first, then update
 RECORD_ID=$(sf data query \
   --query "SELECT Id FROM ADM_Work__c WHERE Subject__c='Known Subject'" \
-  --result-format json --target-org my-org | jq -r '.result.records[0].Id')
+  --result-format json --target-org gus | jq -r '.result.records[0].Id')
 
 sf data update record \
   --sobject ADM_Work__c \
   --record-id "$RECORD_ID" \
   --values "Status__c='Fixed'" \
-  --target-org my-org
+  --target-org gus
 ```
 
 ❌ **Hardcoding IDs**: IDs vary across orgs (sandbox vs production)
@@ -511,13 +560,13 @@ sf data update record \
 sf data create record \
   --sobject ADM_Work__c \
   --values "Subject__c='New Story'" \
-  --target-org my-org
+  --target-org gus
 
 # ✅ Correct: Include all required fields
 sf data create record \
   --sobject ADM_Work__c \
   --values "Subject__c='New Story' Status__c='New' Type__c='User Story' Priority__c='P2'" \
-  --target-org my-org
+  --target-org gus
 ```
 
 ❌ **Incomplete records**: Missing required fields causes failures
@@ -534,7 +583,7 @@ sf data update bulk \
   --sobject ADM_Work__c \
   --file updates.csv \
   --wait 10 \
-  --target-org my-org
+  --target-org gus
 ```
 
 ❌ **Inefficient operations**: Single updates are slow and hit API limits
