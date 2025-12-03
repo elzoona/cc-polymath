@@ -193,14 +193,14 @@ sf data update bulk \
 **Use case**: Post updates to Chatter feeds for work items
 
 ```bash
-# Create a Chatter post on a Work Item (real example)
+# Create a Chatter post on a Work Item (example with real output format)
 sf data create record \
   --sobject FeedItem \
-  --values "ParentId=a07EE00002Gt6lxYAB Body='Phase 1.2 complete: S3 Storage Service implemented with 32 tests, file size validation, and CI configuration.'" \
+  --values "ParentId=a07xx00000ABCDE Body='Phase 1.2 complete: S3 Storage Service implemented with 32 tests, file size validation, and CI configuration.'" \
   --target-org gus
 
 # Output:
-# Successfully created record: 0D5EE00002Q7BDg0AN.
+# Successfully created record: 0D5xx00000FGHIJ.
 # Creating record for FeedItem... done
 
 # Create a Chatter post with simple update
@@ -236,10 +236,10 @@ sf data create record \
 ```
 
 **Key Points**:
-- `ParentId` is the Salesforce record Id (e.g., `a07EE00002Gt6lxYAB`)
+- `ParentId` is the Salesforce record Id (e.g., `a07xx00000ABCDE` for Work Items)
 - `Body` contains the Chatter post text (plain text or basic formatting)
 - You don't need `Type='TextPost'` - it's the default for FeedItem
-- Returns the FeedItem Id (e.g., `0D5EE00002Q7BDg0AN`) on success
+- Returns the FeedItem Id (e.g., `0D5xx00000FGHIJ`) on success
 - For comments, use `FeedComment` object with `FeedItemId` and `CommentBody`
 
 ### Pattern 4: Managing Sprints and Builds
