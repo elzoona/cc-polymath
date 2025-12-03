@@ -56,13 +56,22 @@ Bulk operations use CSV files:
 **Use case**: Update multiple work items to a new status
 
 ```bash
+# Get default org
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
 # Step 1: Query work items to update
 sf data query \
   --query "SELECT Id, Name FROM ADM_Work__c
     WHERE Sprint__c = 'a1Fxx000002EFGH'
     AND Status__c = 'Ready for Development'" \
   --result-format csv \
-  --target-org gus > work_items.csv
+  --target-org "$DEFAULT_ORG" > work_items.csv
 
 # Step 2: Create CSV for bulk update
 # Manually edit or use script to create:
@@ -77,7 +86,7 @@ sf data update bulk \
   --sobject ADM_Work__c \
   --file work_items_update.csv \
   --wait 10 \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 echo "Bulk update complete"
 ```
@@ -97,7 +106,7 @@ sf data export bulk \
     WHERE Sprint__r.Name = 'Sprint 42'" \
   --output-file sprint_42_items.csv \
   --wait 10 \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 echo "Exported to sprint_42_items.csv"
 
@@ -111,7 +120,7 @@ sf data export bulk \
     AND Status__c NOT IN ('Fixed', 'Not a Bug', 'Closed')" \
   --output-file open_bugs.csv \
   --wait 10 \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Export user list
 sf data export bulk \
@@ -121,7 +130,7 @@ sf data export bulk \
     WHERE IsActive = true" \
   --output-file active_users.csv \
   --wait 10 \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ### Pattern 3: Script-Driven Bulk Updates
@@ -129,13 +138,22 @@ sf data export bulk \
 **Use case**: Generate CSV updates programmatically
 
 ```bash
+# Get default org
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
 # Query and transform data
 sf data query \
   --query "SELECT Id, Name, Status__c FROM ADM_Work__c
     WHERE Sprint__r.Name = 'Sprint 42'
     AND Status__c = 'Ready for Development'" \
   --result-format json \
-  --target-org gus > work_items.json
+  --target-org "$DEFAULT_ORG" > work_items.json
 
 # Generate CSV with jq
 echo "Id,Status__c,Assignee__c" > bulk_update.csv
@@ -146,7 +164,7 @@ sf data update bulk \
   --sobject ADM_Work__c \
   --file bulk_update.csv \
   --wait 10 \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 echo "Updated $(wc -l < bulk_update.csv) records"
 ```
@@ -156,11 +174,20 @@ echo "Updated $(wc -l < bulk_update.csv) records"
 **Use case**: Assign multiple backlog items to a sprint
 
 ```bash
+# Get default org
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
 # Get sprint ID
 SPRINT_ID=$(sf data query \
   --query "SELECT Id FROM ADM_Sprint__c WHERE Name = 'Sprint 43'" \
   --result-format json \
-  --target-org gus | jq -r '.result.records[0].Id')
+  --target-org "$DEFAULT_ORG" | jq -r '.result.records[0].Id')
 
 # Query backlog items
 sf data query \
@@ -171,7 +198,7 @@ sf data query \
     ORDER BY Priority__c
     LIMIT 20" \
   --result-format csv \
-  --target-org gus > backlog.csv
+  --target-org "$DEFAULT_ORG" > backlog.csv
 
 # Create assignment CSV
 echo "Id,Sprint__c" > sprint_assignment.csv
@@ -184,7 +211,7 @@ sf data update bulk \
   --sobject ADM_Work__c \
   --file sprint_assignment.csv \
   --wait 10 \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 echo "Assigned $(tail -n +2 sprint_assignment.csv | wc -l) items to Sprint 43"
 ```
@@ -206,7 +233,7 @@ sf data create bulk \
   --sobject ADM_Work__c \
   --file new_work_items.csv \
   --wait 10 \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 echo "Created records from CSV"
 ```
@@ -283,6 +310,14 @@ for id in $(cat work_item_ids.txt); do
 done
 
 # ✅ CORRECT: Use bulk update
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
 echo "Id,Status__c" > bulk_update.csv
 cat work_item_ids.txt | while read id; do
   echo "${id},Closed" >> bulk_update.csv
@@ -292,7 +327,7 @@ sf data update bulk \
   --sobject ADM_Work__c \
   --file bulk_update.csv \
   --wait 10 \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ---

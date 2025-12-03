@@ -35,7 +35,7 @@ The Salesforce category contains **7 focused skills**:
 6. **sf-bulk-operations** - Bulk updates, exports, and large-scale operations
 7. **sf-automation** - Git integration, WI inference, and automated workflows
 
-**Note**: All examples use `gus` as the default org alias. This refers to your Salesforce org where Agile Accelerator (GUS) is configured. If your org has a different alias, simply replace `--target-org gus` with your org alias throughout.
+**Note**: All examples dynamically detect your default org using `sf config get target-org`. You should set your default org with `sf config set target-org=<your-alias>`. Examples in the skills show how to fetch the default org dynamically to avoid hardcoding org aliases.
 
 ### Load Full Category Details
 
@@ -261,8 +261,8 @@ cat ~/.claude/skills/salesforce/sf-bulk-operations.md
 **Always:**
 - **Use `sf` CLI tool directly** for all Salesforce operations
 - Infer WI number from git branch name when not explicitly provided
-- Dynamically fetch user email/ID instead of hardcoding
-- Specify `--target-org gus` (or your org alias) to avoid ambiguity
+- Dynamically fetch user email/ID and default org instead of hardcoding
+- Use `--target-org "$DEFAULT_ORG"` after fetching it dynamically to avoid ambiguity
 - Query for IDs before creating related records
 - Use bulk operations for 10+ record updates
 - Verify target org before destructive operations

@@ -72,7 +72,7 @@ FeedComment:
 sf data create record \
   --sobject FeedItem \
   --values "ParentId='a07xx00000ABCDE' Body='Started work on this feature'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Multi-line post with details
 sf data create record \
@@ -82,7 +82,7 @@ sf data create record \
 - 32 tests passing
 - File size validation added
 - CI configuration updated'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Post with structured update
 sf data create record \
@@ -96,7 +96,7 @@ sf data create record \
 ⏳ Testing pending
 
 Ready for review by EOD.'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ### Pattern 2: Adding Comments to Posts
@@ -108,13 +108,13 @@ Ready for review by EOD.'" \
 sf data create record \
   --sobject FeedComment \
   --values "FeedItemId='0D5xx00000FGHIJ' CommentBody='LGTM - approved for merge'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Comment with @mention (use User ID for @mention)
 sf data create record \
   --sobject FeedComment \
   --values "FeedItemId='0D5xx00000FGHIJ' CommentBody='Thanks for the update! Please coordinate with {005xx000001X8Uz} for testing.'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Comment with feedback
 sf data create record \
@@ -124,7 +124,7 @@ sf data create record \
 1. Did you test edge cases?
 2. Is documentation updated?
 3. Any performance concerns?'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ### Pattern 3: Automated Status Updates
@@ -132,11 +132,20 @@ sf data create record \
 **Use case**: Post Chatter updates from CI/CD or automation
 
 ```bash
+# Get default org
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
 # Post build success notification
 WORK_ITEM_ID=$(sf data query \
   --query "SELECT Id FROM ADM_Work__c WHERE Name = 'W-12345678'" \
   --result-format json \
-  --target-org gus | jq -r '.result.records[0].Id')
+  --target-org "$DEFAULT_ORG" | jq -r '.result.records[0].Id')
 
 sf data create record \
   --sobject FeedItem \
@@ -145,7 +154,7 @@ sf data create record \
 All tests: 156/156 ✓
 Coverage: 94%
 Ready for deployment'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Post failure notification
 sf data create record \
@@ -155,7 +164,7 @@ sf data create record \
 Failed tests: 3/156
 See: ${BUILD_URL}
 Please investigate.'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ### Pattern 4: Post from Git Branch Context
@@ -163,6 +172,15 @@ Please investigate.'" \
 **Use case**: Automatically post to WI based on current git branch
 
 ```bash
+# Get default org
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
 # Extract WI number from branch
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 WI_NUMBER=$(echo "$BRANCH" | grep -oE '[0-9]{8}' | head -1)
@@ -171,7 +189,7 @@ if [ -n "$WI_NUMBER" ]; then
   # Query for work item
   QUERY_RESULT=$(sf data query \
     --query "SELECT Id FROM ADM_Work__c WHERE Name = 'W-${WI_NUMBER}'" \
-    --target-org gus \
+    --target-org "$DEFAULT_ORG" \
     --json)
 
   WORK_ITEM_ID=$(echo "$QUERY_RESULT" | jq -r '.result.records[0].Id')
@@ -185,7 +203,7 @@ if [ -n "$WI_NUMBER" ]; then
 
 Branch: ${BRANCH}
 Commits: $(git log --oneline -n 5 | head -5)'" \
-      --target-org gus
+      --target-org "$DEFAULT_ORG"
 
     echo "Posted update to W-${WI_NUMBER}"
   else
@@ -208,7 +226,7 @@ sf data query \
     WHERE ParentId = 'a07xx00000ABCDE'
     ORDER BY CreatedDate DESC
     LIMIT 20" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Query comments on a post
 sf data query \
@@ -216,7 +234,7 @@ sf data query \
     FROM FeedComment
     WHERE FeedItemId = '0D5xx00000FGHIJ'
     ORDER BY CreatedDate ASC" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Find recent posts mentioning keywords
 sf data query \
@@ -225,7 +243,7 @@ sf data query \
     WHERE Body LIKE '%deployment%'
     AND CreatedDate = LAST_N_DAYS:7
     ORDER BY CreatedDate DESC" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ### Pattern 6: Link Posts
@@ -240,7 +258,7 @@ sf data create record \
            Type='LinkPost' \
            Body='Check out the documentation' \
            LinkUrl='https://docs.example.com/feature-guide'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Post PR link
 PR_URL="https://github.com/org/repo/pull/123"
@@ -250,7 +268,7 @@ sf data create record \
            Type='LinkPost' \
            Body='Pull request ready for review' \
            LinkUrl='${PR_URL}'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ---
@@ -324,19 +342,27 @@ CommentBody     - Comment text (required, max 10000 chars)
 sf data create record \
   --sobject FeedItem \
   --values "ParentId='UNKNOWN_ID' Body='Update'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # ✅ CORRECT: Validate record exists
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
 WORK_ITEM_ID=$(sf data query \
   --query "SELECT Id FROM ADM_Work__c WHERE Name = 'W-12345678'" \
   --result-format json \
-  --target-org gus | jq -r '.result.records[0].Id')
+  --target-org "$DEFAULT_ORG" | jq -r '.result.records[0].Id')
 
 if [ -n "$WORK_ITEM_ID" ] && [ "$WORK_ITEM_ID" != "null" ]; then
   sf data create record \
     --sobject FeedItem \
     --values "ParentId='${WORK_ITEM_ID}' Body='Update'" \
-    --target-org gus
+    --target-org "$DEFAULT_ORG"
 else
   echo "Error: Work item not found"
 fi

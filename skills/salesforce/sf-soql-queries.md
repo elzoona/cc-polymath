@@ -39,25 +39,34 @@ SELECT fields FROM object WHERE conditions ORDER BY field LIMIT n
 - Related fields: Use `__r` for relationships (e.g., `Assignee__r.Email`)
 
 ```bash
+# Get default org (add this at the start of scripts)
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
 # Basic query
 sf data query \
   --query "SELECT Id, Name FROM ADM_Work__c LIMIT 10" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Query with conditions
 sf data query \
   --query "SELECT Id, Name, Status__c FROM ADM_Work__c WHERE Status__c = 'New'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Query with related fields
 sf data query \
   --query "SELECT Id, Subject__c, Assignee__r.Name, Assignee__r.Email FROM ADM_Work__c WHERE Status__c = 'In Progress'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Query with ordering and limit
 sf data query \
   --query "SELECT Id, Name, CreatedDate FROM ADM_Work__c ORDER BY CreatedDate DESC LIMIT 20" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ### Concept 2: Output Formats
@@ -71,25 +80,25 @@ sf data query \
 # Human-readable table (default)
 sf data query \
   --query "SELECT Id, Name, Status__c FROM ADM_Work__c LIMIT 5" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # JSON output for scripting
 sf data query \
   --query "SELECT Id, Name FROM ADM_Work__c LIMIT 5" \
-  --target-org gus \
+  --target-org "$DEFAULT_ORG" \
   --result-format json
 
 # CSV output for Excel
 sf data query \
   --query "SELECT Id, Name, Status__c FROM ADM_Work__c LIMIT 100" \
-  --target-org gus \
+  --target-org "$DEFAULT_ORG" \
   --result-format csv > work_items.csv
 
 # Query from file
 echo "SELECT Id, Name FROM ADM_Work__c LIMIT 10" > query.soql
 sf data query \
   --file query.soql \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ---
@@ -104,33 +113,33 @@ sf data query \
 # Find user ID by name
 sf data query \
   --query "SELECT Id, Name, Email FROM User WHERE Name LIKE '%John Doe%'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Find user ID by email
 sf data query \
   --query "SELECT Id, Name, Email FROM User WHERE Email = 'user@example.com'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Find Epic by name
 sf data query \
   --query "SELECT Id, Name FROM ADM_Epic__c WHERE Name LIKE '%Authentication%'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Find Sprint by name
 sf data query \
   --query "SELECT Id, Name, Start_Date__c, End_Date__c FROM ADM_Sprint__c WHERE Name = 'Sprint 42'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Find Product Tag
 sf data query \
   --query "SELECT Id, Name FROM ADM_Product_Tag__c WHERE Name LIKE '%Platform%'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Get ID with jq for scripting
 USER_ID=$(sf data query \
   --query "SELECT Id FROM User WHERE Email = 'user@example.com'" \
   --result-format json \
-  --target-org gus | jq -r '.result.records[0].Id')
+  --target-org "$DEFAULT_ORG" | jq -r '.result.records[0].Id')
 
 echo "User ID: $USER_ID"
 ```
@@ -140,8 +149,16 @@ echo "User ID: $USER_ID"
 **Use case**: Find work items by various criteria
 
 ```bash
-# Get current user's work items dynamically
-USER_EMAIL=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.alias == "gus") | .username')
+# Get default org and current user's work items dynamically
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
+USER_EMAIL=$(sf org list --json | jq -r --arg org "$DEFAULT_ORG" '.result.nonScratchOrgs[] | select(.alias == $org or .username == $org) | .username')
 
 sf data query \
   --query "SELECT Name, Subject__c, Status__c, Priority__c, Type__c, Sprint__c
@@ -149,12 +166,12 @@ sf data query \
     WHERE Assignee__r.Email = '${USER_EMAIL}'
     AND Status__c != 'Closed'
     ORDER BY Priority__c, CreatedDate DESC" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Query by work item name (WI number)
 sf data query \
   --query "SELECT Id, Name, Subject__c, Status__c FROM ADM_Work__c WHERE Name = 'W-12345678'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Query by sprint
 sf data query \
@@ -162,7 +179,7 @@ sf data query \
     FROM ADM_Work__c
     WHERE Sprint__r.Name = 'Sprint 42'
     ORDER BY Status__c, Priority__c" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Query by epic
 sf data query \
@@ -170,7 +187,7 @@ sf data query \
     FROM ADM_Work__c
     WHERE Epic__r.Name LIKE '%Q1 Features%'
     AND Status__c NOT IN ('Fixed', 'Closed')" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Query by type and priority
 sf data query \
@@ -179,17 +196,25 @@ sf data query \
     WHERE Type__c = 'Bug'
     AND Priority__c = 'P1'
     AND Status__c NOT IN ('Fixed', 'Not a Bug')" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Query user's epics
-USER_EMAIL=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.alias == "gus") | .username')
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
+USER_EMAIL=$(sf org list --json | jq -r --arg org "$DEFAULT_ORG" '.result.nonScratchOrgs[] | select(.alias == $org or .username == $org) | .username')
 
 sf data query \
   --query "SELECT Id, Name, Description__c, Health__c, Priority__c, Owner.Name, LastModifiedDate
     FROM ADM_Epic__c
     WHERE Owner.Email = '${USER_EMAIL}'
     ORDER BY LastModifiedDate DESC" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ### Pattern 3: Complex Queries with Aggregation
@@ -200,7 +225,7 @@ sf data query \
 # Count work items by status
 sf data query \
   --query "SELECT Status__c, COUNT(Id) total FROM ADM_Work__c GROUP BY Status__c" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Sum story points by sprint
 sf data query \
@@ -208,7 +233,7 @@ sf data query \
     FROM ADM_Work__c
     WHERE Sprint__r.Name != null
     GROUP BY Sprint__r.Name" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Count by assignee
 sf data query \
@@ -217,7 +242,7 @@ sf data query \
     WHERE Status__c IN ('New', 'In Progress')
     GROUP BY Assignee__r.Name
     ORDER BY COUNT(Id) DESC" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ### Pattern 4: Querying with Date Filters
@@ -228,12 +253,12 @@ sf data query \
 # Work items created this week
 sf data query \
   --query "SELECT Name, Subject__c, CreatedDate FROM ADM_Work__c WHERE CreatedDate = THIS_WEEK" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Work items updated in last 7 days
 sf data query \
   --query "SELECT Name, Subject__c, LastModifiedDate FROM ADM_Work__c WHERE LastModifiedDate = LAST_N_DAYS:7" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Work items created in date range
 sf data query \
@@ -241,7 +266,7 @@ sf data query \
     FROM ADM_Work__c
     WHERE CreatedDate >= 2024-01-01T00:00:00Z
     AND CreatedDate <= 2024-01-31T23:59:59Z" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Sprints active in date range
 sf data query \
@@ -249,7 +274,7 @@ sf data query \
     FROM ADM_Sprint__c
     WHERE Start_Date__c <= 2024-12-03
     AND End_Date__c >= 2024-12-03" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ### Pattern 5: Using Tooling API
@@ -261,19 +286,19 @@ sf data query \
 sf data query \
   --query "SELECT Name, ApiVersion, LengthWithoutComments FROM ApexClass" \
   --use-tooling-api \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Query Apex triggers
 sf data query \
   --query "SELECT Name, TableEnumOrId, Status FROM ApexTrigger" \
   --use-tooling-api \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Query custom fields
 sf data query \
   --query "SELECT DeveloperName, DataType, TableEnumOrId FROM CustomField WHERE TableEnumOrId = 'ADM_Work__c'" \
   --use-tooling-api \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ---
@@ -359,10 +384,18 @@ WORK_ITEM_ID=$(sf data query --query "..." --json | jq -r '.result.records[0].Id
 # If no results, this returns "null" and breaks downstream operations
 
 # ✅ CORRECT: Validate query results
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
 QUERY_RESULT=$(sf data query \
   --query "SELECT Id FROM ADM_Work__c WHERE Name = 'W-12345678'" \
   --result-format json \
-  --target-org gus)
+  --target-org "$DEFAULT_ORG")
 
 RECORD_COUNT=$(echo "$QUERY_RESULT" | jq -r '.result.totalSize')
 

@@ -66,22 +66,30 @@ Description__c     - HTML rich text
 **Use case**: Create complete user story with proper relationships
 
 ```bash
-# Step 1: Query for required IDs
-USER_EMAIL=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.alias == "gus") | .username')
+# Step 1: Get default org and query for required IDs
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
+USER_EMAIL=$(sf org list --json | jq -r --arg org "$DEFAULT_ORG" '.result.nonScratchOrgs[] | select(.alias == $org or .username == $org) | .username')
 USER_ID=$(sf data query \
   --query "SELECT Id FROM User WHERE Email = '${USER_EMAIL}'" \
   --result-format json \
-  --target-org gus | jq -r '.result.records[0].Id')
+  --target-org "$DEFAULT_ORG" | jq -r '.result.records[0].Id')
 
 SPRINT_ID=$(sf data query \
   --query "SELECT Id FROM ADM_Sprint__c WHERE Name = 'Sprint 42'" \
   --result-format json \
-  --target-org gus | jq -r '.result.records[0].Id')
+  --target-org "$DEFAULT_ORG" | jq -r '.result.records[0].Id')
 
 EPIC_ID=$(sf data query \
   --query "SELECT Id FROM ADM_Epic__c WHERE Name LIKE '%Authentication%'" \
   --result-format json \
-  --target-org gus | jq -r '.result.records[0].Id')
+  --target-org "$DEFAULT_ORG" | jq -r '.result.records[0].Id')
 
 # Step 2: Create user story with all required fields
 sf data create record \
@@ -95,7 +103,7 @@ sf data create record \
            Assignee__c='${USER_ID}' \
            Type__c='User Story' \
            Description__c='<p>As a user, I want to log in securely</p>'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 **Benefits**:
@@ -112,7 +120,7 @@ sf data create record \
 SPRINT_RESULT=$(sf data create record \
   --sobject ADM_Sprint__c \
   --values "Name='Sprint 42' Start_Date__c=2024-01-15 End_Date__c=2024-01-29" \
-  --target-org gus \
+  --target-org "$DEFAULT_ORG" \
   --json)
 
 SPRINT_ID=$(echo "$SPRINT_RESULT" | jq -r '.result.id')
@@ -126,7 +134,7 @@ sf data query \
     WHERE Status__c = 'Ready for Development'
     AND Sprint__c = null
     ORDER BY Priority__c, Story_Points__c" \
-  --target-org gus \
+  --target-org "$DEFAULT_ORG" \
   --result-format json > backlog.json
 
 # Review items and manually create CSV for assignment
@@ -150,7 +158,7 @@ sf data create record \
            Priority__c='P1' \
            Health__c='On Track' \
            Description__c='<p>Complete authentication overhaul</p>'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Query work items in epic
 sf data query \
@@ -158,19 +166,19 @@ sf data query \
     FROM ADM_Work__c
     WHERE Epic__r.Name LIKE '%Authentication%'
     ORDER BY Status__c, Priority__c" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Update epic health
 EPIC_ID=$(sf data query \
   --query "SELECT Id FROM ADM_Epic__c WHERE Name LIKE '%Authentication%'" \
   --result-format json \
-  --target-org gus | jq -r '.result.records[0].Id')
+  --target-org "$DEFAULT_ORG" | jq -r '.result.records[0].Id')
 
 sf data update record \
   --sobject ADM_Epic__c \
   --record-id "$EPIC_ID" \
   --values "Health__c='At Risk' Description__c='<p>Blocked on security review</p>'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ### Pattern 4: Managing Builds
@@ -182,19 +190,19 @@ sf data update record \
 sf data create record \
   --sobject ADM_Build__c \
   --values "Name='Release 1.0' External_ID__c='R010' Target_Date__c=2024-02-01" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Link work items to build
 BUILD_ID=$(sf data query \
   --query "SELECT Id FROM ADM_Build__c WHERE Name = 'Release 1.0'" \
   --result-format json \
-  --target-org gus | jq -r '.result.records[0].Id')
+  --target-org "$DEFAULT_ORG" | jq -r '.result.records[0].Id')
 
 sf data update record \
   --sobject ADM_Work__c \
   --where "Status__c='Fixed' AND Scheduled_Build__c = null" \
   --values "Scheduled_Build__c='${BUILD_ID}'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Query work items in build
 sf data query \
@@ -202,7 +210,7 @@ sf data query \
     FROM ADM_Work__c
     WHERE Scheduled_Build__r.Name = 'Release 1.0'
     ORDER BY Priority__c" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ### Pattern 5: Work Item Status Workflows
@@ -217,27 +225,27 @@ sf data query \
 WORK_ITEM_ID=$(sf data query \
   --query "SELECT Id FROM ADM_Work__c WHERE Name = 'W-12345678'" \
   --result-format json \
-  --target-org gus | jq -r '.result.records[0].Id')
+  --target-org "$DEFAULT_ORG" | jq -r '.result.records[0].Id')
 
 sf data update record \
   --sobject ADM_Work__c \
   --record-id "$WORK_ITEM_ID" \
   --values "Status__c='In Progress'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Move to code review
 sf data update record \
   --sobject ADM_Work__c \
   --record-id "$WORK_ITEM_ID" \
   --values "Status__c='Code Review'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Mark as fixed
 sf data update record \
   --sobject ADM_Work__c \
   --record-id "$WORK_ITEM_ID" \
   --values "Status__c='Fixed' Resolved_On__c=$(date +%Y-%m-%d)" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ### Pattern 6: Sprint Reporting
@@ -254,7 +262,7 @@ sf data query \
     FROM ADM_Work__c
     WHERE Sprint__r.Name = 'Sprint 42'
     GROUP BY Status__c" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Get team velocity
 sf data query \
@@ -266,10 +274,18 @@ sf data query \
     AND Status__c IN ('Fixed', 'Closed')
     GROUP BY Sprint__r.Name
     ORDER BY Sprint__r.Name" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Get individual workload
-USER_EMAIL=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.alias == "gus") | .username')
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
+USER_EMAIL=$(sf org list --json | jq -r --arg org "$DEFAULT_ORG" '.result.nonScratchOrgs[] | select(.alias == $org or .username == $org) | .username')
 
 sf data query \
   --query "SELECT Name, Subject__c, Status__c, Story_Points__c, Sprint__r.Name
@@ -277,7 +293,7 @@ sf data query \
     WHERE Assignee__r.Email = '${USER_EMAIL}'
     AND Status__c NOT IN ('Fixed', 'Closed')
     ORDER BY Priority__c, Sprint__r.Name" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ---
@@ -345,7 +361,7 @@ Key Fields: Name, External_ID__c, Target_Date__c
 sf data create record \
   --sobject ADM_Work__c \
   --values "Subject__c='Feature'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # ✅ CORRECT: Include all required and recommended fields
 sf data create record \
@@ -355,7 +371,7 @@ sf data create record \
            Type__c='User Story' \
            Priority__c='P2' \
            Story_Points__c=3" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ---

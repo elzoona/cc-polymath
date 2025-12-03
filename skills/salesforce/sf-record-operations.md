@@ -42,7 +42,7 @@ sf data create record \
 sf data create record \
   --sobject ADM_Work__c \
   --values "Subject__c='Implement new feature' Status__c='New' Type__c='User Story'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Create with multiple fields
 sf data create record \
@@ -52,13 +52,13 @@ sf data create record \
            Priority__c='P1' \
            Type__c='Bug' \
            Description__c='<p>Bug details here</p>'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Create an Epic
 sf data create record \
   --sobject ADM_Epic__c \
   --values "Name='Q1 2024 Features' Health__c='On Track' Description__c='Major features for Q1'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ### Concept 2: Updating Records
@@ -89,21 +89,21 @@ sf data update record \
   --sobject ADM_Work__c \
   --record-id a07xx00000ABCDE \
   --values "Status__c='In Progress'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Update multiple fields
 sf data update record \
   --sobject ADM_Work__c \
   --record-id a07xx00000ABCDE \
   --values "Status__c='Code Review' Assignee__c='005xx000001X8Uz' Story_Points__c=5" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Update by field match
 sf data update record \
   --sobject ADM_Work__c \
   --where "Name='W-12345678'" \
   --values "Status__c='In Progress'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ### Concept 3: REST API Direct Calls
@@ -114,26 +114,26 @@ sf data update record \
 # Get record details via REST API
 sf api request rest \
   "/services/data/v56.0/sobjects/ADM_Work__c/a07xx00000ABCDE" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Update multiple fields via PATCH
 sf api request rest \
   "/services/data/v56.0/sobjects/ADM_Work__c/a07xx00000ABCDE" \
   --method PATCH \
   --body '{"Status__c": "Fixed", "Resolved_On__c": "2024-01-15"}' \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Query using REST API
 sf api request rest \
   "/services/data/v56.0/query?q=SELECT+Id,Name+FROM+ADM_Work__c+LIMIT+10" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Create record via REST API
 sf api request rest \
   "/services/data/v56.0/sobjects/ADM_Work__c" \
   --method POST \
   --body '{"Subject__c": "New Story", "Status__c": "New", "Type__c": "User Story"}' \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ---
@@ -149,26 +149,35 @@ sf api request rest \
 sf data create record \
   --sobject ADM_Work__c \
   --values "Subject__c='Feature' Assignee__c='005xx000001X8Uz' Sprint__c='a1Fxx000002EFGH'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # ✅ Good: Query for IDs first
+# Get default org
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
 # Get user ID
 USER_ID=$(sf data query \
   --query "SELECT Id FROM User WHERE Email = 'user@example.com'" \
   --result-format json \
-  --target-org gus | jq -r '.result.records[0].Id')
+  --target-org "$DEFAULT_ORG" | jq -r '.result.records[0].Id')
 
 # Get sprint ID
 SPRINT_ID=$(sf data query \
   --query "SELECT Id FROM ADM_Sprint__c WHERE Name = 'Sprint 42'" \
   --result-format json \
-  --target-org gus | jq -r '.result.records[0].Id')
+  --target-org "$DEFAULT_ORG" | jq -r '.result.records[0].Id')
 
 # Get epic ID
 EPIC_ID=$(sf data query \
   --query "SELECT Id FROM ADM_Epic__c WHERE Name LIKE '%Authentication%'" \
   --result-format json \
-  --target-org gus | jq -r '.result.records[0].Id')
+  --target-org "$DEFAULT_ORG" | jq -r '.result.records[0].Id')
 
 # Create work item with relationships
 sf data create record \
@@ -181,7 +190,7 @@ sf data create record \
            Assignee__c='${USER_ID}' \
            Sprint__c='${SPRINT_ID}' \
            Epic__c='${EPIC_ID}'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ### Pattern 2: Update with Validation
@@ -189,11 +198,20 @@ sf data create record \
 **Use case**: Update records only if they exist
 
 ```bash
+# Get default org
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
 # Query to verify record exists
 QUERY_RESULT=$(sf data query \
   --query "SELECT Id FROM ADM_Work__c WHERE Name = 'W-12345678'" \
   --result-format json \
-  --target-org gus)
+  --target-org "$DEFAULT_ORG")
 
 RECORD_COUNT=$(echo "$QUERY_RESULT" | jq -r '.result.totalSize')
 
@@ -209,7 +227,7 @@ sf data update record \
   --sobject ADM_Work__c \
   --record-id "$WORK_ITEM_ID" \
   --values "Status__c='In Progress'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 echo "Updated work item W-12345678 to In Progress"
 ```
@@ -224,7 +242,7 @@ sf data update record \
   --sobject ADM_Work__c \
   --record-id a07xx00000ABCDE \
   --values "Description__c='<p><strong>Overview</strong></p><ul><li>Item 1</li><li>Item 2</li></ul><p>Additional details here.</p>'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # Create work item with formatted description
 sf data create record \
@@ -233,7 +251,7 @@ sf data create record \
            Description__c='<p><strong>Steps:</strong></p><ol><li>Backup current data</li><li>Run migration script</li><li>Verify integrity</li></ol>' \
            Status__c='New' \
            Type__c='User Story'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ### Pattern 4: Atomic Updates with Error Handling
@@ -241,11 +259,20 @@ sf data create record \
 **Use case**: Update multiple fields safely with rollback capability
 
 ```bash
+# Get default org
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
 # Capture current state before update
 CURRENT_STATE=$(sf data query \
   --query "SELECT Id, Status__c, Assignee__c FROM ADM_Work__c WHERE Name = 'W-12345678'" \
   --result-format json \
-  --target-org gus)
+  --target-org "$DEFAULT_ORG")
 
 WORK_ITEM_ID=$(echo "$CURRENT_STATE" | jq -r '.result.records[0].Id')
 OLD_STATUS=$(echo "$CURRENT_STATE" | jq -r '.result.records[0].Status__c')
@@ -256,7 +283,7 @@ if sf data update record \
   --sobject ADM_Work__c \
   --record-id "$WORK_ITEM_ID" \
   --values "Status__c='Code Review' Assignee__c='${NEW_ASSIGNEE_ID}'" \
-  --target-org gus; then
+  --target-org "$DEFAULT_ORG"; then
   echo "Update successful"
 else
   echo "Update failed! Rolling back..."
@@ -265,7 +292,7 @@ else
     --sobject ADM_Work__c \
     --record-id "$WORK_ITEM_ID" \
     --values "Status__c='${OLD_STATUS}' Assignee__c='${OLD_ASSIGNEE}'" \
-    --target-org gus
+    --target-org "$DEFAULT_ORG"
   exit 1
 fi
 ```
@@ -366,7 +393,7 @@ sf data update record \
   --sobject ADM_Work__c \
   --record-id "$RECORD_ID" \
   --values "Status__c='Fixed'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ```bash
@@ -374,13 +401,13 @@ sf data update record \
 sf data create record \
   --sobject ADM_Work__c \
   --values "Subject__c='New Story'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 
 # ✅ Correct: Include all required fields
 sf data create record \
   --sobject ADM_Work__c \
   --values "Subject__c='New Story' Status__c='New' Type__c='User Story' Priority__c='P2'" \
-  --target-org gus
+  --target-org "$DEFAULT_ORG"
 ```
 
 ---

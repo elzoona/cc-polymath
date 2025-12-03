@@ -7,7 +7,7 @@ Comprehensive skills for working with Salesforce CLI (sf) and Agile Accelerator 
 **Total Skills**: 7
 **Focus**: Salesforce CLI, Agile Accelerator (GUS), SOQL, Record Management, Chatter
 **Use Cases**: Creating work items, managing sprints, querying data, bulk operations, API integration, automation
-**Default Org**: Examples use `gus` as the org alias - replace with your org alias if different
+**Default Org**: Examples dynamically detect your default org using `sf config get target-org` - set it with `sf config set target-org=<your-alias>`
 
 ## Skills in This Category
 
@@ -292,8 +292,9 @@ Comprehensive skills for working with Salesforce CLI (sf) and Agile Accelerator 
 ## Best Practices
 
 **Authentication**:
-- Use meaningful aliases for orgs (e.g., gus, gus-prod, gus-dev)
-- Dynamically fetch user email/ID instead of hardcoding
+- Use meaningful aliases for orgs (e.g., prod, staging, dev)
+- Set a default org with `sf config set target-org=<alias>`
+- Dynamically fetch default org and user email/ID instead of hardcoding
 - Validate org connection before operations
 
 **Querying**:

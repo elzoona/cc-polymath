@@ -36,7 +36,7 @@ Activate this skill when:
 
 ```bash
 # Web login (most common - interactive)
-sf org login web --alias gus
+sf org login web --alias my-org
 
 # Web login with custom instance
 sf org login web --alias production --instance-url https://login.salesforce.com
@@ -48,8 +48,8 @@ sf org login jwt --client-id YOUR_CONSUMER_KEY \
   --alias ci-org
 
 # Access token login
-sf org login access-token --instance-url https://gus.my.salesforce.com \
-  --alias gus
+sf org login access-token --instance-url https://my-org.my.salesforce.com \
+  --alias my-org
 ```
 
 ### Concept 2: Managing Multiple Orgs
@@ -63,20 +63,35 @@ sf org list
 # List with JSON output for scripting
 sf org list --json
 
-# Display current org details
-sf org display --target-org gus
+# Get default org dynamically
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  # If no config default, check for org marked as default
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    # Fall back to first available org
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
+# Display current org details (only if DEFAULT_ORG is set)
+if [ -n "$DEFAULT_ORG" ]; then
+  sf org display --target-org "$DEFAULT_ORG"
+else
+  echo "No default org found. Set one with: sf config set target-org=<alias>"
+fi
 
 # Display with verbose output (includes auth URL)
-sf org display --target-org gus --verbose
+sf org display --target-org "$DEFAULT_ORG" --verbose
 
 # Set default org
-sf config set target-org=gus
+sf config set target-org=my-org
 
 # Open org in browser
-sf org open --target-org gus
+sf org open --target-org "$DEFAULT_ORG"
 
 # Logout from org
-sf org logout --target-org gus
+sf org logout --target-org "$DEFAULT_ORG"
 
 # Logout from all orgs
 sf org logout --all
@@ -90,29 +105,39 @@ sf org logout --all
 
 **Use case**: Dynamically retrieve the logged-in user's email and other details for queries
 
-**IMPORTANT**: Never hardcode user emails (like `user@gus.com`). Always fetch the current user's email dynamically from the authenticated org.
+**IMPORTANT**: Never hardcode user emails or org aliases. Always fetch the current user's email and default org dynamically from the authenticated org.
 
 ```bash
-# ❌ Bad: Hardcoding user email
-USER_EMAIL="user@gus.com"
+# ❌ Bad: Hardcoding user email or org alias
+USER_EMAIL="user@example.com"
+DEFAULT_ORG="gus"
 
-# ✅ Good: Get current user email from authenticated org (by alias)
-USER_EMAIL=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.alias == "gus") | .username')
+# ✅ Good: Get default org dynamically
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
 
-# Alternative: Get from most recently used org
-USER_EMAIL=$(sf org list --json | jq -r '.result.nonScratchOrgs | sort_by(.lastUsed) | reverse | .[0].username')
+# If no default org is set, check for marked default or use first available
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
+# Get current user email from default org
+USER_EMAIL=$(sf org list --json | jq -r --arg org "$DEFAULT_ORG" '.result.nonScratchOrgs[] | select(.alias == $org or .username == $org) | .username')
 
 # Alternative: Get user details from org display user
-USER_INFO=$(sf org display user --target-org gus --json)
+USER_INFO=$(sf org display user --target-org "$DEFAULT_ORG" --json)
 USER_EMAIL=$(echo "$USER_INFO" | jq -r '.result.email')
 USER_ID=$(echo "$USER_INFO" | jq -r '.result.id')
 USER_NAME=$(echo "$USER_INFO" | jq -r '.result.username')
 
 # Get user's org details
-ORG_INFO=$(sf org display --target-org gus --json)
+ORG_INFO=$(sf org display --target-org "$DEFAULT_ORG" --json)
 ORG_ID=$(echo "$ORG_INFO" | jq -r '.result.id')
 INSTANCE_URL=$(echo "$ORG_INFO" | jq -r '.result.instanceUrl')
 
+echo "Default Org: $DEFAULT_ORG"
 echo "Logged in as: $USER_EMAIL"
 echo "User ID: $USER_ID"
 echo "Org ID: $ORG_ID"
@@ -121,39 +146,58 @@ echo "Instance: $INSTANCE_URL"
 
 **Benefits**:
 - Works across different users and orgs without code changes
-- No need to hardcode usernames or emails
+- No need to hardcode usernames, emails, or org aliases
 - Scripts are portable and can be shared with team members
-- Safer - prevents accidentally using wrong user credentials
+- Safer - prevents accidentally using wrong user credentials or org
+- Automatically adapts to the user's default org configuration
 
 **Key Points**:
+- Use `sf config get target-org --json` to get the default org dynamically
 - Use `sf org list --json` to get username from authenticated orgs
 - Use `sf org display user --json` for complete user details including ID
-- Filter by org alias when multiple orgs are authenticated
+- Fall back to most recently used org if no default org is set
 - Use User ID (`Assignee__c`) in queries instead of email when possible (more efficient)
-- Always validate that the user info was retrieved successfully before using
+- Always validate that the user info and org were retrieved successfully before using
 
 ### Pattern 2: Error Handling for Authentication
 
 **Use case**: Validate authentication and provide helpful error messages
 
 ```bash
-# Get user email with validation
-USER_EMAIL=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.alias == "gus") | .username')
+# Get default org with validation
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
 
-if [ -z "$USER_EMAIL" ] || [ "$USER_EMAIL" = "null" ]; then
-  echo "Error: Could not retrieve user email. Is the org authenticated?"
-  echo "Run: sf org login web --alias gus"
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
+if [ -z "$DEFAULT_ORG" ] || [ "$DEFAULT_ORG" = "null" ]; then
+  echo "Error: No default org configured and no authenticated orgs found."
+  echo "Run: sf org login web --alias my-org"
+  echo "Then: sf config set target-org=my-org"
   exit 1
 fi
 
-echo "Querying work items for: $USER_EMAIL"
+# Get user email with validation
+USER_EMAIL=$(sf org list --json | jq -r --arg org "$DEFAULT_ORG" '.result.nonScratchOrgs[] | select(.alias == $org or .username == $org) | .username')
+
+if [ -z "$USER_EMAIL" ] || [ "$USER_EMAIL" = "null" ]; then
+  echo "Error: Could not retrieve user email for org: $DEFAULT_ORG"
+  echo "Run: sf org login web --alias $DEFAULT_ORG"
+  exit 1
+fi
+
+echo "Querying work items for: $USER_EMAIL (org: $DEFAULT_ORG)"
 
 # Check if org is still connected
-ORG_STATUS=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.alias == "gus") | .connectedStatus')
+ORG_STATUS=$(sf org list --json | jq -r --arg org "$DEFAULT_ORG" '.result.nonScratchOrgs[] | select(.alias == $org or .username == $org) | .connectedStatus')
 
 if [ "$ORG_STATUS" != "Connected" ]; then
-  echo "Error: Org 'gus' is not connected. Status: $ORG_STATUS"
-  echo "Please re-authenticate: sf org login web --alias gus"
+  echo "Error: Org '$DEFAULT_ORG' is not connected. Status: $ORG_STATUS"
+  echo "Please re-authenticate: sf org login web"
   exit 1
 fi
 ```
@@ -164,14 +208,17 @@ fi
 
 ```bash
 # Setup multiple orgs with meaningful aliases
-sf org login web --alias gus-dev
-sf org login web --alias gus-staging
-sf org login web --alias gus-prod
+sf org login web --alias dev
+sf org login web --alias staging
+sf org login web --alias prod
+
+# Set default org
+sf config set target-org=dev
 
 # Function to query across multiple orgs
 query_all_orgs() {
   local query="$1"
-  for org in gus-dev gus-staging gus-prod; do
+  for org in dev staging prod; do
     echo "=== Results from $org ==="
     sf data query --query "$query" --target-org "$org" || echo "Failed for $org"
   done
@@ -230,8 +277,9 @@ From `sf org display user --json`:
 
 **Essential Practices:**
 ```
-✅ DO: Use meaningful aliases for orgs (e.g., gus, gus-prod, gus-dev)
-✅ DO: Dynamically fetch user email/ID instead of hardcoding
+✅ DO: Use meaningful aliases for orgs (e.g., prod, staging, dev)
+✅ DO: Set a default org with sf config set target-org
+✅ DO: Dynamically fetch default org and user email/ID instead of hardcoding
 ✅ DO: Check org connection status before operations
 ✅ DO: Use --json flag for programmatic processing
 ✅ DO: Validate extracted values before using them
@@ -240,7 +288,7 @@ From `sf org display user --json`:
 
 **Common Mistakes to Avoid:**
 ```
-❌ DON'T: Hardcode user emails or org URLs
+❌ DON'T: Hardcode user emails, org aliases, or org URLs
 ❌ DON'T: Assume an org is still authenticated
 ❌ DON'T: Skip validation of jq output (check for null/empty)
 ❌ DON'T: Use generic aliases like "org1" (use descriptive names)
@@ -254,13 +302,22 @@ From `sf org display user --json`:
 ### Critical Violations
 
 ```bash
-# ❌ NEVER: Hardcode user credentials
-USER_EMAIL="user@gus.com"
+# ❌ NEVER: Hardcode user credentials or org aliases
+USER_EMAIL="user@example.com"
 USER_ID="005xx000001X8Uz"
+DEFAULT_ORG="gus"
 
 # ✅ CORRECT: Fetch dynamically
-USER_EMAIL=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.alias == "gus") | .username')
-USER_ID=$(sf org display user --target-org gus --json | jq -r '.result.id')
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
+USER_EMAIL=$(sf org list --json | jq -r --arg org "$DEFAULT_ORG" '.result.nonScratchOrgs[] | select(.alias == $org or .username == $org) | .username')
+USER_ID=$(sf org display user --target-org "$DEFAULT_ORG" --json | jq -r '.result.id')
 ```
 
 ---

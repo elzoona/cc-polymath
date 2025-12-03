@@ -68,10 +68,19 @@ if [ -z "$WI_NUMBER" ]; then
   exit 1
 fi
 
+# Get default org
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
 # Query work item by Name field (NOT Id) to get the record details
 QUERY_RESULT=$(sf data query \
   --query "SELECT Id, Name, Subject__c, Status__c FROM ADM_Work__c WHERE Name = 'W-${WI_NUMBER}'" \
-  --target-org gus \
+  --target-org "$DEFAULT_ORG" \
   --json)
 
 # Check if query returned results
@@ -113,6 +122,15 @@ echo "Found work item: W-${WI_NUMBER} (ID: ${WORK_ITEM_ID})"
 #!/bin/bash
 # post-commit hook
 
+# Get default org
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
 # Get WI from branch
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 WI_NUMBER=$(echo "$BRANCH" | grep -oE '[0-9]{8}' | head -1)
@@ -121,7 +139,7 @@ if [ -n "$WI_NUMBER" ]; then
   # Get work item ID
   WORK_ITEM_ID=$(sf data query \
     --query "SELECT Id FROM ADM_Work__c WHERE Name = 'W-${WI_NUMBER}'" \
-    --target-org gus \
+    --target-org "$DEFAULT_ORG" \
     --json | jq -r '.result.records[0].Id')
 
   if [ -n "$WORK_ITEM_ID" ] && [ "$WORK_ITEM_ID" != "null" ]; then
@@ -134,7 +152,7 @@ if [ -n "$WI_NUMBER" ]; then
       --sobject FeedItem \
       --values "ParentId=${WORK_ITEM_ID} \
                Body='Commit ${COMMIT_HASH}: ${COMMIT_MSG}'" \
-      --target-org gus
+      --target-org "$DEFAULT_ORG"
 
     echo "Posted commit to W-${WI_NUMBER}"
   fi
@@ -149,6 +167,15 @@ fi
 #!/bin/bash
 # ci-build.sh
 
+# Get default org
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
 # Extract WI from branch or PR
 WI_NUMBER=$(echo "$CI_BRANCH_NAME" | grep -oE '[0-9]{8}' | head -1)
 
@@ -160,7 +187,7 @@ fi
 # Get work item
 WORK_ITEM_ID=$(sf data query \
   --query "SELECT Id, Status__c FROM ADM_Work__c WHERE Name = 'W-${WI_NUMBER}'" \
-  --target-org gus \
+  --target-org "$DEFAULT_ORG" \
   --json | jq -r '.result.records[0].Id')
 
 if [ -z "$WORK_ITEM_ID" ] || [ "$WORK_ITEM_ID" = "null" ]; then
@@ -179,12 +206,12 @@ Coverage: ${COVERAGE}%
 Ready for deployment
 
 Build: ${BUILD_URL}'" \
-    --target-org gus
+    --target-org "$DEFAULT_ORG"
 
   # Update status if still in progress
   CURRENT_STATUS=$(sf data query \
     --query "SELECT Status__c FROM ADM_Work__c WHERE Id = '${WORK_ITEM_ID}'" \
-    --target-org gus \
+    --target-org "$DEFAULT_ORG" \
     --json | jq -r '.result.records[0].Status__c')
 
   if [ "$CURRENT_STATUS" = "In Progress" ]; then
@@ -192,7 +219,7 @@ Build: ${BUILD_URL}'" \
       --sobject ADM_Work__c \
       --record-id "$WORK_ITEM_ID" \
       --values "Status__c='Code Review'" \
-      --target-org gus
+      --target-org "$DEFAULT_ORG"
 
     echo "Moved W-${WI_NUMBER} to Code Review"
   fi
@@ -204,7 +231,7 @@ else
 Failed tests: ${TEST_FAILED}/${TEST_TOTAL}
 See: ${BUILD_URL}
 Please investigate.'" \
-    --target-org gus
+    --target-org "$DEFAULT_ORG"
 fi
 ```
 
@@ -216,6 +243,15 @@ fi
 #!/bin/bash
 # pre-push hook
 
+# Get default org
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 WI_NUMBER=$(echo "$BRANCH" | grep -oE '[0-9]{8}' | head -1)
 
@@ -223,7 +259,7 @@ if [ -n "$WI_NUMBER" ]; then
   # Check if WI exists and is in valid state
   WI_STATUS=$(sf data query \
     --query "SELECT Status__c FROM ADM_Work__c WHERE Name = 'W-${WI_NUMBER}'" \
-    --target-org gus \
+    --target-org "$DEFAULT_ORG" \
     --json | jq -r '.result.records[0].Status__c')
 
   if [ "$WI_STATUS" = "null" ] || [ -z "$WI_STATUS" ]; then
@@ -250,6 +286,15 @@ fi
 #!/bin/bash
 # auto-status-update.sh
 
+# Get default org
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 WI_NUMBER=$(echo "$BRANCH" | grep -oE '[0-9]{8}' | head -1)
 
@@ -261,12 +306,12 @@ fi
 # Get work item
 WORK_ITEM_ID=$(sf data query \
   --query "SELECT Id, Status__c FROM ADM_Work__c WHERE Name = 'W-${WI_NUMBER}'" \
-  --target-org gus \
+  --target-org "$DEFAULT_ORG" \
   --json | jq -r '.result.records[0].Id')
 
 CURRENT_STATUS=$(sf data query \
   --query "SELECT Status__c FROM ADM_Work__c WHERE Id = '${WORK_ITEM_ID}'" \
-  --target-org gus \
+  --target-org "$DEFAULT_ORG" \
   --json | jq -r '.result.records[0].Status__c')
 
 # Transition logic based on event
@@ -277,7 +322,7 @@ case "$1" in
         --sobject ADM_Work__c \
         --record-id "$WORK_ITEM_ID" \
         --values "Status__c='In Progress'" \
-        --target-org gus
+        --target-org "$DEFAULT_ORG"
       echo "Started work on W-${WI_NUMBER}"
     fi
     ;;
@@ -288,7 +333,7 @@ case "$1" in
         --sobject ADM_Work__c \
         --record-id "$WORK_ITEM_ID" \
         --values "Status__c='Code Review'" \
-        --target-org gus
+        --target-org "$DEFAULT_ORG"
       echo "Moved W-${WI_NUMBER} to Code Review"
     fi
     ;;
@@ -299,7 +344,7 @@ case "$1" in
         --sobject ADM_Work__c \
         --record-id "$WORK_ITEM_ID" \
         --values "Status__c='Fixed'" \
-        --target-org gus
+        --target-org "$DEFAULT_ORG"
       echo "Marked W-${WI_NUMBER} as Fixed"
     fi
     ;;
@@ -319,10 +364,19 @@ WI_NUMBER=$(git rev-parse --abbrev-ref HEAD | grep -oE '[0-9]{8}' | head -1)
 # Validate extracted
 [ -z "$WI_NUMBER" ] && echo "No WI found" && exit 1
 
+# Get default org
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
 # Query by Name field
 WORK_ITEM_ID=$(sf data query \
   --query "SELECT Id FROM ADM_Work__c WHERE Name = 'W-${WI_NUMBER}'" \
-  --target-org gus --json | jq -r '.result.records[0].Id')
+  --target-org "$DEFAULT_ORG" --json | jq -r '.result.records[0].Id')
 ```
 
 ### Common Git Hooks
