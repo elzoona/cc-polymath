@@ -4,7 +4,7 @@ Comprehensive skills for working with Salesforce CLI (sf) and Agile Accelerator 
 
 ## Category Overview
 
-**Total Skills**: 7
+**Total Skills**: 10
 **Focus**: Salesforce CLI, Agile Accelerator (GUS), SOQL, Record Management, Chatter
 **Use Cases**: Creating work items, managing sprints, querying data, bulk operations, API integration, automation
 **Default Org**: Examples dynamically detect your default org using `sf config get target-org` - set it with `sf config set target-org=<your-alias>`
@@ -25,17 +25,62 @@ Comprehensive skills for working with Salesforce CLI (sf) and Agile Accelerator 
 
 ---
 
-### sf-soql-queries.md
-**Description**: Query Salesforce data using SOQL and sf CLI
-**Lines**: ~200
+### sf-soql-queries.md (NAVIGATION FILE)
+**Description**: Navigation guide to SOQL query skills (basics, advanced, troubleshooting)
+**Lines**: ~230
 **Use When**:
-- Querying Salesforce data using SOQL
-- Retrieving work items, users, or other records
-- Finding record IDs for operations
-- Exporting data for analysis
-- Building reports or dashboards
+- Deciding which SOQL skill file to use
+- Understanding the SOQL skill organization
+- Quick reference for field names and critical rules
 
-**Key Concepts**: SOQL syntax, output formats, finding IDs, date filters, aggregation
+**Key Concepts**: Skill navigation, quick start guides, common workflows
+
+**⚠️ NOTE**: This is a navigation file. Use the specialized skill files below for actual queries:
+- `sf-soql-basics.md` - Core concepts and basic queries
+- `sf-soql-advanced.md` - Complex queries and aggregation
+- `sf-soql-troubleshooting.md` - Error handling and anti-patterns
+
+---
+
+### sf-soql-basics.md
+**Description**: Basic SOQL queries, field discovery, and fundamental patterns for Salesforce
+**Lines**: ~350
+**Use When**:
+- Starting with SOQL queries (learn basics first)
+- Querying simple data (users, work items by ID, basic lookups)
+- Learning field verification (mandatory describe workflow)
+- Looking up team memberships
+- Finding record IDs
+
+**Key Concepts**: MANDATORY field discovery, basic SOQL syntax, relationship names, verified field names, output formats
+
+---
+
+### sf-soql-advanced.md
+**Description**: Advanced SOQL queries for GUS - work items, aggregation, date filters, and tooling API
+**Lines**: ~350
+**Use When**:
+- Querying work items by various criteria (assignee, sprint, epic, status)
+- Aggregating data (counts, sums, grouped results)
+- Filtering by dates (date ranges, relative dates)
+- Querying metadata (Apex classes, triggers using Tooling API)
+- Complex multi-condition queries
+
+**Key Concepts**: Work item queries, aggregation (COUNT, SUM), date filters, tooling API
+
+---
+
+### sf-soql-troubleshooting.md
+**Description**: Common SOQL errors, anti-patterns, and troubleshooting for Salesforce queries
+**Lines**: ~450
+**Use When**:
+- Debugging SOQL query errors (INVALID_FIELD, relationship errors, operator errors)
+- Understanding common mistakes (why queries fail and how to fix them)
+- Learning anti-patterns (what NOT to do in SOQL queries)
+- Troubleshooting field verification (field doesn't exist errors)
+- Fixing relationship queries (wrong relationship name errors)
+
+**Key Concepts**: Critical violations, common field errors, query performance, troubleshooting workflow
 
 ---
 
@@ -232,9 +277,12 @@ Comprehensive skills for working with Salesforce CLI (sf) and Agile Accelerator 
 - Need user info → `sf-org-auth.md`
 
 **Querying Data**:
-- Finding records → `sf-soql-queries.md`
-- Complex queries → `sf-soql-queries.md`
-- Getting IDs → `sf-soql-queries.md`
+- New to SOQL → `sf-soql-basics.md`
+- Finding records → `sf-soql-basics.md`
+- Getting IDs → `sf-soql-basics.md`
+- Complex queries → `sf-soql-advanced.md`
+- Query errors → `sf-soql-troubleshooting.md`
+- Not sure which → `sf-soql-queries.md` (navigation)
 
 **Single Records**:
 - Create/update 1-5 records → `sf-record-operations.md`
@@ -338,7 +386,10 @@ All skills are available in the `skills/salesforce/` directory:
 ```bash
 # Load specific skill
 cat ~/.claude/skills/salesforce/sf-org-auth.md
-cat ~/.claude/skills/salesforce/sf-soql-queries.md
+cat ~/.claude/skills/salesforce/sf-soql-queries.md          # Navigation file
+cat ~/.claude/skills/salesforce/sf-soql-basics.md           # Basic SOQL queries
+cat ~/.claude/skills/salesforce/sf-soql-advanced.md         # Advanced SOQL queries
+cat ~/.claude/skills/salesforce/sf-soql-troubleshooting.md  # SOQL error handling
 cat ~/.claude/skills/salesforce/sf-record-operations.md
 cat ~/.claude/skills/salesforce/sf-work-items.md
 cat ~/.claude/skills/salesforce/sf-chatter.md
@@ -346,7 +397,7 @@ cat ~/.claude/skills/salesforce/sf-bulk-operations.md
 cat ~/.claude/skills/salesforce/sf-automation.md
 ```
 
-**Pro tip**: Start with `sf-org-auth.md` to authenticate, then use `sf-soql-queries.md` to find IDs, then create/update records with the appropriate skill.
+**Pro tip**: Start with `sf-org-auth.md` to authenticate, then use `sf-soql-basics.md` to learn queries and find IDs, then create/update records with the appropriate skill.
 
 ---
 
