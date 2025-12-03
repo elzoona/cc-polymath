@@ -1,6 +1,7 @@
 ---
 name: salesforce-automation
-description: Automate Salesforce operations with git integration and CI/CD
+description: Automate Salesforce operations with git integration and CI/CD. Use for automating GUS work item updates, inferring WI numbers from branches, and git workflows.
+keywords: salesforce, gus, automation, git, CI/CD, work item, branch, workflow, hook, automated updates, WI inference
 ---
 
 # Salesforce Automation

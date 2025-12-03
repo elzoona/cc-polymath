@@ -1,6 +1,7 @@
 ---
 name: salesforce-org-auth
-description: Authenticate and manage Salesforce orgs using sf CLI
+description: Authenticate and manage Salesforce orgs using sf CLI. Use for login, org management, user information, and GUS authentication.
+keywords: salesforce, gus, authentication, login, org, user info, sf cli, connect, session
 ---
 
 # Salesforce Org Authentication

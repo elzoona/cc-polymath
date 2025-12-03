@@ -1,6 +1,7 @@
 ---
 name: salesforce-soql-queries
-description: Query Salesforce data using SOQL and sf CLI
+description: Query Salesforce data using SOQL and sf CLI. Use for GUS work items, epics, sprints, teams, Agile Accelerator queries, and any Salesforce object queries.
+keywords: salesforce, gus, soql, query, work items, epic, sprint, team, agile accelerator, ADM_Work__c, ADM_Epic__c, ADM_Sprint__c, ADM_Scrum_Team_Member__c, user, field verification
 ---
 
 # Salesforce SOQL Queries

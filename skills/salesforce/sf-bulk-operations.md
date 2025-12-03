@@ -1,6 +1,7 @@
 ---
 name: salesforce-bulk-operations
-description: Perform bulk data operations on Salesforce objects
+description: Perform bulk data operations on Salesforce objects. Use for mass updates to GUS work items, bulk exports, and large data operations.
+keywords: salesforce, gus, bulk, mass update, export, import, CSV, bulk API, large datasets, multiple records
 ---
 
 # Salesforce Bulk Operations

@@ -1,6 +1,7 @@
 ---
 name: salesforce-record-operations
-description: Create and update Salesforce records using sf CLI
+description: Create and update Salesforce records using sf CLI. Use for creating/updating GUS work items, epics, sprints, and any Salesforce object.
+keywords: salesforce, gus, create, update, record, work item, epic, sprint, sf data, REST API, CRUD operations
 ---
 
 # Salesforce Record Operations

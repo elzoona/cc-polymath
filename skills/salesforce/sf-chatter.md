@@ -1,6 +1,7 @@
 ---
 name: salesforce-chatter
-description: Create and manage Chatter posts and comments in Salesforce
+description: Create and manage Chatter posts and comments in Salesforce. Use for posting updates to GUS work items, epics, and records.
+keywords: chatter, salesforce, gus, post, comment, feed, FeedItem, FeedComment, update, notification, work item comments
 ---
 
 # Salesforce Chatter Operations

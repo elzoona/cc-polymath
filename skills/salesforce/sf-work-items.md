@@ -1,6 +1,7 @@
 ---
 name: salesforce-work-items
-description: Manage Agile Accelerator (GUS) work items, sprints, and epics
+description: Manage Agile Accelerator (GUS) work items, sprints, and epics. Use for creating stories, bugs, tasks, managing sprints, epics, teams, and builds.
+keywords: gus, agile accelerator, work items, story, bug, task, sprint, epic, team, scrum, build, ADM_Work__c, ADM_Epic__c, ADM_Sprint__c, ADM_Scrum_Team__c, salesforce
 ---
 
 # Salesforce Agile Accelerator Work Items
