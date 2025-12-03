@@ -1,7 +1,7 @@
 # Atomic Skills for Claude Code
 
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blue)](https://docs.claude.com/en/docs/claude-code/plugins)
-[![Skills](https://img.shields.io/badge/Skills-447-green)](skills/)
+[![Skills](https://img.shields.io/badge/Skills-454-green)](skills/)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
 **Context-efficient development knowledge via progressive skill discovery**
@@ -42,7 +42,7 @@ This creates an challenging tradeoff between comprehensive coverage and context 
 
 ## The Solution: Atomic Skills + Progressive Discovery
 
-### Atomic Skills (447 total)
+### Atomic Skills (454 total)
 Each skill is **focused, self-contained, and composable**:
 - Average 320 lines - small enough to load quickly
 - Single responsibility - covers one clear topic
@@ -53,7 +53,7 @@ Each skill is **focused, self-contained, and composable**:
 
 ### Three-Tier Architecture
 
-**Tier 1: Gateway Skills (31 auto-discovered Agent Skills)**
+**Tier 1: Gateway Skills (32 auto-discovered Agent Skills)**
 Lightweight entry points that activate automatically based on keywords:
 - `discover-api` → triggers on "REST", "GraphQL", "authentication"
 - `discover-database` → triggers on "PostgreSQL", "MongoDB", "Redis"
@@ -61,7 +61,7 @@ Lightweight entry points that activate automatically based on keywords:
 
 Each gateway is ~200 lines with quick reference and loading commands.
 
-**Tier 2: Category Indexes (30 detailed references)**
+**Tier 2: Category Indexes (31 detailed references)**
 Full skill listings with descriptions, use cases, and workflows:
 - `api/INDEX.md` → All 7 API skills with integration patterns
 - `database/INDEX.md` → All 11 database skills with decision trees
@@ -91,7 +91,7 @@ Complete implementation guides loaded only when needed:
 
 ## What's Covered
 
-### Core Development (125 skills)
+### Core Development (132 skills)
 
 **Languages & Frameworks**:
 - **Backend**: Python (uv), Zig, Rust, Go (31 skills)
@@ -110,6 +110,7 @@ Complete implementation guides loaded only when needed:
 - **Databases**: Postgres, MongoDB, Redis, Redpanda, Iceberg, DuckDB (11 skills)
 - **Caching**: Multi-layer (browser, HTTP, CDN, Redis), invalidation strategies (7 skills)
 - **API Design**: REST, GraphQL, auth, rate limiting, versioning (7 skills)
+- **Salesforce**: sf CLI, GUS/Agile Accelerator, SOQL, work items, Chatter, automation (7 skills)
 - **Data Engineering**: ETL, streaming, batch processing (5 skills)
 - **Testing**: Unit, integration, e2e, TDD, coverage (6 skills)
 
@@ -269,13 +270,14 @@ cat skills/database/redpanda-streaming.md
 │
 ├── README.md              # This file
 │
-└── skills/                # 283 atomic skills, 31 gateways, 30 categories
+└── skills/                # 290 atomic skills, 32 gateways, 31 categories
     │
     ├── README.md          # Skills catalog
     │
-    ├── Gateway Skills (31 auto-discovered Agent Skills)
+    ├── Gateway Skills (32 auto-discovered Agent Skills)
     │   ├── discover-api/           # REST, GraphQL, authentication
     │   ├── discover-database/      # PostgreSQL, MongoDB, Redis
+    │   ├── discover-salesforce/    # Salesforce CLI, GUS, SOQL
     │   ├── discover-frontend/      # React, Next.js, UI components
     │   ├── discover-ml/            # Machine learning, models
     │   ├── discover-math/          # Mathematics, algorithms
@@ -287,15 +289,17 @@ cat skills/database/redpanda-streaming.md
     │   ├── discover-workflow/      # Beads, context strategies
     │   └── ... 20 more gateways
     │
-    ├── Category Indexes (30 detailed references)
+    ├── Category Indexes (31 detailed references)
     │   ├── api/INDEX.md            # All API skills overview
     │   ├── database/INDEX.md       # All database skills overview
+    │   ├── salesforce/INDEX.md     # All Salesforce skills overview
     │   ├── ml/INDEX.md             # All ML skills overview
     │   └── ... 27 more indexes
     │
     └── Skills by Category
         ├── api/           # REST, GraphQL, auth (7)
         ├── database/      # Postgres, MongoDB, Redis, streaming (11)
+        ├── salesforce/    # sf CLI, GUS, SOQL, work items, Chatter (7)
         ├── frontend/      # React, Next.js, performance (8)
         ├── mobile/        # iOS/Swift, SwiftUI, SwiftData (10)
         ├── testing/       # Unit, integration, e2e (6)
@@ -349,6 +353,7 @@ cat skills/database/redpanda-streaming.md
 | **Debug** | GDB, LLDB, pdb, DevTools, Valgrind | 14 | discover-debugging |
 | **Cloud** | AWS, GCP, Modal, Vercel, Cloudflare | 27 | discover-cloud |
 | **Database** | Postgres, Mongo, Redis, Redpanda, Iceberg | 11 | discover-database |
+| **Salesforce** | sf CLI, GUS, SOQL, Chatter, Automation | 7 | discover-salesforce |
 | **Caching** | Redis, HTTP, CDN, Service Workers | 7 | discover-caching |
 | **ML/AI** | DSPy, HuggingFace, Arize, GraphRAG | 33 | discover-ml |
 | **Rust/PyO3** | DSPy integration, RAG, agents, async, production | 19 | N/A |
@@ -545,4 +550,4 @@ Feel free to fork and adapt for your own use. Pull requests welcome.
 
 ---
 
-**447 atomic skills** • **41 gateway Agent Skills** • **35+ categories** • **100% CI-validated**
+**454 atomic skills** • **32 gateway Agent Skills** • **31 categories** • **100% CI-validated**
