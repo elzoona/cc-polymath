@@ -81,13 +81,7 @@ SELECT fields FROM object WHERE conditions ORDER BY field LIMIT n
 
 ```bash
 # Get default org (add this at the start of scripts)
-DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
-if [ -z "$DEFAULT_ORG" ]; then
-  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
-  if [ -z "$DEFAULT_ORG" ]; then
-    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
-  fi
-fi
+DEFAULT_ORG=$(sf config get target-org --json 2>/dev/null | jq -r '.result[0].value // empty' || sf org list --json 2>/dev/null | jq -r '.result.nonScratchOrgs[0].alias // empty')
 
 # Basic query
 sf data query \
@@ -229,13 +223,7 @@ sf data query \
 **STEP 1: Describe the object to see available fields**
 ```bash
 # Get default org
-DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
-if [ -z "$DEFAULT_ORG" ]; then
-  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
-  if [ -z "$DEFAULT_ORG" ]; then
-    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
-  fi
-fi
+DEFAULT_ORG=$(sf config get target-org --json 2>/dev/null | jq -r '.result[0].value // empty' || sf org list --json 2>/dev/null | jq -r '.result.nonScratchOrgs[0].alias // empty')
 
 # MANDATORY: Describe the object FIRST
 sf sobject describe --sobject User --target-org "$DEFAULT_ORG"
@@ -295,13 +283,7 @@ sf data query \
 **CORRECT APPROACH** (following mandatory field verification):
 ```bash
 # STEP 1: ALWAYS describe the object first
-DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
-if [ -z "$DEFAULT_ORG" ]; then
-  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
-  if [ -z "$DEFAULT_ORG" ]; then
-    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
-  fi
-fi
+DEFAULT_ORG=$(sf config get target-org --json 2>/dev/null | jq -r '.result[0].value // empty' || sf org list --json 2>/dev/null | jq -r '.result.nonScratchOrgs[0].alias // empty')
 
 sf sobject describe --sobject ADM_Scrum_Team_Member__c --target-org "$DEFAULT_ORG" | \
   jq '.fields[] | select(.custom == true) | {name: .name, type: .type, referenceTo: .referenceTo}'
@@ -330,13 +312,7 @@ sf data query \
 
 ```bash
 # Get default org
-DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
-if [ -z "$DEFAULT_ORG" ]; then
-  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
-  if [ -z "$DEFAULT_ORG" ]; then
-    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
-  fi
-fi
+DEFAULT_ORG=$(sf config get target-org --json 2>/dev/null | jq -r '.result[0].value // empty' || sf org list --json 2>/dev/null | jq -r '.result.nonScratchOrgs[0].alias // empty')
 
 # Find user ID by name
 sf data query \

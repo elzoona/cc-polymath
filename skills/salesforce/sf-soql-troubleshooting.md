@@ -50,13 +50,7 @@ sf data query --query "SELECT Id, Name, Username, Email, Department, Division, T
 **Correct Solution**:
 ```bash
 # Get default org
-DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
-if [ -z "$DEFAULT_ORG" ]; then
-  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
-  if [ -z "$DEFAULT_ORG" ]; then
-    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
-  fi
-fi
+DEFAULT_ORG=$(sf config get target-org --json 2>/dev/null | jq -r '.result[0].value // empty' || sf org list --json 2>/dev/null | jq -r '.result.nonScratchOrgs[0].alias // empty')
 
 # ✅ STEP 1: Describe to see what fields actually exist
 sf sobject describe --sobject User --target-org "$DEFAULT_ORG" | grep -i "team\|department\|division\|title"
@@ -95,13 +89,7 @@ sf data query --query "SELECT Id, Name, ADM_Scrum_Team__r.Name FROM ADM_Scrum_Te
 **Correct Solution**:
 ```bash
 # Get default org
-DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
-if [ -z "$DEFAULT_ORG" ]; then
-  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
-  if [ -z "$DEFAULT_ORG" ]; then
-    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
-  fi
-fi
+DEFAULT_ORG=$(sf config get target-org --json 2>/dev/null | jq -r '.result[0].value // empty' || sf org list --json 2>/dev/null | jq -r '.result.nonScratchOrgs[0].alias // empty')
 
 # ✅ STEP 1: Get the actual relationship name from describe
 sf sobject describe --sobject ADM_Scrum_Team_Member__c --target-org "$DEFAULT_ORG" --json | \
@@ -137,13 +125,7 @@ sf data query --query "SELECT Id FROM ADM_Work__c WHERE Epic__c != null" --targe
 **Solution 1: Query all records and filter with jq (RECOMMENDED)**
 ```bash
 # Get default org
-DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
-if [ -z "$DEFAULT_ORG" ]; then
-  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
-  if [ -z "$DEFAULT_ORG" ]; then
-    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
-  fi
-fi
+DEFAULT_ORG=$(sf config get target-org --json 2>/dev/null | jq -r '.result[0].value // empty' || sf org list --json 2>/dev/null | jq -r '.result.nonScratchOrgs[0].alias // empty')
 
 # ✅ CORRECT: Filter null values using jq instead
 sf data query --query "SELECT Id, Epic__c, Epic__r.Name FROM ADM_Work__c WHERE Assignee__c = '005xx000001X8Uz' LIMIT 50" \
@@ -181,13 +163,7 @@ sf data query --query "SELECT Id, Name FROM ADM_Scrum_Team_Member__c WHERE Membe
 **Correct Solution**:
 ```bash
 # Get default org
-DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
-if [ -z "$DEFAULT_ORG" ]; then
-  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
-  if [ -z "$DEFAULT_ORG" ]; then
-    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
-  fi
-fi
+DEFAULT_ORG=$(sf config get target-org --json 2>/dev/null | jq -r '.result[0].value // empty' || sf org list --json 2>/dev/null | jq -r '.result.nonScratchOrgs[0].alias // empty')
 
 # ✅ STEP 1: Find the User ID first
 USER_ID=$(sf data query \
@@ -233,13 +209,7 @@ WORK_ITEM_ID=$(sf data query --query "..." --json | jq -r '.result.records[0].Id
 **Correct Solution**:
 ```bash
 # Get default org
-DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
-if [ -z "$DEFAULT_ORG" ]; then
-  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
-  if [ -z "$DEFAULT_ORG" ]; then
-    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
-  fi
-fi
+DEFAULT_ORG=$(sf config get target-org --json 2>/dev/null | jq -r '.result[0].value // empty' || sf org list --json 2>/dev/null | jq -r '.result.nonScratchOrgs[0].alias // empty')
 
 # ✅ CORRECT: Validate query results
 QUERY_RESULT=$(sf data query \

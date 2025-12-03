@@ -36,13 +36,7 @@ Activate this skill when:
 
 ```bash
 # Get default org and current user's work items dynamically
-DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
-if [ -z "$DEFAULT_ORG" ]; then
-  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
-  if [ -z "$DEFAULT_ORG" ]; then
-    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
-  fi
-fi
+DEFAULT_ORG=$(sf config get target-org --json 2>/dev/null | jq -r '.result[0].value // empty' || sf org list --json 2>/dev/null | jq -r '.result.nonScratchOrgs[0].alias // empty')
 
 USER_EMAIL=$(sf org list --json | jq -r --arg org "$DEFAULT_ORG" '.result.nonScratchOrgs[] | select(.alias == $org or .username == $org) | .username')
 
@@ -114,13 +108,7 @@ sf data query \
 
 ```bash
 # Get default org
-DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
-if [ -z "$DEFAULT_ORG" ]; then
-  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
-  if [ -z "$DEFAULT_ORG" ]; then
-    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
-  fi
-fi
+DEFAULT_ORG=$(sf config get target-org --json 2>/dev/null | jq -r '.result[0].value // empty' || sf org list --json 2>/dev/null | jq -r '.result.nonScratchOrgs[0].alias // empty')
 
 # Count work items by status
 sf data query \
@@ -151,13 +139,7 @@ sf data query \
 
 ```bash
 # Get default org
-DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
-if [ -z "$DEFAULT_ORG" ]; then
-  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
-  if [ -z "$DEFAULT_ORG" ]; then
-    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
-  fi
-fi
+DEFAULT_ORG=$(sf config get target-org --json 2>/dev/null | jq -r '.result[0].value // empty' || sf org list --json 2>/dev/null | jq -r '.result.nonScratchOrgs[0].alias // empty')
 
 # Work items created this week
 sf data query \
@@ -203,13 +185,7 @@ THIS_QUARTER        Current quarter
 
 ```bash
 # Get default org
-DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
-if [ -z "$DEFAULT_ORG" ]; then
-  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
-  if [ -z "$DEFAULT_ORG" ]; then
-    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
-  fi
-fi
+DEFAULT_ORG=$(sf config get target-org --json 2>/dev/null | jq -r '.result[0].value // empty' || sf org list --json 2>/dev/null | jq -r '.result.nonScratchOrgs[0].alias // empty')
 
 # Query Apex classes
 sf data query \
