@@ -213,7 +213,7 @@ See Pattern 7: Bulk Data Export
 ## Best Practices
 
 **Always:**
-- **Use `sf` CLI tool directly** - Do NOT use `minigus` or wrapper tools
+- **Use `sf` CLI tool directly** for all Salesforce operations
 - Infer WI number from git branch name when not explicitly provided (see Pattern 9)
 - Specify `--target-org gus` (or your org alias) to avoid ambiguity
 - Query for IDs before creating related records
@@ -222,7 +222,6 @@ See Pattern 7: Bulk Data Export
 - Include all required fields when creating records
 
 **Never:**
-- Use `minigus` or other wrapper tools - always use `sf` directly
 - Hardcode record IDs (they vary across orgs)
 - Update records without verifying they exist first
 - Use single updates in loops (use bulk operations)

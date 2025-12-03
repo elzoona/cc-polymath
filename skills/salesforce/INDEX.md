@@ -162,7 +162,7 @@ Comprehensive skills for working with Salesforce CLI (sf) and Agile Accelerator 
 - Verify target org before destructive operations
 - Use HTML formatting for rich text fields
 - Export data before bulk deletes
-- **Always use `sf` CLI directly** - Do NOT use `minigus` or wrapper tools
+- **Always use `sf` CLI directly** for all Salesforce operations
 - Infer WI number from git branch name when not explicitly provided
 
 ---

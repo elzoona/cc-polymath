@@ -26,7 +26,7 @@ Activate this skill when:
 - Working with WI (Work Items) in any context
 
 **Important Notes**:
-- **Always use `sf` CLI tool directly** - Do NOT use `minigus` or other wrapper tools
+- **Always use `sf` CLI tool directly** for all Salesforce operations
 - **WI Number Inference**: If no WI number is explicitly mentioned, check the current git branch name for WI patterns (e.g., `W-12345678`, `wi-12345678`, `12345678-feature-name`)
 - **Default Org**: This skill uses `gus` as the default org alias for examples. If your org has a different alias, replace `--target-org gus` with your org alias (e.g., `--target-org my-gus`, `--target-org production-gus`, etc.)
 
@@ -464,7 +464,7 @@ Builds      | Status__c      | Scheduled, In Progress, Released
 ✅ DO: Use bulk operations for updating multiple records
 ✅ DO: Include required fields when creating records
 ✅ DO: Use HTML formatting for rich text fields
-✅ DO: Always use sf CLI tool directly (NOT minigus or wrapper tools)
+✅ DO: Always use sf CLI tool directly for all operations
 ✅ DO: Infer WI number from git branch name when not explicitly provided
 
 ❌ DON'T: Hardcode record IDs (query for them instead)
@@ -472,7 +472,6 @@ Builds      | Status__c      | Scheduled, In Progress, Released
 ❌ DON'T: Use single updates for large datasets (use bulk)
 ❌ DON'T: Forget to specify API names (use __c suffix for custom fields)
 ❌ DON'T: Update records without verifying they exist first
-❌ DON'T: Use minigus or other wrapper tools - always use sf directly
 ```
 
 ---
