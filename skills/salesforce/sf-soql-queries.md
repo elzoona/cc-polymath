@@ -110,7 +110,31 @@ sf data query \
   --target-org "$DEFAULT_ORG"
 ```
 
-### Concept 2: Verified Field Names
+### Concept 2: Relationship Names - CRITICAL RULES
+
+**CRITICAL**: Relationship names (the `__r` suffix) are DIFFERENT from object names. NEVER assume the relationship name matches the object name.
+
+**Common Mistake**:
+```sql
+-- ❌ WRONG: Using object name as relationship
+SELECT ADM_Scrum_Team__r.Name FROM ADM_Scrum_Team_Member__c
+
+-- ✅ CORRECT: Using actual relationship name from describe
+SELECT Scrum_Team__r.Name FROM ADM_Scrum_Team_Member__c
+```
+
+**How to get the correct relationship name**:
+```bash
+# ALWAYS use sf sobject describe to get the relationship name
+sf sobject describe --sobject ADM_Scrum_Team_Member__c --target-org "$DEFAULT_ORG" --json | \
+  jq -r '.result.fields[] | select(.name == "Scrum_Team__c") | {field: .name, relationshipName: .relationshipName, referenceTo: .referenceTo}'
+
+# Output: {"field":"Scrum_Team__c","relationshipName":"Scrum_Team__r","referenceTo":["ADM_Scrum_Team__c"]}
+```
+
+**Key Rule**: The relationship name is in the `relationshipName` field from `sf sobject describe`, NOT derived from the object name.
+
+### Concept 3: Verified Field Names
 
 **Common GUS Objects** (verified via `sf sobject describe`):
 
@@ -170,17 +194,24 @@ CreatedDate, CreatedById
 Id, FeedItemId, CommentBody, CreatedDate, CreatedById
 ```
 
-**Related Field Notation**:
+**Related Field Notation (VERIFIED via sf sobject describe)**:
 ```
-Assignee__r.Name            # User name
-Assignee__r.Email           # User email
-Sprint__r.Name              # Sprint name
-Epic__r.Name                # Epic name
-Scrum_Team__r.Name          # Team name
-Found_in_Build__r.Name      # Build name
+# From ADM_Work__c
+Assignee__r.Name            # User name (field: Assignee__c → User)
+Assignee__r.Email           # User email (field: Assignee__c → User)
+Sprint__r.Name              # Sprint name (field: Sprint__c → ADM_Sprint__c)
+Epic__r.Name                # Epic name (field: Epic__c → ADM_Epic__c)
+Found_in_Build__r.Name      # Build name (field: Found_in_Build__c → ADM_Build__c)
+
+# From ADM_Scrum_Team_Member__c
+Scrum_Team__r.Name          # Team name (field: Scrum_Team__c → ADM_Scrum_Team__c)
+                            # NOTE: Relationship is Scrum_Team__r, NOT ADM_Scrum_Team__r!
+
+# CRITICAL: Relationship names come from the relationshipName field in sf sobject describe,
+# NOT from the object name! Always verify with describe before using.
 ```
 
-### Concept 3: Output Formats
+### Concept 4: Output Formats
 
 **Available Formats**:
 - `human` - Table format (default)
@@ -554,18 +585,21 @@ Found_in_Build__r.Name      # Build name
 ```
 ✅ DO: ALWAYS run `sf sobject describe` FIRST before ANY query - THIS IS MANDATORY, NOT OPTIONAL
 ✅ DO: Verify field names exist in describe output before writing SELECT statements
+✅ DO: Get relationship names from the relationshipName field in describe (NOT from object names)
 ✅ DO: Use --result-format json for scripting
 ✅ DO: Use LIMIT to avoid timeouts on large datasets
 ✅ DO: Query for IDs before creating related records
 ✅ DO: Use relationship queries (__r) instead of multiple queries
 ✅ DO: Validate query results before using extracted values
 ✅ DO: Use WHERE clauses to filter data server-side
-✅ DO: Refer to Concept 2 for verified field names (but verify them first!)
+✅ DO: Refer to Concepts 2-3 for verified field/relationship names (but verify them first!)
 ```
 
 **Common Mistakes to Avoid (CRITICAL):**
 ```
 ❌ DON'T: EVER query fields without running sf sobject describe first - THIS CAUSES MOST ERRORS
+❌ DON'T: Assume relationship names match object names (use relationshipName from describe)
+❌ DON'T: Use ADM_Scrum_Team__r when the actual relationship is Scrum_Team__r
 ❌ DON'T: Assume ANY field exists without verification (not even Department, Title, or Team__c)
 ❌ DON'T: Guess field names without verifying (ALWAYS use sf sobject describe)
 ❌ DON'T: Write queries based on field names from other orgs or documentation
@@ -619,7 +653,40 @@ sf data query \
 - Assuming field names without verification WILL cause failures
 - User.Team__c, User.Department, User.Division are NOT guaranteed to exist
 
-### Critical Violation #2: Using Shell Special Characters
+### Critical Violation #2: Assuming Relationship Names Match Object Names (VERY COMMON)
+
+```bash
+# ❌ NEVER: Assume relationship name matches object name
+sf data query --query "SELECT Id, Name, ADM_Scrum_Team__r.Name FROM ADM_Scrum_Team_Member__c WHERE Member_Name__c = '005xx'" --target-org gus
+# Error: Didn't understand relationship 'ADM_Scrum_Team__r' in field path
+
+# ✅ CORRECT: Use sf sobject describe to get the actual relationship name
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
+# STEP 1: Get the actual relationship name from describe
+sf sobject describe --sobject ADM_Scrum_Team_Member__c --target-org "$DEFAULT_ORG" --json | \
+  jq -r '.result.fields[] | select(.name == "Scrum_Team__c") | {field: .name, relationshipName: .relationshipName}'
+# Output: {"field":"Scrum_Team__c","relationshipName":"Scrum_Team__r"}
+
+# STEP 2: Use the verified relationship name (Scrum_Team__r, NOT ADM_Scrum_Team__r)
+sf data query \
+  --query "SELECT Id, Name, Scrum_Team__r.Name FROM ADM_Scrum_Team_Member__c WHERE Member_Name__c = '005xx'" \
+  --target-org "$DEFAULT_ORG"
+```
+
+**Why this is a common error**:
+- Relationship names are defined in the `relationshipName` field, NOT derived from object names
+- Field `Scrum_Team__c` references object `ADM_Scrum_Team__c` but has relationship name `Scrum_Team__r`
+- The `ADM_` prefix is NOT part of the relationship name
+- ALWAYS use `sf sobject describe` to get the exact `relationshipName` value
+
+### Critical Violation #3: Using Shell Special Characters
 
 ```bash
 # ❌ NEVER: Use != in double-quoted strings (shell escapes the !)
