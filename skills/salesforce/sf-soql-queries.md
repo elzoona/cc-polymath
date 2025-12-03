@@ -180,6 +180,16 @@ sf data query \
     AND Priority__c = 'P1'
     AND Status__c NOT IN ('Fixed', 'Not a Bug')" \
   --target-org gus
+
+# Query user's epics
+USER_EMAIL=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.alias == "gus") | .username')
+
+sf data query \
+  --query "SELECT Id, Name, Description__c, Health__c, Priority__c, Owner.Name, LastModifiedDate
+    FROM ADM_Epic__c
+    WHERE Owner.Email = '${USER_EMAIL}'
+    ORDER BY LastModifiedDate DESC" \
+  --target-org gus
 ```
 
 ### Pattern 3: Complex Queries with Aggregation

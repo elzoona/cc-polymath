@@ -268,7 +268,8 @@ Comprehensive skills for working with Salesforce CLI (sf) and Agile Accelerator 
 
 **Epics (ADM_Epic__c)**:
 - Feature groupings
-- Key fields: Name, Health__c, Status__c
+- Key fields: Name, Health__c, Priority__c, Description__c
+- Note: Uses Health__c (not Status__c)
 
 **Sprints (ADM_Sprint__c)**:
 - Iteration tracking

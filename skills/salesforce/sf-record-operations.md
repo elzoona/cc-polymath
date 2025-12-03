@@ -57,7 +57,7 @@ sf data create record \
 # Create an Epic
 sf data create record \
   --sobject ADM_Epic__c \
-  --values "Name='Q1 2024 Features' Status__c='New' Description__c='Major features for Q1'" \
+  --values "Name='Q1 2024 Features' Health__c='On Track' Description__c='Major features for Q1'" \
   --target-org gus
 ```
 
@@ -303,7 +303,10 @@ Priority__c      (recommended)
 **ADM_Epic__c (Epics)**:
 ```
 Name             (required)
-Status__c        (required)
+Health__c        (recommended: On Track, At Risk, Off Track, Completed, Canceled)
+Priority__c      (optional: P0, P1, P2, P3)
+Description__c   (optional, HTML rich text)
+Note: Epics do NOT have Status__c - use Health__c
 ```
 
 **ADM_Sprint__c (Sprints)**:

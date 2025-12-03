@@ -147,7 +147,6 @@ sf data query \
 sf data create record \
   --sobject ADM_Epic__c \
   --values "Name='Q1 2024 Authentication Features' \
-           Status__c='New' \
            Priority__c='P1' \
            Health__c='On Track' \
            Description__c='<p>Complete authentication overhaul</p>'" \
@@ -296,8 +295,9 @@ Type: User Story, Bug, Task, Investigation
 
 **Epics (ADM_Epic__c)**:
 ```
-Health: On Track, At Risk, Off Track
-Status: New, In Progress, Complete
+Health: On Track, At Risk, Off Track, Completed, Canceled
+Priority: P0, P1, P2, P3 (optional)
+Note: Epics do NOT have a Status__c field - use Health__c instead
 ```
 
 **Sprints (ADM_Sprint__c)**:
