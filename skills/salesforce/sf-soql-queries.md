@@ -6,9 +6,9 @@ description: Query Salesforce data using SOQL and sf CLI
 # Salesforce SOQL Queries
 
 **Scope**: SOQL query syntax, data retrieval, and result formatting
-**Lines**: ~200
+**Lines**: ~250
 **Last Updated**: 2025-12-03
-**Format Version**: 1.0 (Atomic)
+**Format Version**: 1.1 (Atomic - Enhanced field verification requirements)
 
 ---
 
@@ -22,30 +22,47 @@ Activate this skill when:
 - Building reports or dashboards
 - Joining related objects
 
+**⚠️ CRITICAL REQUIREMENT**: Before writing ANY SOQL query, you MUST first run `sf sobject describe --sobject <ObjectName>` to verify field names. DO NOT skip this step. DO NOT assume field names exist, even if they seem obvious (like Department, Title, Team__c on User object). See Concept 1 below.
+
 ---
 
 ## Core Concepts
 
-### Concept 1: Field Discovery Before Querying
+### Concept 1: MANDATORY Field Discovery Before Querying
 
-**CRITICAL**: Always use `sf sobject describe` when uncertain about field names. This prevents INVALID_FIELD errors.
+**CRITICAL RULE**: You MUST use `sf sobject describe` BEFORE writing any SOQL query with fields beyond Id and Name. This is NOT optional.
+
+**MANDATORY WORKFLOW**:
+1. **FIRST**: Always run `sf sobject describe --sobject <ObjectName>`
+2. **SECOND**: Verify the exact field names exist in the output
+3. **THIRD**: Only then write your SOQL query using verified field names
+
+**NEVER query fields without verifying them first**, even if they seem obvious (Department, Title, Team__c, etc.).
 
 ```bash
-# Discover all fields on an object
-sf sobject describe --sobject ADM_Work__c --target-org "$DEFAULT_ORG"
+# STEP 1: ALWAYS describe the object FIRST
+sf sobject describe --sobject User --target-org "$DEFAULT_ORG"
 
-# Search for specific fields (e.g., team-related)
+# STEP 2: Search for specific fields (e.g., team-related)
 sf sobject describe --sobject User --target-org "$DEFAULT_ORG" | grep -i team
 
-# Find relationship fields
+# STEP 3: Find relationship fields
 sf sobject describe --sobject ADM_Work__c --target-org "$DEFAULT_ORG" | \
   jq '.fields[] | select(.relationshipName != null) | {name: .name, relationshipName: .relationshipName, referenceTo: .referenceTo}'
+
+# STEP 4: Only after verification, write your query using confirmed field names
 ```
 
 **Why this matters**: Guessing field names leads to errors like:
 - `No such column 'Team__c' on entity 'User'` (field doesn't exist)
+- `No such column 'Department' on entity 'User'` (field may not exist)
 - Wrong field type or reference target
 - Missing junction objects for many-to-many relationships
+
+**Common fields that DON'T exist**:
+- User.Team__c (use ADM_Scrum_Team_Member__c junction object instead)
+- User.Department (may not exist in all orgs)
+- User.Division (may not exist in all orgs)
 
 See **Pattern 1: Discovering Object Fields** below for detailed examples.
 
@@ -198,12 +215,15 @@ sf data query \
 
 ## Patterns
 
-### Pattern 1: Discovering Object Fields
+### Pattern 1: Discovering Object Fields (MANDATORY FIRST STEP)
 
 **Use case**: Find available fields on an object before querying (avoids INVALID_FIELD errors)
 
-**IMPORTANT**: Always use `sf sobject describe` when unsure about field names. This prevents errors like `No such column 'Team__c' on entity 'User'`.
+**MANDATORY**: You MUST ALWAYS use `sf sobject describe` as the FIRST STEP before writing ANY query. This is NOT optional, even for fields that seem obvious.
 
+**WORKFLOW - FOLLOW THESE STEPS IN ORDER**:
+
+**STEP 1: Describe the object to see available fields**
 ```bash
 # Get default org
 DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
@@ -214,16 +234,22 @@ if [ -z "$DEFAULT_ORG" ]; then
   fi
 fi
 
-# List all fields on an object
+# MANDATORY: Describe the object FIRST
 sf sobject describe --sobject User --target-org "$DEFAULT_ORG"
+```
 
+**STEP 2: Verify the specific fields you want to query exist**
+```bash
 # Search for specific field names (e.g., team-related)
 sf sobject describe --sobject User --target-org "$DEFAULT_ORG" | grep -i team
 
-# Find fields that reference another object (e.g., User)
+# If grep returns nothing, the field doesn't exist - find the junction object instead
 sf sobject describe --sobject ADM_Scrum_Team_Member__c --target-org "$DEFAULT_ORG" | \
   jq '.fields[] | select(.referenceTo[]? == "User") | {name: .name, label: .label, relationshipName: .relationshipName}'
+```
 
+**STEP 3: Extract verified field names programmatically (RECOMMENDED)**
+```bash
 # Get all custom fields (fields ending in __c)
 sf sobject describe --sobject ADM_Work__c --target-org "$DEFAULT_ORG" | \
   jq '.fields[] | select(.name | endswith("__c")) | {name: .name, label: .label, type: .type}'
@@ -233,12 +259,13 @@ sf sobject describe --sobject ADM_Work__c --target-org "$DEFAULT_ORG" | \
   jq '.fields[] | select(.relationshipName != null) | {name: .name, relationshipName: .relationshipName, referenceTo: .referenceTo}'
 ```
 
-**Example: Finding team membership fields**
+**STEP 4: Only after verification, write your query**
 ```bash
-# Discovered that User doesn't have Team__c, but ADM_Scrum_Team_Member__c has Member_Name__c
+# Example: Finding team membership fields
+# After discovering that User doesn't have Team__c, we found ADM_Scrum_Team_Member__c has Member_Name__c
 USER_ID="005EE000001JW5FYAW"
 
-# Query teams through the junction object
+# Query teams through the verified junction object
 sf data query \
   --query "SELECT Id, Name, Scrum_Team__r.Name
     FROM ADM_Scrum_Team_Member__c
@@ -522,21 +549,25 @@ Found_in_Build__r.Name      # Build name
 
 ## Best Practices
 
-**Essential Practices:**
+**Essential Practices (IN ORDER OF IMPORTANCE):**
 ```
-✅ DO: Use `sf sobject describe` when uncertain about field names (prevents INVALID_FIELD errors)
+✅ DO: ALWAYS run `sf sobject describe` FIRST before ANY query - THIS IS MANDATORY, NOT OPTIONAL
+✅ DO: Verify field names exist in describe output before writing SELECT statements
 ✅ DO: Use --result-format json for scripting
 ✅ DO: Use LIMIT to avoid timeouts on large datasets
 ✅ DO: Query for IDs before creating related records
 ✅ DO: Use relationship queries (__r) instead of multiple queries
 ✅ DO: Validate query results before using extracted values
 ✅ DO: Use WHERE clauses to filter data server-side
-✅ DO: Refer to Concept 2 for verified field names
+✅ DO: Refer to Concept 2 for verified field names (but verify them first!)
 ```
 
-**Common Mistakes to Avoid:**
+**Common Mistakes to Avoid (CRITICAL):**
 ```
-❌ DON'T: Guess field names without verifying (use sf sobject describe)
+❌ DON'T: EVER query fields without running sf sobject describe first - THIS CAUSES MOST ERRORS
+❌ DON'T: Assume ANY field exists without verification (not even Department, Title, or Team__c)
+❌ DON'T: Guess field names without verifying (ALWAYS use sf sobject describe)
+❌ DON'T: Write queries based on field names from other orgs or documentation
 ❌ DON'T: Use != in double-quoted queries (shell escapes !)
 ❌ DON'T: Query without LIMIT (can timeout)
 ❌ DON'T: Use SELECT * (not supported in SOQL)
@@ -550,7 +581,44 @@ Found_in_Build__r.Name      # Build name
 
 ## Anti-Patterns
 
-### Critical Violations
+### Critical Violation #1: Querying Fields Without Verification (MOST COMMON ERROR)
+
+```bash
+# ❌ NEVER: Query fields without first running sf sobject describe
+# This is the #1 cause of INVALID_FIELD errors
+sf data query --query "SELECT Id, Name, Username, Email, Department, Division, Title, Team__c FROM User WHERE Username = 'user@example.com'" --target-org gus
+# Error: No such column 'Team__c' on entity 'User'
+# Error: No such column 'Department' on entity 'User' (may not exist in all orgs)
+
+# ✅ CORRECT: ALWAYS describe the object FIRST
+DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
+if [ -z "$DEFAULT_ORG" ]; then
+  DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
+  if [ -z "$DEFAULT_ORG" ]; then
+    DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[0].alias // empty')
+  fi
+fi
+
+# STEP 1: Describe to see what fields actually exist
+sf sobject describe --sobject User --target-org "$DEFAULT_ORG" | grep -i "team\|department\|division\|title"
+
+# STEP 2: If fields don't exist, find alternative approach (e.g., junction objects)
+sf sobject describe --sobject ADM_Scrum_Team_Member__c --target-org "$DEFAULT_ORG" | \
+  jq '.fields[] | select(.referenceTo[]? == "User")'
+
+# STEP 3: Query only with verified fields
+sf data query \
+  --query "SELECT Id, Name, Username, Email FROM User WHERE Username = 'user@example.com'" \
+  --target-org "$DEFAULT_ORG"
+```
+
+**Why this is the #1 error**:
+- Field names vary across Salesforce orgs and implementations
+- Custom fields that exist in one org may not exist in another
+- Assuming field names without verification WILL cause failures
+- User.Team__c, User.Department, User.Division are NOT guaranteed to exist
+
+### Critical Violation #2: Using Shell Special Characters
 
 ```bash
 # ❌ NEVER: Use != in double-quoted strings (shell escapes the !)
@@ -603,12 +671,16 @@ if [ -z "$WORK_ITEM_ID" ] || [ "$WORK_ITEM_ID" = "null" ]; then
 fi
 ```
 
+### Critical Violation #3: Assuming Fields Exist Without Verification
+
+**NOTE**: This is another example of Violation #1. See above for the full explanation.
+
 ```bash
-# ❌ NEVER: Guess field names without verification
+# ❌ NEVER: Guess field names without verification (see Violation #1)
 sf data query --query "SELECT Id, Name, Team__c FROM User WHERE Id = '005EE000001JW5FYAW'" --target-org gus
 # Error: No such column 'Team__c' on entity 'User'
 
-# ✅ CORRECT: Use sf sobject describe to discover correct fields
+# ✅ CORRECT: Use sf sobject describe to discover correct fields (MANDATORY STEP)
 DEFAULT_ORG=$(sf config get target-org --json | jq -r '.result[0].value // empty')
 if [ -z "$DEFAULT_ORG" ]; then
   DEFAULT_ORG=$(sf org list --json | jq -r '.result.nonScratchOrgs[] | select(.isDefaultUsername == true) | .alias' | head -1)
@@ -617,16 +689,16 @@ if [ -z "$DEFAULT_ORG" ]; then
   fi
 fi
 
-# Discover available fields
+# STEP 1: Discover available fields
 sf sobject describe --sobject User --target-org "$DEFAULT_ORG" | grep -i team
 # Result: No Team__c field exists
 
-# Find junction object for team membership
+# STEP 2: Find junction object for team membership
 sf sobject describe --sobject ADM_Scrum_Team_Member__c --target-org "$DEFAULT_ORG" | \
   jq '.fields[] | select(.referenceTo[]? == "User") | {name: .name, relationshipName: .relationshipName}'
 # Result: Member_Name__c field references User
 
-# Query using correct field
+# STEP 3: Query using verified fields and correct object
 sf data query \
   --query "SELECT Scrum_Team__r.Name FROM ADM_Scrum_Team_Member__c WHERE Member_Name__c = '005EE000001JW5FYAW'" \
   --result-format json \
@@ -636,8 +708,8 @@ sf data query \
 **Why this matters**:
 - Field names vary across Salesforce implementations
 - Many-to-many relationships use junction objects
-- `sf sobject describe` is the authoritative source
-- See **Pattern 1: Discovering Object Fields** for detailed examples
+- `sf sobject describe` is the authoritative source - USE IT FIRST, ALWAYS
+- See **Pattern 1: Discovering Object Fields** and **Violation #1** for detailed examples
 
 ---
 
@@ -661,4 +733,4 @@ sf data query \
 ---
 
 **Last Updated**: 2025-12-03
-**Format Version**: 1.0 (Atomic)
+**Format Version**: 1.1 (Atomic - Enhanced field verification requirements)
