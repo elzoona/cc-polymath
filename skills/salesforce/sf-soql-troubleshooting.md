@@ -7,7 +7,7 @@ keywords: salesforce, soql, troubleshooting, errors, anti-patterns, debug, inval
 # Salesforce SOQL Troubleshooting
 
 **Scope**: Common SOQL errors, anti-patterns, and solutions
-**Lines**: ~450
+**Lines**: ~507
 **Last Updated**: 2025-12-03
 **Format Version**: 1.0 (Split from sf-soql-queries v1.2)
 

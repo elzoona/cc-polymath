@@ -215,10 +215,10 @@ Scrum_Team__r.Name          # Team name (NOT ADM_Scrum_Team__r!)
 ## File Organization
 
 **Skill Files**:
-- [sf-soql-basics.md](sf-soql-basics.md) - ~350 lines, v1.0
-- [sf-soql-advanced.md](sf-soql-advanced.md) - ~350 lines, v1.0
-- [sf-soql-troubleshooting.md](sf-soql-troubleshooting.md) - ~450 lines, v1.0
-- [sf-soql-queries.md](sf-soql-queries.md) - This navigation file, v2.0
+- [sf-soql-basics.md](sf-soql-basics.md) - ~402 lines, v1.0
+- [sf-soql-advanced.md](sf-soql-advanced.md) - ~292 lines, v1.0
+- [sf-soql-troubleshooting.md](sf-soql-troubleshooting.md) - ~507 lines, v1.0
+- [sf-soql-queries.md](sf-soql-queries.md) - ~232 lines (navigation file), v2.0
 
 **Version History**:
 - v2.0 (2025-12-03): Split into focused skill files (basics, advanced, troubleshooting)

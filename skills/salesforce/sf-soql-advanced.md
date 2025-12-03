@@ -7,7 +7,7 @@ keywords: salesforce, gus, soql, advanced, work items, aggregation, date filters
 # Salesforce SOQL Advanced Queries
 
 **Scope**: Advanced SOQL patterns for work items, aggregation, date filtering, and tooling API
-**Lines**: ~350
+**Lines**: ~292
 **Last Updated**: 2025-12-03
 **Format Version**: 1.0 (Split from sf-soql-queries v1.2)
 

@@ -7,7 +7,7 @@ keywords: salesforce, gus, soql, query, basics, field verification, sf sobject d
 # Salesforce SOQL Basics
 
 **Scope**: Basic SOQL syntax, mandatory field discovery, and fundamental query patterns
-**Lines**: ~350
+**Lines**: ~402
 **Last Updated**: 2025-12-03
 **Format Version**: 1.0 (Split from sf-soql-queries v1.2)
 
